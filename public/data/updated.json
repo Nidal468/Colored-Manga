@@ -1,0 +1,21 @@
+[
+    {
+        "id":"0",
+        "title":"Return of the frozen player",
+        "author":"제리엠",
+        "chapter":[
+            {
+                "number":"2",
+                "date":"10/10/2023"
+            },
+            {
+                "number":"1",
+                "date":"15/10/2023"
+            },
+            {
+                "number":"0",
+                "date":"20/10/2023"
+            }
+        ]
+    }
+]

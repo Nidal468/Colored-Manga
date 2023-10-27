@@ -1,0 +1,36 @@
+[
+    {   "id":"1",
+        "title": "Return of the frozen player",
+        "image":"/images/assets/fpr.jpg",
+        "genre":[
+            {
+                "type":"Fantasy"
+            },
+            {
+                "type":"Action"
+            },
+            {
+                "type":"Romance"
+            }
+        ],
+        "rating":"4.5",
+        "info":"Gates, monsters, system, players. These new concepts sprang up from nowhere. Those who protect and those who invade. These two powers fought all over the world. The final boss for the area Earth, the Frost Queen, has appeared. That’s how long it took for hope to become despair. On the day that the Frost Queen walked out of the Gate..."
+    },
+    {   "id":"2",
+        "title": "One Piece",
+        "image":"/images/assets/op1.jpg",
+        "genre":[
+            {
+                "type":"Fantasy"
+            },
+            {
+                "type":"Action"
+            },
+            {
+                "type":"Romance"
+            }
+        ],
+        "rating":"4.5",
+        "info":"Gates, monsters, system, players. These new concepts sprang up from nowhere. Those who protect and those who invade. These two powers fought all over the world. The final boss for the area Earth, the Frost Queen, has appeared. That’s how long it took for hope to become despair. On the day that the Frost Queen walked out of the Gate..."
+    }
+]
