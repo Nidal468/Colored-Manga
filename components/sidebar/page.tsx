@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import DonutSmallIcon from '@mui/icons-material/DonutSmall';
 import DnsIcon from '@mui/icons-material/Dns';
 import AssistantIcon from '@mui/icons-material/Assistant';
@@ -10,30 +10,34 @@ import CodeIcon from '@mui/icons-material/Code';
 import AdminPanelSettingsIcon from '@mui/icons-material/AdminPanelSettings';
 import Link from 'next/link'
 import theme from '@/styles/theme.module.css'
+import { createClientComponentClient } from '@supabase/auth-helpers-nextjs'
 export default function Sidebar() {
+    const supabase = createClientComponentClient()
     const [selectedIcon, setSelectedIcon] = useState(null);
     const [detailsTop, setDetailsTop] = useState("0%");
     const [text, setText] = useState("")
-
+    const [image,setImage] = useState("")
     const isIconSelected = (iconName: any) => iconName === selectedIcon;
-
     const handleMouseEnter = (iconName: any, topValue: any, isText: any) => {
         setSelectedIcon(iconName);
         setDetailsTop(topValue);
         setText(isText)
     };
-
     const handleMouseLeave = () => {
         setSelectedIcon(null);
         setDetailsTop("0%");
     };
-
+    const Check = async () => {
+        const {data : {user}} = await supabase.auth.getUser()
+        setImage(`${user?.user_metadata.avatar_url}`)
+        }
+    Check()
     return (
         <div className='z-50 hidden lg:flex'>
             <div className="w-[6%] h-full py-[2.5vw] shadow flex-col justify-between items-center inline-flex fixed top-0 left-0" id={theme.sidebar}>
                 <img className="w-[60%]" src="/images/assets/logo.Webp" />
                 <div className="p-[0.5vw] bg-white bg-opacity-10 rounded-[200vw] flex-col justify-start items-center gap-[1.5vw] flex">
-                    <Link href={"./"}>
+                    <Link href={"/"}>
                         <DonutSmallIcon
                             sx={{ color: isIconSelected('DonutSmall') ? '#fff' : '#bdbdbd' , fontSize: "1.5vw"}}
                             onMouseEnter={() => handleMouseEnter('DonutSmall', "19%", "Home")}
@@ -73,7 +77,7 @@ export default function Sidebar() {
                         />
                     </div>
                     <div className="rounded-[100vw] justify-center items-center inline-flex">
-                        <img className="w-[3vw] h-[3vw] rounded-[200vw]" src="/images/assets/frozen.jpg" />
+                        <img className="w-[3vw] h-[3vw] rounded-[200vw]" src={image} alt={image}/>
                     </div>
                 </div>
                 <Link href="/admin">

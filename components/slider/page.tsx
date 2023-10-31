@@ -19,9 +19,9 @@ export default function SwiperComponent() {
             {data.map((slider) => (
                 <SwiperSlide key={slider.id}><div className="w-full justify-end items-end flex">
                 <img className="lg:w-[16vw] lg:h-[24vw] w-[24vw] h-[36vw] object-cover" src={slider.image} />
-                <div className="w-full lg:h-[22vw] h-[32vw] bg-white bg-opacity-5 lg:backdrop-blur-[40vw]">
+                <div className="w-full lg:h-[22vw] h-[32vw]">
                 <img className="w-full h-full object-cover absolute z-1" src={slider.image} />
-                    <div className="w-full h-full flex z-5 bg-white bg-opacity-5 lg:backdrop-blur-[10px] backdrop-blur-[80px]">
+                    <div className="w-full h-full flex z-5 bg-white bg-opacity-10 lg:backdrop-blur-[10px] backdrop-blur-[80px]">
                         <div className="w-full p-[1vw] flex-col justify-between items-start flex">
                             <div className="self-stretch p-[1vw] bg-stone-950 bg-opacity-40 rounded-[0.5vw] justify-between items-center gap-[5px] inline-flex">
                                 <div className="flex-col justify-center items-start gap-[0.5vw] inline-flex">

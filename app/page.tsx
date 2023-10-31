@@ -3,29 +3,21 @@ import Update from "@/components/update/page";
 import Card from "@/components/card/page";
 import Popularity from '@/components/popularity/page'
 import styles from '@/styles/home.module.css'
-import sideway from '@/components/sideway/page'
 import Sideway from "@/components/sideway/page";
 import Link from 'next/link'
 import Nav from '@/components/nav/page'
 import Updated from '@/public/data/updated.json'
 import Footer from "@/components/footer/page";
-import { getServerSession } from "next-auth/next";
-import {AuthOptions} from "@/app/api/auth/[...nextauth]/route"
-import {redirect} from "next/navigation"
+
 export default async function Home() {
-  const session = getServerSession(AuthOptions);
-  if(!session) {
-    redirect('/signin?callbackUrl=/')
-  }
+  console.log("hello")
   return (
-    <div className="w-full font-light p-[2vw] px-[3vw] lg:px-[1vw] lg:p-[1vw] flex flex-col items-start justify-start gap-[10vw]">
+    <div className="w-full font-light pl-[7%] pt-[5vw] pr-[2vw] lg:pr-[1vw] flex flex-col items-start justify-start gap-[2vw]">
       <Nav/>
-      <div className="slider w-full flex flex-col gap-[3vw]">
-        <div className="w-full h-[8vw] lg:h-[8vw] justify-start items-center gap-2.5 inline-flex">
-          <div className="text-white lg:text-[2vw] text-[3vw] font-medium">Latest Updates{}</div>
-        </div>
+      <div className="slider w-full flex flex-col">
+        <div className="w-full h-[8vw] lg:h-[6vw] justify-start items-center inline-flex text-white lg:text-[2vw] text-[3vw] font-medium">Latest Updates</div>
         <div className="w-full lg:flex items-end justify-between object-cover gap-[4vw] lg:gap-[2vw]">
-          <Slider />
+          <Slider/>
           <Update />
         </div>
       </div>

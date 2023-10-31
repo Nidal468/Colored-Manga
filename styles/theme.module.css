@@ -2,6 +2,7 @@
     background: #121212;
     box-shadow: 15px 15px 30px #0f0f0f,
         -15px -15px 30px #151515;
+    color: #fff;
 }
 
 #footer {
@@ -9,7 +10,6 @@
     box-shadow: 15px 15px 30px #0f0f0f,
         -15px -15px 30px #151515;
 }
-
 #nav {
     background: #191919;
     box-shadow: 15px 15px 30px #0f0f0f,

@@ -7,8 +7,6 @@ body{
     min-height: 50vh;
     box-sizing: border-box;
     background: #121212;
-    padding-top: 5vw;
-    padding-left: 6%;
 }
 input{
   outline: none;
@@ -21,8 +19,4 @@ input::placeholder{
   color: #c4c4c4;
 }
 @media only screen and (max-width: 1023px){
-  body{
-    padding-top: 0px;
-    padding-left: 0px;
-  }
 }
