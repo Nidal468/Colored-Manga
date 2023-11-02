@@ -4,7 +4,7 @@ import Card from '../simpleCard/page'
 import React from 'react'
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
-import data from '@/public/data/slider.json'
+import Link from 'next/link'
 import { Autoplay} from 'swiper/modules';
 import datas from '@/public/data/recommended.json'
 export default function Sideway() {
@@ -19,7 +19,7 @@ export default function Sideway() {
             className="w-full flex items-center justify-betwee"
         >
             {datas.map((data: any) => (
-                <SwiperSlide key={data.id}><Card image={data.source} title={data.title}/></SwiperSlide>
+                <SwiperSlide key={data.id}><Link href="/dynamic/boruto"><Card image={data.source} title={data.title}/></Link></SwiperSlide>
             ))}
         </Swiper>
     )

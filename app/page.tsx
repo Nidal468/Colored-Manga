@@ -4,7 +4,6 @@ import Card from "@/components/card/page";
 import Popularity from '@/components/popularity/page'
 import styles from '@/styles/home.module.css'
 import Sideway from "@/components/sideway/page";
-import Link from 'next/link'
 import Nav from '@/components/nav/page'
 import Updated from '@/public/data/updated.json'
 import Footer from "@/components/footer/page";
@@ -28,7 +27,7 @@ export default async function Home() {
       <Sideway/>
       </div>
       <div className="view w-full flex flex-col lg:flex-row items-start justify-between lg:gap-[2vw] gap-[8vw]">
-        <div className="topMangas w-full lg:w-[60vw] flex-col justify-start items-center gap-[2vw] lg:gap-5 inline-flex lg:border-r-2 px-[1vw] lg:border-gray-300">
+        <div className="topMangas w-full lg:w-[60vw] flex-col justify-start items-center gap-[2vw] lg:gap-5 inline-flex lg:border-r-2 lg:border-gray-300">
           <div className="Frame30 self-stretch p-2 bg-neutral-800 border-l-2 border-sky-500 justify-start items-center gap-2.5 inline-flex text-white text-[1.8vw] lg:text-[1.2vw] font-medium">
                 <div>Popular Titles</div>
                 <div>Book Marked</div>

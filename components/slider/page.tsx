@@ -5,6 +5,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import data from '@/public/data/slider.json'
 import { Autoplay } from 'swiper/modules';
+import Image from 'next/image'
 export default function SwiperComponent() {
     return (
         <Swiper
@@ -18,9 +19,9 @@ export default function SwiperComponent() {
         >
             {data.map((slider) => (
                 <SwiperSlide key={slider.id}><div className="w-full justify-end items-end flex">
-                <img className="lg:w-[16vw] lg:h-[24vw] w-[24vw] h-[36vw] object-cover" src={slider.image} />
+                <div className="lg:w-[21vw] lg:h-[24vw] w-[24vw] h-[36vw] relative" ><Image fill={true} src={slider.image} alt="" className='object-cover'/></div>
                 <div className="w-full lg:h-[22vw] h-[32vw]">
-                <img className="w-full h-full object-cover absolute z-1" src={slider.image} />
+                <div className="w-full h-full absolute z-1"><Image fill={true} src={slider.image} alt="" className='object-cover' priority={true}/></div>
                     <div className="w-full h-full flex z-5 bg-white bg-opacity-10 lg:backdrop-blur-[10px] backdrop-blur-[80px]">
                         <div className="w-full p-[1vw] flex-col justify-between items-start flex">
                             <div className="self-stretch p-[1vw] bg-stone-950 bg-opacity-40 rounded-[0.5vw] justify-between items-center gap-[5px] inline-flex">

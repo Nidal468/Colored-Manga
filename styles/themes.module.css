@@ -1,0 +1,58 @@
+#body{
+    background: #09090b;
+    color: #fafafa;
+}
+#box{
+    background: linear-gradient(#27272a,#18181b);
+}
+#dimtext{
+    color: #d4d4d8;
+    transition: 0.5s;
+    cursor: pointer;
+}
+#dimtext:hover{
+    color: #f4f4f5;
+}
+#button{
+    background: #52525b;
+    color: #e4e4e7;
+    transition: 0.3s;
+    cursor: pointer;
+}
+#button:hover{
+    background: #27272a;
+    color: #fafafa;
+    
+}
+#solid{
+    background: #18181b;
+}
+#outside{
+    background: #27272a;
+}
+#opacity{
+    background: #52525b;
+}
+#inner{
+    background: #3f3f46;
+}
+#hover{
+    background: #18181b;
+    transition: 0.5s;
+    cursor: pointer;
+}
+#hover:hover{
+    background: #3f3f46;
+    transition: 0.5s;
+}
+#arrow:hover{
+    display: none;
+}
+#hover #arrow{
+    transition: 0.5s;
+}
+#hover:hover #arrow{
+    display: block;
+    transition: 0.5s;
+    margin-left: 2vw;
+}

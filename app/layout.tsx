@@ -21,6 +21,7 @@ const Gilory = localFont({
 })
 export const metadata = {
   title: "Colored Manga"
+  
 }
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   
