@@ -4,7 +4,7 @@ import Image from 'next/image'
 export default function Scard(props: any){
     return(
       <div className='w-full h-[10vw] flex items-center justify-between bg-zinc-800 border-r-2 border-cyan-400 pr-2'>
-      <div className='w-[20%] h-full relative'><Image fill={true} className='object-cover' src='/images/assets/fpr.jpg' alt=""/></div>
+      <div className='w-[25%] h-full relative'><Image fill={true} className='object-cover' src='/images/assets/fpr.jpg' alt=""/></div>
       <div className='w-[60%] h-full py-[2vw] lg:p-0 lg:py-2 flex flex-col items-start justify-evenly text-[2vw] lg:text-[0.8vw]'>
           <h1 className='text-[3vw] lg:text-[1.2vw]'>{props.title}</h1>
           <div className='w-full flex flex-col gap-[4vw] lg:gap-[1vw]'>

@@ -3,15 +3,17 @@ import AutoModeIcon from '@mui/icons-material/AutoMode';
 import DnsIcon from '@mui/icons-material/Dns';
 import datas from '@/public/data/popularity.json'
 import Image from 'next/image'
+import themes from "@/styles/themes.module.css"
+import LeaderboardIcon from '@mui/icons-material/Leaderboard';
 export default function Popularity() {
     return (
-        <div className='w-full lg:w-[28vw] flex flex-col items-center justify-center gap-[2vw] text-white'>
-            <div className='w-full p-2 bg-neutral-800 rounded-[0.1vw] justify-between items-center flex font-light text-[2vw] lg:text-[1vw]'>
-                <div>Most Viewed</div>
+        <div className='w-full lg:w-[28vw] flex flex-col items-center justify-center gap-[2vw]'>
+            <div className='w-full p-[1vw] rounded-[0.1vw] justify-between items-center flex font-light text-[2vw] lg:text-[1vw]' id={themes.outside}>
+                <div className='flex gap-[1vw] items-center'><LeaderboardIcon/>Most Viewed</div>
                 <div className='flex items-center justify-between gap-[2vw] lg:gap-[0.5vw]'>
-                    <div>Day</div>
-                    <div>Week</div>
-                    <div>Month</div>
+                    <div id={themes.dimtext}>Day</div>
+                    <div id={themes.dimtext}>Week</div>
+                    <div id={themes.dimtext}>Month</div>
                 </div>
             </div>
             <div className='w-full h-[40vw] lg:h-[20vw] flex flex-col items-center justify-end rounded-[0.3vw] overflow-hidden'>
@@ -19,18 +21,18 @@ export default function Popularity() {
                     <Image fill={true} alt="" src='/images/assets/fpr.jpg' className='object-cover'/>
                 </div>
                 <div className='w-full h-[50%] lg:h-[42%] bg-white bg-opacity-5 backdrop-blur-[50px] flex items-center justify-between px-2'>
-                    <div className='w-[80%] bg-zinc-900 bg-opacity-50 rounded-[0.6vw] p-1.5 lg:p-2 text-[2vw] lg:text-[0.8vw] flex flex-col items-start justify-start gap-[2vw] lg:gap-[0.5vw]'>
-                        <h1 className='text-[2vw] lg:text-[1vw]'></h1>
+                    <div className='w-[90%] bg-zinc-800 bg-opacity-50 rounded-[0.6vw] p-1.5 lg:p-2 text-[2vw] lg:text-[0.8vw] flex flex-col items-start justify-start gap-[2vw] lg:gap-[0.5vw]'>
+                        <h1 className='text-[1vw]'>Return of the frozen player</h1>
                         <div className='flex items-center gap-[0.8vw]'>
-                            <AutoModeIcon sx={{ color: '#fff' , fontSize: "100%"}}/>
+                            <AutoModeIcon sx={{ color: '#fff'}}/>
                             <h3>12345</h3>
                         </div>
                         <div className='flex items-center justify-start gap-[2vw]'>
                             <div className='flex items-center gap-[0.8vw]'>
-                                <DnsIcon sx={{ color: '#fff' , fontSize: "100%"}}/><h3>Chapter 173</h3>
+                                <DnsIcon sx={{ color: '#fff'}}/><h3>Chapter 173</h3>
                             </div>
                             <div className='flex items-center gap-[0.8vw]'>
-                                <DnsIcon sx={{ color: '#fff' , fontSize: "100%"}}/><h3>Chapter 173</h3>
+                                <DnsIcon sx={{ color: '#fff'}}/><h3>Chapter 173</h3>
                             </div>
                         </div>
 

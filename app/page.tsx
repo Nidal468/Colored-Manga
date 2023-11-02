@@ -2,46 +2,56 @@ import Slider from "@/components/slider/page";
 import Update from "@/components/update/page";
 import Card from "@/components/card/page";
 import Popularity from '@/components/popularity/page'
-import styles from '@/styles/home.module.css'
 import Sideway from "@/components/sideway/page";
 import Nav from '@/components/nav/page'
 import Updated from '@/public/data/updated.json'
 import Footer from "@/components/footer/page";
-
+import themes from "@/styles/themes.module.css"
+import AccessTimeIcon from '@mui/icons-material/AccessTime';
+import AllInboxIcon from '@mui/icons-material/AllInbox';
+import AutorenewIcon from '@mui/icons-material/Autorenew';
 export default async function Home() {
   console.log("hello")
   return (
-    <div className="w-full font-light pl-[7%] pt-[5vw] pr-[2vw] lg:pr-[1vw] flex flex-col items-start justify-start gap-[2vw]">
-      <Nav/>
+    <div className="w-full font-light pl-[7%] pt-[5vw] pr-[2vw] lg:pr-[1vw] flex flex-col items-start justify-start gap-[2vw]" id={themes.body}>
+      <Nav />
       <div className="slider w-full flex flex-col">
-        <div className="w-full h-[8vw] lg:h-[6vw] justify-start items-center inline-flex text-white lg:text-[2vw] text-[3vw] font-medium">Latest Updates</div>
+        <div className="w-full h-[8vw] lg:h-[6vw] justify-start items-center inline-flex text-white lg:text-[2vw] text-[3vw] font-medium">Recommended</div>
         <div className="w-full lg:flex items-end justify-between object-cover gap-[4vw] lg:gap-[2vw]">
-          <Slider/>
+          <Slider />
           <Update />
         </div>
       </div>
       <div className="sideway w-full flex flex-col gap-[4vw] lg:gap-[1vw]">
-      <div className="w-full p-2 bg-neutral-800 justify-start items-center gap-2.5 inline-flex text-white text-[3vw] lg:text-[1.2vw] font-medium">
-        <h1>Recommended</h1>
-      </div>
-      <Sideway/>
+        <div className="w-full p-[1vw] justify-start items-center gap-2.5 inline-flex text-white text-[3vw] lg:text-[1.2vw] font-medium border-l-2 border-sky-500" id={themes.outside}>
+          <h1 className="flex gap-[1vw]"><AccessTimeIcon />Recently updated</h1>
+        </div>
+        <Sideway />
       </div>
       <div className="view w-full flex flex-col lg:flex-row items-start justify-between lg:gap-[2vw] gap-[8vw]">
         <div className="topMangas w-full lg:w-[60vw] flex-col justify-start items-center gap-[2vw] lg:gap-5 inline-flex lg:border-r-2 lg:border-gray-300">
-          <div className="Frame30 self-stretch p-2 bg-neutral-800 border-l-2 border-sky-500 justify-start items-center gap-2.5 inline-flex text-white text-[1.8vw] lg:text-[1.2vw] font-medium">
-                <div>Popular Titles</div>
-                <div>Book Marked</div>
+          <div className="w-full p-[1vw] border-l-2 border-sky-500 justify-start items-center flex text-[1.8vw] lg:text-[1.2vw] font-medium" id={themes.outside}>
+            <div className="flex gap-[1vw]"><AllInboxIcon />All Mangas</div>
           </div>
           <div className="w-full flex justify-start items-start gap-[2vw] flex-wrap">
             {Updated.map((data: any) => (
-              <Card title={data.title} author={data.author} number1={data.chapter[0].number} date1={data.chapter[0].date} number2={data.chapter[1].number} date2={data.chapter[1].date} number3={data.chapter[2].number} date3={data.chapter[2].date} key={data.id}/>
+              <>
+                <Card title={data.title} author={data.author} number1={data.chapter[0].number} date1={data.chapter[0].date} number2={data.chapter[1].number} date2={data.chapter[1].date} number3={data.chapter[2].number} date3={data.chapter[2].date} key={data.id} />
+                <Card title={data.title} author={data.author} number1={data.chapter[0].number} date1={data.chapter[0].date} number2={data.chapter[1].number} date2={data.chapter[1].date} number3={data.chapter[2].number} date3={data.chapter[2].date} key={data.id}/>
+                <Card title={data.title} author={data.author} number1={data.chapter[0].number} date1={data.chapter[0].date} number2={data.chapter[1].number} date2={data.chapter[1].date} number3={data.chapter[2].number} date3={data.chapter[2].date} key={data.id}/>
+                <Card title={data.title} author={data.author} number1={data.chapter[0].number} date1={data.chapter[0].date} number2={data.chapter[1].number} date2={data.chapter[1].date} number3={data.chapter[2].number} date3={data.chapter[2].date} key={data.id}/>
+                <Card title={data.title} author={data.author} number1={data.chapter[0].number} date1={data.chapter[0].date} number2={data.chapter[1].number} date2={data.chapter[1].date} number3={data.chapter[2].number} date3={data.chapter[2].date} key={data.id}/>
+                <Card title={data.title} author={data.author} number1={data.chapter[0].number} date1={data.chapter[0].date} number2={data.chapter[1].number} date2={data.chapter[1].date} number3={data.chapter[2].number} date3={data.chapter[2].date} key={data.id}/>
+                <Card title={data.title} author={data.author} number1={data.chapter[0].number} date1={data.chapter[0].date} number2={data.chapter[1].number} date2={data.chapter[1].date} number3={data.chapter[2].number} date3={data.chapter[2].date} key={data.id}/>
+                <Card title={data.title} author={data.author} number1={data.chapter[0].number} date1={data.chapter[0].date} number2={data.chapter[1].number} date2={data.chapter[1].date} number3={data.chapter[2].number} date3={data.chapter[2].date} key={data.id}/>
+              </>
             ))}
           </div>
-          <div className="w-[20%] lg:py-[0.1vw] py-[1vw] bg-sky-600 rounded-[0.8vw] justify-center items-center inline-flex text-white text-[2vw] lg:text-[1vw] font-light cursor-pointer" id={styles.button}>Load More</div>
+          <div className="w-[20%] lg:py-[0.5vw] py-[1vw] rounded-[0.3vw] justify-center items-center flex text-white text-[2vw] lg:text-[1vw] font-light gap-[1vw]" id={themes.button}><AutorenewIcon />Load More</div>
         </div>
-        <Popularity/>
+        <Popularity />
       </div>
-      <Footer/>
+      <Footer />
     </div>
   )
 }
