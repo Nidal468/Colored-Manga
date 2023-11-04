@@ -30,11 +30,13 @@ export default function Nav() {
   Check()
   return (
     <div className="w-full h-[4vw] px-5 py-2.5 justify-between items-center hidden lg:inline-flex fixed top-0 right-0 z-50" id={themes.solid}>
-      
+
       <div className="p-[1vw] justify-center items-center gap-[2vw] flex text-[1vw] text-center font-light">
-      <div className='w-[2vw] h-[2vw] relative'>
-        <Image fill={true} src="/images/assets/logo.Webp" alt="coloredmanga" className='object-cover' />
-      </div>
+        <Link href="/">
+          <div className='w-[2vw] h-[2vw] relative'>
+            <Image fill={true} src="/images/assets/logo.Webp" alt="coloredmanga" className='object-cover' />
+          </div>
+        </Link>
         <div id={themes.dimtext}>Type</div>
         <div id={themes.dimtext}>Genre</div>
         <div id={themes.dimtext}>Newest</div>

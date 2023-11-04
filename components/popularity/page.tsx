@@ -24,15 +24,15 @@ export default function Popularity() {
                     <div className='w-[90%] bg-zinc-800 bg-opacity-50 rounded-[0.6vw] lg:rounded-[0.3vw] p-1.5 lg:p-2 text-[2vw] lg:text-[0.8vw] flex flex-col items-start justify-start gap-[2vw] lg:gap-[0.5vw]'>
                         <h1 className='lg:text-[1vw] text-[3vw]'>Return of the frozen player</h1>
                         <div className='flex items-center gap-[0.8vw]'>
-                            <AutoModeIcon className="text-[4vw] lg:text-[2vw]"/>
+                            <AutoModeIcon className="text-[4vw] lg:text-[1.5vw]"/>
                             <h3>12345</h3>
                         </div>
                         <div className='flex items-center justify-start gap-[2vw]'>
                             <div className='flex items-center gap-[0.8vw]'>
-                                <DnsIcon className="text-[4vw] lg:text-[2vw]"/><h3>Chapter 173</h3>
+                                <DnsIcon className="text-[4vw] lg:text-[1.5vw]"/><h3>Chapter 173</h3>
                             </div>
                             <div className='flex items-center gap-[0.8vw]'>
-                                <DnsIcon className="text-[4vw] lg:text-[2vw]"/><h3>Chapter 173</h3>
+                                <DnsIcon className="text-[4vw] lg:text-[1.5vw]"/><h3>Chapter 173</h3>
                             </div>
                         </div>
                     </div>

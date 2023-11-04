@@ -2,11 +2,11 @@ import Image from 'next/image'
 import themes from "@/styles/themes.module.css"
 export default function Card(props: any){
     return(
-        <div className="w-[48%] justify-start items-start flex rounded-[0.2vw]" id={themes.box}>
-      <div className="w-[28vw] h-[26vw] lg:w-[20vw] lg:h-[18vw] bg-white relative">
+        <div className="w-[48%] justify-start items-start flex rounded-[0.2vw]" id={themes.outside}>
+      <div className="w-[28vw] h-[26vw] lg:w-[18vw] lg:h-[15vw] bg-white relative">
         <Image fill={true} src="/images/assets/fpr.jpg" alt="" className='object-cover'/>
       </div>
-      <div className="w-full lg:py-[1vw] py-[2vw] flex flex-col justify-start items-center gap-[1vw] text-[1vw] lg:text-[0.9vw]">
+      <div className="w-full lg:py-[0.5vw] flex flex-col justify-center items-center gap-[1.2vw] text-[1vw] lg:text-[0.9vw]">
         <div className="w-[90%] flex-col justify-start items-start gap-[0.5vw] flex">
           <div className="text-white text-[2vw] lg:text-[1.2vw] font-medium">{props.title}</div>
           <div className="text-[1.5vw] lg:text-[1vw]">{props.author}</div>

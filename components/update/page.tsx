@@ -18,7 +18,7 @@ export default function Update() {
       <div className="text-zinc-600 text-[1vw] font-medium">v1</div>
     </div>
   </div>
-  <div className="self-stretch h-full py-[0.5vw] flex-col justify-between items-start flex text-white text-sm font-light text-[0.6vw]">
+  <div className="self-stretch h-full py-[0.5vw] flex-col justify-between items-start flex text-white font-light text-[1vw]">
     <div className='self-stretch flex flex-col items-start justify-start gap-[1vw]'>
     <div className="self-stretch p-[0.3vw] rounded-sm justify-between items-center inline-flex" id={theme.updateSub}>
       <div className="justify-center items-center gap-[0.8vw] flex">
