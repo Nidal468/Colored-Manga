@@ -25,7 +25,7 @@ export default async function Home() {
       <div className="view w-full flex flex-col lg:flex-row items-start justify-between lg:gap-[2vw] gap-[8vw] px-[1vw]">
         <div className="topMangas w-full lg:w-[60vw] flex-col justify-start items-center gap-[2vw] lg:gap-[2vw] inline-flex lg:border-r-2 lg:border-gray-300">
           <div className="w-full p-[1vw] border-l-2 border-sky-500 justify-start items-center flex text-[2vw] lg:text-[1.2vw] font-medium" id={themes.outside}>
-            <div className="flex items-center gap-[1vw]"><AllInboxIcon className="text-[4vw] lg:text-[2vw]"/>All Mangas</div>
+            <div className="flex items-center gap-[1vw]"><AllInboxIcon className="text-[4vw] lg:text-[2vw]"/>Latest Updates</div>
           </div>
           <div className="w-full flex justify-start items-start gap-[2vw] flex-wrap">
             {Updated.map((data: any) => (  
@@ -38,7 +38,7 @@ export default async function Home() {
       </div>
       <div className="w-full flex flex-col gap-[1vw] px-[1vw]">
         <div className="w-full p-[1vw] justify-start items-center gap-2.5 inline-flex text-white text-[2vw] lg:text-[1.2vw] font-medium border-l-2 border-sky-500" id={themes.outside}>
-          <h1 className="flex items-center gap-[1vw]"><AccessTimeIcon className="text-[4vw] lg:text-[2vw]"/>Recently updated</h1>
+          <h1 className="flex items-center gap-[1vw]"><AccessTimeIcon className="text-[4vw] lg:text-[2vw]"/>New Releases</h1>
         </div>
         <Sideway />
       </div>
