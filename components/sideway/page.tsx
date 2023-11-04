@@ -21,16 +21,7 @@ export default function Sideway() {
             id={themes.box}
         >
             {datas.map((data: any) => (
-                <>
                     <SwiperSlide key={data.id}><Link href="/dynamic/boruto"><Card image={data.source} title={data.title} /></Link></SwiperSlide>
-                    <SwiperSlide key={data.id}><Link href="/dynamic/boruto"><Card image={data.source} title={data.title} /></Link></SwiperSlide>
-                    <SwiperSlide key={data.id}><Link href="/dynamic/boruto"><Card image={data.source} title={data.title} /></Link></SwiperSlide>
-                    <SwiperSlide key={data.id}><Link href="/dynamic/boruto"><Card image={data.source} title={data.title} /></Link></SwiperSlide>
-                    <SwiperSlide key={data.id}><Link href="/dynamic/boruto"><Card image={data.source} title={data.title} /></Link></SwiperSlide>
-                    <SwiperSlide key={data.id}><Link href="/dynamic/boruto"><Card image={data.source} title={data.title} /></Link></SwiperSlide>
-                </>
-
-
             ))}
         </Swiper>
     )

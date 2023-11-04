@@ -9,10 +9,10 @@ export default function Menu() {
         setIsOpen(!isOpen);
     };
     return (
-        <div className="w-full h-[14vw] flex items-center justify-between text-white text-[4vw] lg:hidden px-[2vw] bg-neutral-800 shadow">
+        <div className="w-full h-[10vw] flex items-center justify-between text-white text-[2vw] lg:hidden px-[2vw] bg-neutral-800 shadow">
             <h1>ColoredManga</h1>
             <div className="relative w-[8vw] h-[8vw] flex items-center justify-center">
-      <div className={`transition-all transform ${isOpen ? 'rotate-45' : 'rotate-0'}`} onClick={toggleMenu}><AllOutIcon sx={{color: '#fff', fontSize: '8vw'}}/></div>
+      <div className={`transition-all transform ${isOpen ? 'rotate-45' : 'rotate-0'}`} onClick={toggleMenu}><AllOutIcon sx={{color: '#fff'}} className='text-[5vw]'/></div>
       {isOpen && (
         <div className="absolute top-[50px] right-0 mt-2 w-48 bg-white shadow-lg rounded-lg z-50">
           <ul className="py-2">

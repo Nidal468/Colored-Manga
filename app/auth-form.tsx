@@ -14,7 +14,7 @@ export default function AuthForm() {
         theme="dark"
         showLinks={false}
         providers={["google", "twitter", "discord"]}
-        redirectTo='https://master--clinquant-meerkat-1e9914.netlify.app/auth/callback'
+        redirectTo='http://localhost:3000/auth/callback'
       />
     )
   }

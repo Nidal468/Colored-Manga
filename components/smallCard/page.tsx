@@ -3,21 +3,21 @@ import DnsIcon from '@mui/icons-material/Dns';
 import Image from 'next/image'
 export default function Scard(props: any){
     return(
-      <div className='w-full h-[10vw] flex items-center justify-between bg-zinc-800 border-r-2 border-cyan-400 pr-2'>
-      <div className='w-[25%] h-full relative'><Image fill={true} className='object-cover' src='/images/assets/fpr.jpg' alt=""/></div>
-      <div className='w-[60%] h-full py-[2vw] lg:p-0 lg:py-2 flex flex-col items-start justify-evenly text-[2vw] lg:text-[0.8vw]'>
-          <h1 className='text-[3vw] lg:text-[1.2vw]'>{props.title}</h1>
-          <div className='w-full flex flex-col gap-[4vw] lg:gap-[1vw]'>
-          <div className='flex items-center gap-[0.8vw]'>
-              <AutoModeIcon sx={{ color: '#fff' , fontSize: "150%"}}/>
+      <div className='w-full flex items-center justify-between bg-zinc-800 border-r-2 border-cyan-400 pr-[1vw]'>
+      <div className='w-[25vw] h-[35vw] lg:w-[8vw] lg:h-[12vw] relative'><Image fill={true} className='object-cover' src='/images/assets/fpr.jpg' alt=""/></div>
+      <div className='lg:w-[60%] h-full p-[2vw] lg:p-[1vw] flex flex-col items-start justify-between text-[2vw] lg:text-[0.8vw]'>
+          <h1 className='text-[4vw] lg:text-[1.2vw]'>{props.title}</h1>
+          <div className='w-full flex flex-col gap-[4vw] lg:gap-[1vw] text-[2vw] lg:text-[0.6vw]'>
+          <div className='flex items-center gap-[0.5vw]'>
+              <AutoModeIcon className="text-[4vw] lg:text-[1vw]"/>
               <h3>{props.views}</h3>
           </div>
           <div className='w-full flex items-center justify-between'>
-              <div className='flex items-center gap-[0.8vw]'>
-                  <DnsIcon sx={{ color: '#fff' , fontSize: "150%"}}/><h3>Chapter {props.number1}</h3>
+              <div className='flex items-center gap-[0.5vw]'>
+                  <DnsIcon className="text-[4vw] lg:text-[1vw]"/><h3>Chapter {props.number1}</h3>
               </div>
-              <div className='flex items-center gap-[0.8vw]'>
-                  <DnsIcon sx={{ color: '#fff' , fontSize: "150%"}}/><h3>Chapter {props.number2}</h3>
+              <div className='flex items-center gap-[0.5vw]'>
+                  <DnsIcon className="text-[4vw] lg:text-[1vw]"/><h3>Chapter {props.number2}</h3>
               </div>
           </div>
           </div>

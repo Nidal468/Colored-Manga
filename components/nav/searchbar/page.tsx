@@ -3,7 +3,6 @@
 import React, { useState, useEffect } from 'react';
 import SearchIcon from '@mui/icons-material/Search';
 import CloseIcon from '@mui/icons-material/Close';
-import styles from './styles.module.css'
 import themes from '@/styles/themes.module.css'
 
 export default function Search() {
@@ -12,10 +11,10 @@ export default function Search() {
         setSearchValue('');
       };
     return(
-        <div className="w-[40%] min-w-[25vw] py-[0.3vw] pl-[0.8vw] pr-[0.3vw] rounded-[100px] justify-start items-center gap-2 flex" id={themes.outside}>
-        <SearchIcon sx={{ color: '#fff', fontSize: "2.5vw" }} />
+        <div className="w-[40%] min-w-[25vw] py-[0.2vw] pl-[0.8vw] pr-[0.3vw] rounded-[100px] justify-start items-center flex" id={themes.outside}>
+        <SearchIcon sx={{ color: '#fff', fontSize: "1.5vw" }} />
         <input
-          className="grow shrink basis-0 text-neutral-100 text-[1.3vw] font-light outline-0 px-[0.6vw] rounded-[200vw] bg-transparent placeholder-gray-50"
+          className="grow shrink basis-0 text-neutral-100 text-[1vw] font-light outline-0 px-[0.6vw] rounded-[200vw] bg-transparent placeholder-gray-50"
           type="text"
           placeholder="Search"
           value={searchValue}
@@ -23,7 +22,7 @@ export default function Search() {
         />
         {searchValue && (
           <div className="px-[0.8vw] py-[0.8vw] rounded-[100vw] justify-center items-center flex" onClick={handleClearInput} id={themes.opacity}>
-            <CloseIcon sx={{ color: '#fff', fontSize: "1.5vw" }} />
+            <CloseIcon sx={{ color: '#fff', fontSize: "1vw" }} />
           </div>
         )}
       </div>
