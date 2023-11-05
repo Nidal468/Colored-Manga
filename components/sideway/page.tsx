@@ -13,7 +13,7 @@ export default function Sideway() {
             autoplay={{
                 disableOnInteraction: true,
             }}
-            spaceBetween={20}
+            spaceBetween={30}
             slidesPerView={7}
             modules={[Autoplay]}
             className="w-full flex items-center justify-between"

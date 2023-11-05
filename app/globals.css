@@ -7,6 +7,8 @@ body{
     min-height: 50vh;
     box-sizing: border-box;
     background: #09090b;
+    display: flex;
+    justify-content: center;
 }
 input{
   outline: none;
