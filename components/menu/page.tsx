@@ -9,7 +9,8 @@ export default function Menu() {
         setIsOpen(!isOpen);
     };
     return (
-        <div className="w-full h-[10vw] flex items-center justify-between text-white text-[2vw] lg:hidden px-[2vw] bg-neutral-800 shadow">
+        <div className='w-full h-[10vw] absolute z-999 lg:hidden bg-neutral-800 shadow'>
+          <div className="w-full h-full flex items-center justify-between text-white text-[2vw] px-[2vw]">
             <h1>ColoredManga</h1>
             <div className="relative w-[8vw] h-[8vw] flex items-center justify-center">
       <div className={`transition-all transform ${isOpen ? 'rotate-45' : 'rotate-0'}`} onClick={toggleMenu}><AllOutIcon sx={{color: '#fff'}} className='text-[5vw]'/></div>
@@ -23,6 +24,7 @@ export default function Menu() {
         </div>
       )}
     </div>
+        </div>
         </div>
     )
 }

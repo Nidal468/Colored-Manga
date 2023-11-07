@@ -8,7 +8,7 @@ import LeaderboardIcon from '@mui/icons-material/Leaderboard';
 export default function Popularity() {
     return (
         <div className='w-full lg:w-[360px] flex flex-col items-center justify-center gap-[20px]'>
-            <div className='w-full p-[1vw] lg:p-[10px] rounded-[1px] justify-between items-center flex font-light text-[2vw] lg:text-[10px]' id={themes.outside}>
+            <div className='w-full p-[2vw] lg:p-[10px] rounded-[1px] justify-between items-center flex font-light text-[2vw] lg:text-[10px]' id={themes.outside}>
                 <div className='flex gap-[1vw] items-center'><LeaderboardIcon className="text-[4vw] lg:text-[20px]"/>Most Viewed</div>
                 <div className='flex items-center justify-between gap-[2vw] lg:gap-[5px]'>
                     <div id={themes.dimtext}>Day</div>
@@ -17,7 +17,7 @@ export default function Popularity() {
                 </div>
             </div>
             <div className='w-full h-[40vw] lg:h-[250px] flex flex-col items-center justify-end rounded-[3px] overflow-hidden'>
-                <div className='w-[98vw] lg:w-[360px] h-[40vw] lg:h-[250px] absolute rounded-[3px] overflow-hidden'>
+                <div className='w-[96vw] lg:w-[360px] h-[40vw] lg:h-[250px] absolute overflow-hidden'>
                     <Image fill={true} alt="" src='/images/assets/fpr.jpg' className='object-cover'/>
                 </div>
                 <div className='w-[98vw] lg:w-full h-[60%] lg:h-[42%] bg-white bg-opacity-5 backdrop-blur-[50px] flex items-center justify-between px-[8px]'>

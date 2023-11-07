@@ -45,7 +45,7 @@ export default function SwiperComponent() {
                                     </div>
                                 </div>
                                 <div className="w-full h-full px-[1vw] py-[1vw] rounded-[0.5vw] justify-between items-start inline-flex">
-                                    <div className="text-opacity-90 lg:text-[10px] text-[1.5vw] font-light">{slider.info}</div>
+                                    <div className="text-opacity-90 lg:text-[15px] text-[1.5vw] font-light">{slider.info}</div>
                                 </div>
                             </div>
                         </div>

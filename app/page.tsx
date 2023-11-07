@@ -13,7 +13,7 @@ import AutorenewIcon from '@mui/icons-material/Autorenew';
 export default async function Home() {
   
   return (
-    <div className="w-[1300px] font-light flex flex-col items-start justify-start lg:px-[30px] pt-[2vw] lg:pt-[5vw] gap-[2vw] lg:gap-[20px]" id={themes.body}>
+    <div className="lg:w-[1300px] w-full font-light flex flex-col items-start justify-start lg:px-[30px] pt-[12vw] px-[2vw] lg:pt-[5vw] gap-[2vw] lg:gap-[20px]" id={themes.body}>
       <Nav />
       <div className="slider w-full flex flex-col">
         <div className="w-full h-[8vw] lg:h-[80px] justify-start items-center inline-flex text-white lg:text-[25px] text-[3vw] font-medium">Recommended</div>
