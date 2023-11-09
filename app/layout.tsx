@@ -20,8 +20,8 @@ const Gilory = localFont({
   ]
 })
 export const metadata = {
-  title: "Colored Manga"
-  
+  title: "Colored Manga",
+  icons: "/images/favicon.ico"
 }
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   

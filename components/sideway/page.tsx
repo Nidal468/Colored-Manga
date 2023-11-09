@@ -10,10 +10,12 @@ import datas from '@/public/data/recommended.json'
 export default function Sideway() {
     const [width, setWidth] = useState(6)
     useEffect(() => {
-        if(window.innerWidth > 1024){
+        if(window.innerWidth > 1280){
             setWidth(8)
-        } else {
+        } else if(window.innerWidth > 1023){
             setWidth(6)
+        } else {
+            setWidth(4)
         }
     },[])
     return (
@@ -21,12 +23,10 @@ export default function Sideway() {
             autoplay={{
                 disableOnInteraction: true,
             }}
-            spaceBetween={10}
             slidesPerView={width}
             modules={[Autoplay]}
             className="w-full flex items-center justify-between"
-            
-        >
+            >
             {datas.map((data: any) => (
                     <SwiperSlide key={data.id}><Link href="/dynamic/boruto"><Card image={data.source} title={data.title} /></Link></SwiperSlide>
             ))}

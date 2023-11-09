@@ -43,7 +43,7 @@ export default function Update() {
     </div>
   </div>
   <div className="Frame3674 self-stretch bg-white bg-opacity-10 rounded-[200px] justify-between items-center inline-flex cursor-pointer pr-[3px]">
-    <a href='https://discord.com/invite/WuXp4MY9aU'><div className='relative w-[30px] h-[30px]'><Image fill={true} src="/images/icons/discord.png" alt=""/></div></a>
+    <a href='https://discord.com/invite/WuXp4MY9aU'><div className='relative w-[30px] h-[30px]'><Image fill={true} src="/images/icons/discord.png" alt="" sizes="(max-width: 768px) 100vw, 33vw"/></div></a>
     <div className="Frame3675 h-[80%] px-[10px] bg-green-500 rounded-[200px] justify-center items-center flex text-white text-[10px] font-light" id={styles.button}>
       <div>Update</div>
     </div>
