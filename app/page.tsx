@@ -13,31 +13,19 @@ import LeaderboardIcon from '@mui/icons-material/Leaderboard';
 export default async function Home() {
 
   return (
-    <div className="xl:w-[1280px] w-full font-light flex flex-col items-start justify-start lg:px-[30px] pt-[12vw] px-[2vw] lg:pt-[5vw] gap-[2vw] lg:gap-[20px]" id={themes.body}>
+    <div className="xl:w-[1280px] w-full font-light flex flex-col items-start justify-start lg:px-[30px] pt-[12vw] px-[2vw] lg:pt-[5vw] gap-[4vw] lg:gap-[20px]" id={themes.body}>
       <Nav />
       <div className="slider w-full flex flex-col">
-        <div className="w-full h-[8vw] lg:h-[80px] justify-start items-center inline-flex text-white lg:text-[25px] text-[3vw] font-medium">Recommended</div>
+        <div className="w-full h-[8vw] lg:h-[80px] justify-start items-center inline-flex text-white font-light lg:text-[20px] text-[2vw]">Recommended</div>
         <div className="w-full lg:flex items-end justify-between object-cover gap-[4vw] lg:gap-[20px]">
           <Slider />
           <Update />
         </div>
       </div>
       <div className="view w-full flex flex-col lg:flex-row items-start justify-between lg:gap-[20px] gap-[8vw]">
-        <div className="topMangas w-full lg:w-[850px] flex-col justify-start items-center gap-[2vw] lg:gap-[20px] inline-flex">
-          <div className="w-full p-[2vw] lg:p-[10px] justify-start items-center flex text-[2vw] lg:text-[15px] font-medium" id={themes.outside}>
-            <div className="flex items-center gap-[1vw]"><AllInboxIcon className="text-[4vw] lg:text-[20px]" />Latest Updates</div>
-          </div>
-          <div className="w-full flex justify-between items-start gap-[20px] flex-wrap">
-            {Updated.map((data: any) => (
-              <Card title={data.title} author={data.author} number1={data.chapter[0].number} date1={data.chapter[0].date} number2={data.chapter[1].number} date2={data.chapter[1].date} number3={data.chapter[2].number} date3={data.chapter[2].date} key={data.id} />
-            ))}
-          </div>
-          <div className="w-[15%] lg:py-[5px] py-[1vw] rounded-[3px] justify-center items-center flex text-white text-[2vw] lg:text-[12px] font-light" id={themes.button}>View More</div>
-        </div>
-        <Popularity />
-        <div className="w-full lg:hidden flex flex-col items-center justify-center gap-[1vw]">
-        <div className='w-full p-[2vw] rounded-[1px] justify-between items-center flex font-light text-[2vw]' id={themes.outside}>
-                <div className='flex gap-[1vw] items-center'><LeaderboardIcon className="text-[4vw] lg:text-[20px]"/>Most Viewed</div>
+      <div className="w-full lg:hidden flex flex-col items-center justify-center gap-[1vw]">
+        <div className='w-full p-[2vw] rounded-[1px] justify-between items-center flex font-light lg:text-[15px] text-[2vw]' id={themes.outside}>
+                <div className='flex gap-[1vw] items-center'><LeaderboardIcon className="text-[3vw] lg:text-[20px]"/>Most Viewed</div>
                 <div className='flex items-center justify-between gap-[2vw] lg:gap-[5px]'>
                     <div id={themes.dimtext}>Day</div>
                     <div id={themes.dimtext}>Week</div>
@@ -46,10 +34,22 @@ export default async function Home() {
             </div>
           <Sideway />
         </div>
+        <div className="topMangas w-full lg:w-[850px] flex-col justify-start items-center gap-[2vw] lg:gap-[20px] inline-flex">
+          <div className="w-full p-[2vw] lg:p-[10px] justify-start items-center flex font-light lg:text-[15px] text-[2vw]" id={themes.outside}>
+            <div className="flex items-center gap-[1vw]"><AllInboxIcon className="text-[3vw] lg:text-[20px]" />Latest Updates</div>
+          </div>
+          <div className="w-full flex justify-between items-start lg:gap-[20px] gap-[2vw] flex-wrap">
+            {Updated.map((data: any) => (
+              <Card title={data.title} author={data.author} number1={data.chapter[0].number} date1={data.chapter[0].date} number2={data.chapter[1].number} date2={data.chapter[1].date} number3={data.chapter[2].number} date3={data.chapter[2].date} key={data.id} />
+            ))}
+          </div>
+          <div className="lg:w-[15%] w-[30%] lg:py-[5px] py-[1vw] rounded-[0.5vw] lg:rounded-[3px] justify-center items-center flex text-white text-[2vw] lg:text-[12px] font-light" id={themes.button}>View More</div>
+        </div>
+        <Popularity />
       </div>
       <div className="w-full flex flex-col gap-[1vw] lg:gap-[10px]">
-        <div className="w-full p-[2vw] lg:p-[10px] justify-start items-center gap-[10px] inline-flex text-white text-[2vw] lg:text-[12px] font-medium" id={themes.outside}>
-          <h1 className="flex items-center gap-[10px]"><AccessTimeIcon className="text-[4vw] lg:text-[20px]" />New Releases</h1>
+        <div className="w-full p-[2vw] lg:p-[10px] justify-start items-center gap-[10px] flex text-white font-light lg:text-[15px] text-[2vw]" id={themes.outside}>
+          <h1 className="flex items-center gap-[10px]"><AccessTimeIcon className="text-[3vw] lg:text-[20px]" />New Releases</h1>
         </div>
         <Sideway />
       </div>

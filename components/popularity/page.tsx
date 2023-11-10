@@ -17,7 +17,7 @@ export default function Popularity() {
                 </div>
             </div>
             <div className='w-full h-[40vw] xl:h-[250px] lg:h-[220px] flex flex-col items-center justify-end rounded-[3px] overflow-hidden'>
-                <div className='w-[96vw] xl:w-[360px] lg:w-[310px] h-[40vw] xl:h-[250px] lg:h-[220px] absolute overflow-hidden'>
+                <div className='w-[96vw] xl:w-[357px] lg:w-[310px] h-[40vw] xl:h-[250px] lg:h-[220px] absolute overflow-hidden'>
                     <Image fill={true} alt="" src='/images/assets/fpr.jpg' className='object-cover'/>
                 </div>
                 <div className='w-[98vw] lg:w-full h-[60%] xl:h-[42%] lg:h-[50%] bg-white bg-opacity-5 backdrop-blur-[50px] flex items-center justify-between px-[8px]'>

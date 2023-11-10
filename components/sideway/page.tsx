@@ -10,12 +10,12 @@ import datas from '@/public/data/recommended.json'
 export default function Sideway() {
     const [width, setWidth] = useState(6)
     useEffect(() => {
-        if(window.innerWidth > 1280){
-            setWidth(8)
+        if(window.innerWidth > 1170){
+            setWidth(7)
         } else if(window.innerWidth > 1023){
-            setWidth(6)
+            setWidth(5)
         } else {
-            setWidth(4)
+            setWidth(3)
         }
     },[])
     return (
