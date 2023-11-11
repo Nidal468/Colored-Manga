@@ -1,7 +1,7 @@
 import Card from '../smallCard/page'
 import AutoModeIcon from '@mui/icons-material/AutoMode';
 import DnsIcon from '@mui/icons-material/Dns';
-import datas from '@/public/data/popularity.json'
+import Data from '@/public/data/manga.json'
 import Image from 'next/image'
 import themes from "@/styles/themes.module.css"
 import LeaderboardIcon from '@mui/icons-material/Leaderboard';
@@ -40,8 +40,8 @@ export default function Popularity() {
                 </div>
             </div>
             <div className='w-full flex flex-wrap lg:gap-[10px] gap-[2vw]'>
-                {datas.map((data: any,index: any) => (
-                    <Card title={data.title} key={data.id} views={data.views} number1={data.number1} number2={data.number2} index={index}/>
+                {Data.map((data: any, index: any) => (
+                    <Card title={data.name} key={data.id} views={data.views} number1={data.chapters[0].number} number2={data.chapters[1].number} index={index} cover={data.cover}/>
                 ))}
             </div>
         </div>

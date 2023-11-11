@@ -4,12 +4,12 @@ import Card from "@/components/card/page";
 import Popularity from '@/components/popularity/page'
 import Sideway from "@/components/sideway/page";
 import Nav from '@/components/nav/page'
-import Updated from '@/public/data/updated.json'
 import Footer from "@/components/footer/page";
 import themes from "@/styles/themes.module.css"
 import AccessTimeIcon from '@mui/icons-material/AccessTime';
 import AllInboxIcon from '@mui/icons-material/AllInbox';
 import LeaderboardIcon from '@mui/icons-material/Leaderboard';
+import Data from '@/public/data/manga.json'
 export default async function Home() {
 
   return (
@@ -39,8 +39,8 @@ export default async function Home() {
             <div className="flex items-center gap-[1vw]"><AllInboxIcon className="text-[3vw] lg:text-[20px]" />Latest Updates</div>
           </div>
           <div className="w-full flex justify-between items-start lg:gap-[20px] gap-[2vw] flex-wrap">
-            {Updated.map((data: any) => (
-              <Card title={data.title} author={data.author} number1={data.chapter[0].number} date1={data.chapter[0].date} number2={data.chapter[1].number} date2={data.chapter[1].date} number3={data.chapter[2].number} date3={data.chapter[2].date} key={data.id} />
+            {Data.map((data: any) => (
+              <Card title={data.name} author={data.author} key={data.id} image={data.cover} number1={data.chapters[0].number} number2={data.chapters[1].number} number3={data.chapters[2].number} data1={data.chapters[0].date} data2={data.chapters[1].date} data3={data.chapters[2].date}/>
             ))}
           </div>
           <div className="lg:w-[15%] w-[30%] lg:py-[5px] py-[1vw] rounded-[0.5vw] lg:rounded-[3px] justify-center items-center flex text-white text-[2vw] lg:text-[12px] font-light" id={themes.button}>View More</div>

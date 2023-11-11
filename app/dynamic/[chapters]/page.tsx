@@ -2,7 +2,6 @@ import Nav from '@/components/nav/page'
 import Image from 'next/image'
 import RemoveRedEyeIcon from '@mui/icons-material/RemoveRedEye';
 import BookmarkAddIcon from '@mui/icons-material/BookmarkAdd';
-import data from '@/public/data/theme.json'
 import themes from '@/styles/themes.module.css'
 import List from '@/components/chapters/page'
 import Footer from '@/components/footer/page'
