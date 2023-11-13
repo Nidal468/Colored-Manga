@@ -7,13 +7,13 @@ import List from '@/components/chapters/page'
 import Footer from '@/components/footer/page'
 export default function Chapters() {
     return (
-        <div className="w-full font-light pl-[7%] pt-[6vw] pr-[2vw] lg:pr-[1vw] flex flex-col items-start justify-start gap-[2vw]" id={themes.body}>
+        <div className="xl:w-[1280px] w-full font-light flex flex-col items-start justify-start lg:px-[30px] pt-[12vw] px-[2vw] lg:pt-[5vw] gap-[4vw] lg:gap-[20px]" id={themes.body}>
             <Nav />
-            <div className='w-full flex gap-[2vw]'>
-                <div className='w-[60vw] flex flex-col items-center justify-start gap-[2vw]'>
-                    <div className="w-[60vw] h-[30vw] flex items-center px-[2vw]" id={themes.box}>
-                        <div className='w-full h-[23vw] flex items-center justify-between gap-[1vw]'>
-                            <div className='w-[15vw] h-[23vw] relative'>
+            <div className='w-full flex items-start justify-between'>
+                <div className='w-[60%] flex flex-col items-center justify-start gap-[2vw] lg:gap-[30px]'>
+                    <div className="w-full h-[30vw] lg:h-[400px] flex items-center px-[2vw] lg:px-[20px]" id={themes.box}>
+                        <div className='w-full h-[23vw] lg:h-[300px] flex items-center justify-between gap-[1vw] lg:gap-[15px]'>
+                            <div className='w-[15vw] h-[23vw] relative lg:w-[200px] lg:h-[300px]'>
                                 <Image fill={true} src="/images/assets/fpr.jpg" alt="" className='object-cover' />
                             </div>
                             <div className='w-[72%] h-full flex flex-col items-start justify-between'>
@@ -37,7 +37,7 @@ export default function Chapters() {
                     </div>
                     <List />
                 </div>
-                <div className='w-[30vw] flex flex-col gap-[2vw]'>
+                <div className='w-[30%] flex flex-col gap-[2vw]'>
                     <div className='w-full flex flex-col items-start justify-start gap-[1vw] p-[2vw] text-[1vw]' id={themes.box}>
                         <h1 className='font-medium'>About</h1>
                         <h1 className='font-medium'>Summary</h1>

@@ -24,8 +24,8 @@ export default function SwiperComponent() {
                     <div className="w-full lg:h-[230px] h-[60vw]">
                         <div className="w-full h-full absolute z-1"><Image fill={true} src={data.cover} alt={data.cover} className='object-cover' priority={true} sizes="(max-width: 768px) 100vw, 33vw"/></div>
                         <div className="w-full h-full flex z-5 bg-black bg-opacity-60 backdrop-blur-[20px] text-white">
-                            <div className="w-full lg:p-[5px] p-[2vw] flex-col justify-start items-start flex">
-                                <div className="w-full h-full lg:p-[10px] p-[1vw] justify-between items-center gap-[5px] flex">
+                            <div className="w-full lg:p-[5px] lg:p-[5px] px-[2vw] py-[0.5vw] flex-col justify-start items-start flex">
+                                <div className="w-full h-[30%] lg:p-[5px] p-[0.5vw] justify-between items-center gap-[5px] flex">
                                     <div className="flex-col justify-center items-start gap-[5px] inline-flex">
                                         <div className="text-[4vw] lg:text-[20px] font-medium">{data.name}</div>
                                         <div className="self-stretch grow shrink basis-0 justify-start items-center gap-[10px] inline-flex text-[3vw] lg:text-[12px] font-medium">
@@ -44,8 +44,8 @@ export default function SwiperComponent() {
                                         <div className="text-[3vw] lg:text-[10px] font-medium">{data.ratings}</div>
                                     </div>
                                 </div>
-                                <div className="w-full h-full px-[1vw] py-[1vw] rounded-[0.5vw] justify-between items-start inline-flex">
-                                    <div className="text-opacity-90 lg:text-[15px] text-[2.5vw] font-light">{data.info}</div>
+                                <div className="w-full h-[60%] lg:p-[5px] p-[0.8vw] justify-between items-start flex text-opacity-90 lg:text-[15px] text-[2.5vw] text-ellipsis overflow-hidden ...">
+                                    {data.info}
                                 </div>
                             </div>
                         </div>
