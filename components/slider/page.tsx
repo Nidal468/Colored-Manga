@@ -30,13 +30,13 @@ export default function SwiperComponent() {
                                         <div className="text-[4vw] lg:text-[20px] font-medium">{data.name}</div>
                                         <div className="self-stretch grow shrink basis-0 justify-start items-center gap-[10px] inline-flex text-[3vw] lg:text-[12px] font-medium">
                                             <div className="justify-start items-start flex">
-                                                <div className="text-emerald-400 ">{data.genres[0].genre}</div>
+                                                <div className="text-emerald-400 ">{data.genre}</div>
                                             </div>
                                             <div className="justify-start items-start flex">
-                                                <div>{data.genres[0].genre}</div>
+                                                <div>{data.genre1}</div>
                                             </div>
                                             <div className="justify-start items-start flex">
-                                                <div>{data.genres[0].genre}</div>
+                                                <div>{data.genre2}</div>
                                             </div>
                                         </div>
                                     </div>

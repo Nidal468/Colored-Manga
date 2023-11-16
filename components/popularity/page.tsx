@@ -5,7 +5,9 @@ import Data from '@/public/data/manga.json'
 import Image from 'next/image'
 import themes from "@/styles/themes.module.css"
 import LeaderboardIcon from '@mui/icons-material/Leaderboard';
+
 export default function Popularity() {
+    
     return (
         <div className='w-full xl:w-[360px] lg:w-[310px] flex flex-col items-center justify-center gap-[20px] hidden lg:flex'>
             <div className='w-full p-[2vw] lg:p-[10px] rounded-[1px] justify-between items-center flex font-light text-[2vw] lg:text-[10px]' id={themes.outside}>
@@ -29,10 +31,10 @@ export default function Popularity() {
                         </div>
                         <div className='flex items-center justify-start gap-[2vw] lg:gap-[20px]'>
                             <div className='flex items-center gap-[0.8vw] lg:gap-[8px]'>
-                                <DnsIcon sx={{fontSize: "15px"}}/><h3>Chapter {Data[0].chapters[0].number}</h3>
+                                <DnsIcon sx={{fontSize: "15px"}}/><h3>Chapter {1}</h3>
                             </div>
                             <div className='flex items-center gap-[0.8vw] lg:gap-[8px]'>
-                                <DnsIcon sx={{fontSize: "15px"}}/><h3>Chapter {Data[0].chapters[1].number}</h3>
+                                <DnsIcon sx={{fontSize: "15px"}}/><h3>Chapter {1}</h3>
                             </div>
                         </div>
                     </div>
@@ -40,13 +42,15 @@ export default function Popularity() {
                 </div>
             </div>
             <div className='w-full flex flex-wrap lg:gap-[10px] gap-[2vw]'>
-                <Card title={Data[1].name} key={Data[1].id} views={Data[1].views} number1={Data[1].chapters[0].number} number2={Data[1].chapters[1].number} index={2} cover={Data[1].cover} />
-                <Card title={Data[2].name} key={Data[2].id} views={Data[2].views} number1={Data[2].chapters[0].number} number2={Data[2].chapters[1].number} index={3} cover={Data[2].cover} />
-                <Card title={Data[3].name} key={Data[3].id} views={Data[3].views} number1={Data[3].chapters[0].number} number2={Data[3].chapters[1].number} index={4} cover={Data[3].cover} />
-                <Card title={Data[4].name} key={Data[4].id} views={Data[4].views} number1={Data[4].chapters[0].number} number2={Data[4].chapters[1].number} index={5} cover={Data[4].cover} />
-                <Card title={Data[5].name} key={Data[5].id} views={Data[5].views} number1={Data[5].chapters[0].number} number2={Data[5].chapters[1].number} index={6} cover={Data[5].cover} />
-                <Card title={Data[6].name} key={Data[6].id} views={Data[6].views} number1={Data[6].chapters[0].number} number2={Data[6].chapters[1].number} index={7} cover={Data[6].cover} />
-                <Card title={Data[7].name} key={Data[7].id} views={Data[7].views} number1={Data[7].chapters[0].number} number2={Data[7].chapters[1].number} index={8} cover={Data[7].cover} />
+                {Data.map((data:any, index: any) =>{
+                    const chapters = Array.isArray(data.chapters) ? data.chapters : [];
+                    const lastChapterNumber1 = chapters.length > 0 ? chapters[chapters.length - 1].number : null;
+                    const lastChapterNumber2 = chapters.length > 1 ? chapters[chapters.length - 2].number : null;
+
+                    return(
+                        <Card title={data.name} key={data.id} views={data.views} number1={lastChapterNumber1} number2={lastChapterNumber2} index={index + 1} cover={data.cover} />
+                    )
+                })}
             </div>
         </div>
     )

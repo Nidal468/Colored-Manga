@@ -48,14 +48,15 @@
     background: #3f3f46;
     transition: 0.5s;
 }
-#arrow:hover{
-    display: none;
+
+#arrow{
+    opacity: 0;
 }
 #hover #arrow{
     transition: 0.5s;
 }
 #hover:hover #arrow{
-    display: block;
+    opacity: 1;
     transition: 0.5s;
     margin-left: 2vw;
 }

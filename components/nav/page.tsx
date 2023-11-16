@@ -35,7 +35,7 @@ export default function Nav() {
             </div>
           </Link>
           <div id={themes.dimtext}>Type</div>
-          <div id={themes.dimtext}>Genre</div>
+          <div id={themes.dimtext}><Link href="/manga">Collection</Link></div>
           <div id={themes.dimtext}>Newest</div>
           <div id={themes.dimtext}>Updated</div>
           <div id={themes.dimtext}>Added</div>

@@ -36,7 +36,7 @@ export default function Sideway() {
 
                 return (
                     <SwiperSlide key={data.id}>
-                        <Link href="/dynamic/boruto">
+                        <Link href={`/manga/${data.id}`}>
                             <Card
                                 image={data.cover}
                                 title={data.name}
