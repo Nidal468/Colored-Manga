@@ -27,7 +27,7 @@ export default function Popularity() {
                         <h1 className='lg:text-[15px] text-[3vw]'>{Data[0].name}</h1>
                         <div className='flex items-center gap-[0.8vw] lg:gap-[8px]'>
                             <AutoModeIcon sx={{fontSize: "15px"}}/>
-                            <h3>{Data[0].views}</h3>
+                            <h3>{Data[0].id}</h3>
                         </div>
                         <div className='flex items-center justify-start gap-[2vw] lg:gap-[20px]'>
                             <div className='flex items-center gap-[0.8vw] lg:gap-[8px]'>
