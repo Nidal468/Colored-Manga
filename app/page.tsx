@@ -50,7 +50,7 @@ export default async function Home() {
                const lastDateNumber2 = chapters.length > 1 ? chapters[chapters.length - 2].date : null;
                const lastDateNumber3 = chapters.length > 2 ? chapters[chapters.length - 3].date : null;
               return (
-                <Card title={data.name} author={data.author} key={data.id} image={data.cover} number1={lastChapterNumber1} number2={lastChapterNumber2} number3={lastChapterNumber3} data1={lastDateNumber1} data2={lastDateNumber2} data3={lastDateNumber3} />
+                <Card title={data.name} author={data.author} key={data.id} image={data.cover} number1={lastChapterNumber1} number2={lastChapterNumber2} number3={lastChapterNumber3} data1={lastDateNumber1} data2={lastDateNumber2} data3={lastDateNumber3} link={`/manga/${data.id}`}/>
               )
             })}
           </div>

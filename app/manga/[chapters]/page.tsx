@@ -7,7 +7,7 @@ import themes from '@/styles/themes.module.css'
 import List from '@/components/chapters/page'
 import Footer from '@/components/footer/page'
 import EditorCard from '@/components/editorCard/page';
-import Data from '@/public/data/manga.json'
+
 export default function Chapters(params: any) {
     const {chapters} = params.params;
     console.log(chapters,params)

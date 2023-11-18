@@ -3,7 +3,7 @@ import path from 'path';
 
 export async function POST(req: Request) {
   try {
-    const formData = await req.json()
+    const formData = await req.json();
     const { id, title, number, date, index } = formData;
     const DATA_FOLDER = 'public/data';
     const FILE_NAME = 'manga.json';
@@ -12,16 +12,26 @@ export async function POST(req: Request) {
     // Read existing data from the file
     const existingData = await fs.readFile(filePath, 'utf8');
     // Parse existing data into JSON
-    const chapters = JSON.parse(existingData);
+    const mangaList = JSON.parse(existingData);
 
-    // Add new form data to the chapters array
-    chapters[index].chapters.push({ id, title, number, date });
+    // Find the manga with the matching index
+    const targetManga = mangaList.find((manga: any) => manga.id === index);
 
-    // Write the updated chapters array back to the file
-    await fs.writeFile(filePath, JSON.stringify(chapters), 'utf8');
+    // Check if the manga with the matching index is found
+    if (targetManga) {
+      // Add new form data to the chapters array of the found manga
+      targetManga.chapters.push({ id, title, number, date });
 
-    // Return a success response
-    return new Response('Chapter added successfully', { status: 201 });
+      // Write the updated manga list back to the file
+      await fs.writeFile(filePath, JSON.stringify(mangaList), 'utf8');
+
+      // Return a success response
+      return new Response('Chapter added successfully', { status: 201 });
+    } else {
+      // If no manga with the matching index is found, return an error response
+      console.error('Manga not found with index:', index);
+      return new Response('Failed to add chapter - Manga not found', { status: 404 });
+    }
   } catch (error) {
     // Handle errors and return an appropriate response
     console.error('Error adding chapter:', error);

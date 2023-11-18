@@ -2,17 +2,17 @@ import { promises as fs } from 'fs';
 import path from 'path';
 import {NextRequest, NextResponse} from 'next/server'
 
-export async function POST(req: NextRequest , res: NextRequest) {
+export async function POST(req: NextRequest , res: NextResponse) {
     try {
 
     const formData = await req.json()
-    const { name, info, id, author, date, genre1, genre2, genre3} = formData;
+    const { name, info, id, author, date, genre1, genre2, genre3, cover, chapters} = formData;
     const DATA_FOLDER = 'public/data';
     const FILE_NAME = 'manga.json';
     const filePath = path.join(process.cwd(), DATA_FOLDER, FILE_NAME);
     const existingData = await fs.readFile(filePath, 'utf8');
     const manga = JSON.parse(existingData);
-    manga.push({ id, name, author, date , info, genre1, genre2, genre3});
+    manga.push({ id, name, author, date , info, genre1, genre2, genre3, cover, chapters});
     await fs.writeFile(filePath, JSON.stringify(manga), 'utf8');
     } catch (error) {
        

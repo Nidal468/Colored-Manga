@@ -10,7 +10,8 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import AddIcon from '@mui/icons-material/Add';
 export default function List(props: any) {
-  
+  const selectedManga = Data.find((manga: any) => manga.id === props.id);
+  const chaptersData = selectedManga?.chapters || [];
   const [display, setDisplay] = useState(true);
   const [chapterNumber, setChapterNumber] = useState('');
   const [chapterTitle, setChapterTitle] = useState('');
@@ -26,7 +27,7 @@ export default function List(props: any) {
       number: chapterNumber,
       title: chapterTitle,
       date: formattedDate,
-      index: props.id
+      index: props.id.toString()
     };
 
     try {
@@ -119,7 +120,7 @@ export default function List(props: any) {
         </div>
       </div>
       <div className='w-full flex flex-col'>
-        {Data[props.id].chapters.map((data: any) => (
+      {chaptersData.map((data: any) => (
           <div className='w-full flex items-center justify-between px-[1.5vw] py-[1vw] lg:px-[15px] lg:py-[10px]' id={themes.hover} key={data.id}>
             <h1 className='flex gap-[0.5vw]'><KeyboardArrowRightIcon id={themes.arrow} />Chapter {data.number} - {data.title}</h1>
             <div className='h-full flex items-center gap-[15px]'>

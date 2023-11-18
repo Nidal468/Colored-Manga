@@ -1,8 +1,10 @@
 'use client'
-import { useState } from "react"
+
+import { useState } from "react";
 import AllInboxIcon from '@mui/icons-material/AllInbox';
 import AddIcon from '@mui/icons-material/Add';
-import Image from 'next/image'
+import Image from 'next/image';
+import PowerSettingsNewIcon from '@mui/icons-material/PowerSettingsNew';
 export default function Form(props: any) {
     const [display, setDisplay] = useState(true);
     const [name, setName] = useState('');
@@ -12,18 +14,44 @@ export default function Form(props: any) {
     const [genre1, setGenre1] = useState('');
     const [genre2, setGenre2] = useState('');
     const [genre3, setGenre3] = useState('');
-    const [imageUrl, setImageUrl] = useState<string>('');
+    const [imageUrl, setImageUrl] = useState('');
+    const [imagePreview, setImagePreview] = useState<string | null>(null);
 
-    const handleAddManga = async () => {
-       
+    const handleAddManga = async (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+
+        if (!file) return;
+        const fileName = file.name;
+        console.log('Uploaded file name:', fileName);
+        try {
+            const data = new FormData();
+            data.set('file', file);
+
+            const res = await fetch('api/upload', {
+                method: 'POST',
+                body: data
+            });
+
+            if (res.ok) {
+                const responseJson = await res.json();
+                setImageUrl(`/images/covers/${responseJson.imageUrl}`);
+                console.log('Image uploaded successfully');
+            } else {
+                console.error('Failed to upload image');
+            }
+        } catch (error) {
+            console.error('Error uploading image:', error);
+        }
+
         const currentDate = new Date();
         const formattedDate = new Intl.DateTimeFormat('en-US', {
             month: 'short',
             day: 'numeric',
             year: 'numeric',
         }).format(currentDate);
+
         const newManga = {
-            id: new Date().getTime(),
+            id: new Date().getTime().toString(),
             name: name,
             date: formattedDate,
             author: author,
@@ -31,7 +59,8 @@ export default function Form(props: any) {
             genre1: genre1,
             genre2: genre2,
             genre3: genre3,
-            cover: imageUrl
+            cover: `/images/covers/${fileName}`,
+            chapters: []
         };
 
         try {
@@ -45,7 +74,6 @@ export default function Form(props: any) {
 
             if (response.ok) {
                 console.log('Chapter added successfully');
-                addImage(new Event('submit'));
             } else {
                 console.error('Failed to add chapter');
             }
@@ -53,55 +81,39 @@ export default function Form(props: any) {
             console.error('Error adding chapter:', error);
         }
 
-        setAuthor("")
-        setName("")
-        setInfo("")
-        setGenre1("")
-        setGenre2("")
-        setGenre3("")
-        setImageUrl("")
+        setAuthor("");
+        setName("");
+        setInfo("");
+        setGenre1("");
+        setGenre2("");
+        setGenre3("");
     };
-    const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        if (e.target.files && e.target.files[0]) {
-            const selectedFile = e.target.files[0];
+
+    const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const selectedFile = e.target.files?.[0];
+
+        if (selectedFile) {
             setFile(selectedFile);
 
-            // Create a temporary URL for the selected file
-            const temporaryUrl = URL.createObjectURL(selectedFile);
-            setImageUrl(temporaryUrl);
+            const reader = new FileReader();
+            reader.onloadend = () => {
+                setImagePreview(reader.result as string);
+            };
+            reader.readAsDataURL(selectedFile);
         }
     };
-    const addImage = async (e: React.FormEvent<HTMLFormElement>) => {
-        e.preventDefault()
-        
-        if (!file) return
-        try {
-            const data = new FormData()
-            data.set('file', file)
 
-            const res = await fetch('api/upload', {
-                method: 'POST',
-                body: data
-            })
-            if (res.ok) {
-                // Assuming the API response contains the URL of the uploaded image
-                const responseJson = await res.json();
-                setImageUrl(responseJson.imageUrl);
-                console.log('Image uploaded successfully');
-            } else {
-                console.error('Failed to upload image');
-            }
-        } catch (e: any) {
-            console.error(e)
-        }
-    }
     return (
         <div className="w-full p-[2vw] lg:p-[10px] justify-between items-center flex font-light lg:text-[15px] text-[2vw]">
-            <div className="flex items-center gap-[1vw]"><AllInboxIcon sx={{ fontSize: "15px" }} />All Mangas</div>
+            <div className="flex items-center gap-[1vw]"><AllInboxIcon sx={{ fontSize: "15px" }} />All Mangas{display.toString()}</div>
             <div onClick={() => setDisplay(false)}><AddIcon sx={{ fontSize: "15px" }} /></div>
-            <div className="w-[50%] h-[90%] bg-zinc-800 fixed z-50 top-[9%] left-[25%] p-[20px]" style={{ display: display ? "none" : "flex" }}>
-                <div className='w-full flex items-center justify-between'>
-                    <form onSubmit={handleAddManga}>
+            <div className="w-full fixed h-full top-0 left-0 z-50 pointer-events-none">
+                <div className="w-full h-full items-center justify-center backdrop-blur-[5px] bg-zinc-800 bg-opacity-[5%] pointer-events-auto" style={{ display: display ? "none" : "flex" }}>
+                <div className="flex gap-[15px] bg-zinc-800 p-[20px]" >
+                <div className='w-full flex items-start justify-between'>
+                    <form onSubmit={handleAddManga} className="w-full flex gap-[15px] flex">
+                        <div className="h-full flex flex-col">
+                        <div className="w-full flex items-center justify-start gap-[10px]">
                         <div className='mb-4'>
                             <label className='block text-white text-sm mb-2'>Manga name</label>
                             <input
@@ -112,7 +124,7 @@ export default function Form(props: any) {
                                 placeholder='Enter manga name'
                             />
                         </div>
-                        <div className='mb-4'>
+                        <div className='mb-4 w-[300px]'>
                             <label className='block text-white text-sm mb-2'>Manga author name</label>
                             <input
                                 type='text'
@@ -122,18 +134,20 @@ export default function Form(props: any) {
                                 placeholder='Enter manga author name'
                             />
                         </div>
+                        </div>
                         <div className='mb-4'>
                             <label className='block text-white text-sm mb-2'>Manga description</label>
                             <input
                                 type='text'
                                 value={info}
                                 onChange={(e) => setInfo(e.target.value)}
-                                className='w-full px-3 py-2 rounded bg-zinc-700 text-white'
+                                className='w-full px-[15px] py-[10px] rounded bg-zinc-700 text-white'
                                 placeholder='Enter manga description'
                             />
                         </div>
-                        <div className='mb-4'>
-                            <label className='block text-white text-sm mb-2'>Manga Genre 1 (this will be the main genre!)</label>
+                        <label className='block text-white text-sm mb-2'>Manga Genre 1 (this will be the main genre!)</label>
+                        <div className='mb-4 w-full flex gap-[10px]'>
+                            
                             <input
                                 type='text'
                                 value={genre1}
@@ -141,9 +155,6 @@ export default function Form(props: any) {
                                 className='w-full px-3 py-2 rounded bg-zinc-700 text-white'
                                 placeholder='Enter manga genre 1'
                             />
-                        </div>
-                        <div className='mb-4'>
-                            <label className='block text-white text-sm mb-2'>Manga Genre 2</label>
                             <input
                                 type='text'
                                 value={genre2}
@@ -151,9 +162,6 @@ export default function Form(props: any) {
                                 className='w-full px-3 py-2 rounded bg-zinc-700 text-white'
                                 placeholder='Enter manga genre 2'
                             />
-                        </div>
-                        <div className='mb-4'>
-                            <label className='block text-white text-sm mb-2'>Manga Genre 3</label>
                             <input
                                 type='text'
                                 value={genre3}
@@ -162,20 +170,28 @@ export default function Form(props: any) {
                                 placeholder='Enter manga genre 3'
                             />
                         </div>
-                        <div className="absolute w-[200px] h-[360px] top-[2%] right-[2%] flex flex-col items-start justify-center gap-[20px]">
-                            <div className="w-full h-full relative border-2 border-zinc-400 rounded-[5px] border-dashed ">
-                                <Image fill={true} src={imageUrl || '/images/assets/fpr.jpg'} alt={`${file}`} className="object-cover"/>
-                            </div>
-                            <input type="file" placeholder="Upload Cover" onChange={handleImageChange}/>
-                        </div>
+                        
                         <input
                             type='submit'
-                            className='px-4 py-2 bg-zinc-600 text-white rounded hover:bg-zinc-700'
+                            className='px-[10px] h-[40px] bg-zinc-600 text-white rounded hover:bg-zinc-700'
                         />
+                        </div>
+                        <div className="h-full flex items-start">
+                        <div className="w-[200px] h-[360px] flex flex-col items-start justify-center gap-[20px]">
+                            <div className="w-full h-full relative border-2 border-zinc-400 rounded-[5px] border-dashed ">
+                                    <Image fill={true} src={imagePreview || '/images/assets/fpr.jpg'} alt={`${imagePreview}`} className="object-cover"/>
+                            </div>
+                            <input type="file" placeholder="Upload Cover" onChange={handleFileChange}/>
+                        </div>
+                       
+                        </div>
                     </form>
                 </div>
+                <div onClick={() => setDisplay(true)}><PowerSettingsNewIcon sx={{ fontSize: "15px" }} /></div>
             </div>
+                </div>
+            </div>
+            
         </div>
-
-    )
+    );
 }
