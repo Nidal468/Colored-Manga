@@ -1,6 +1,6 @@
 'use client'
 
-import theme from '@/styles/theme.module.css'
+import theme from '@/styles/themes.module.css'
 import { Slots } from "./parts/page";
 import { useState, useEffect } from "react";
 export default function Seettings(props: any) {
@@ -17,7 +17,7 @@ export default function Seettings(props: any) {
         localStorage.setItem('isHeight', isHeight.toString());
     }, [isWidth,isHeight]);
     return (
-        <div className="fixed w-[72%] top-[15%] right-[21%] flex flex-col items-start justify-start p-[1.5vw] text-[1vw] font-light gap-[1vw]" id={theme.subSettings} style={{display: props.visibility}}>
+        <div className="fixed w-[72%] top-[15%] right-[21%] flex flex-col items-start justify-start p-[1.5vw] text-[1vw] font-light gap-[1vw] text-white" id={theme.solid} style={{display: props.visibility}}>
             <div className='w-full flex items-center justify-between'>
                 <h1 className='text-[2vw]'>Page Fit</h1>
                 <div className='px-[2vw] py-[1vw] border border-white rounded-[0.5vw]'>Recomended</div>

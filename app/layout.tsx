@@ -1,8 +1,6 @@
 import './globals.css'
 import type { Metadata } from 'next'
 import localFont from 'next/font/local'
-import Siderbar from '@/components/sidebar/page'
-import Footer from '@/components/footer/page'
 import Menu from '@/components/menu/page'
 import Worker from '@/app/worker/service-worker'
 const Gilory = localFont({
@@ -19,10 +17,11 @@ const Gilory = localFont({
     }
   ]
 })
-export const metadata = {
+export const metadata: Metadata = {
   title: "Colored Manga",
   icons: "/images/favicon.ico"
 }
+
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   
   return (

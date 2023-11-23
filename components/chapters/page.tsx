@@ -3,12 +3,11 @@ import { useState } from 'react'
 import Data from '@/public/data/manga.json'
 import themes from '@/styles/themes.module.css'
 import SearchIcon from '@mui/icons-material/Search';
-import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
 import PowerSettingsNewIcon from '@mui/icons-material/PowerSettingsNew';
-import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import AddIcon from '@mui/icons-material/Add';
+import Link from 'next/link'
 export default function List(props: any) {
   const selectedManga = Data.find((manga: any) => manga.id === props.id);
   const chaptersData = selectedManga?.chapters || [];
@@ -23,7 +22,7 @@ export default function List(props: any) {
       year: 'numeric',
     }).format(currentDate);
     const newChapter = {
-      id: new Date().getTime(),
+      id: new Date().getTime().toString(),
       number: chapterNumber,
       title: chapterTitle,
       date: formattedDate,
@@ -59,7 +58,7 @@ export default function List(props: any) {
         },
         body: JSON.stringify({ id: chapterId }),
       });
-  
+
       if (response.ok) {
         console.log('Chapter deleted successfully');
         // You might want to update your local state or trigger a re-fetch here
@@ -70,9 +69,9 @@ export default function List(props: any) {
       console.error('Error deleting chapter:', error);
     }
   };
-  
+
   return (
-    <div className='w-full flex flex-col rounded-[0.5vw] lg:rounded-[5px] overflow-hidden text-[15px]' id={themes.box}>
+    <div className='w-full flex flex-col rounded-[0.5vw] lg:rounded-[5px] overflow-hidden lg:text-[15px] text-[10px]' id={themes.box}>
       <div className='w-[50%] h-[90%] bg-zinc-800 fixed z-50 top-[9%] left-[25%] p-[20px]' style={{ display: display ? "none" : "flex" }}>
         <div className='w-full h-full flex flex-col items-start justify-start'>
           <div className='w-full flex items-center justify-between'>
@@ -116,19 +115,20 @@ export default function List(props: any) {
         </div>
         <div className='flex'>
           <div className='px-[2vw] py-[0.8vw] lg:px-[24px] lg:py-[8px] flex items-center justify-center' id={themes.button}>Chapter</div>
-          <div className='px-[2vw] py-[0.8vw] lg:px-[24px] lg:py-[8px] flex items-center justify-center' id={themes.button}>Volume</div>
         </div>
       </div>
       <div className='w-full flex flex-col'>
-      {chaptersData.map((data: any) => (
-          <div className='w-full flex items-center justify-between px-[1.5vw] py-[1vw] lg:px-[15px] lg:py-[10px]' id={themes.hover} key={data.id}>
-            <h1 className='flex gap-[0.5vw]'><KeyboardArrowRightIcon id={themes.arrow} />Chapter {data.number} - {data.title}</h1>
-            <div className='h-full flex items-center gap-[15px]'>
-              <div className='flex h-full items-center gap-[10px]'><VisibilityIcon sx={{ fontSize: "15px" }} />{data.id}</div>
-              <EditIcon sx={{ fontSize: "15px" }} /><div onClick={() => handleDeleteChapter(data.id)}><DeleteIcon sx={{ fontSize: "15px" }} /></div>
+        {chaptersData.map((data: any) => (
+          <Link href={`/manga/${props.id}/${data.id}`} key={data.id}>
+            <div className='w-full flex items-center justify-between px-[2vw] py-[2vw] lg:px-[15px] lg:py-[15px] text-[8px] lg:text-[10px]' id={themes.hover} key={data.id}>
+              <h1 className='flex items-center gap-[0.5vw]'>Chapter {data.number} - {data.title}</h1>
+              <div className='h-full flex items-center lg:gap-[15px] gap-[5px]'>
+                <div className='flex h-full items-center lg:gap-[10px] gap-[5px]'><VisibilityIcon sx={{ fontSize: "15px" }} />12k</div>
+                <div onClick={() => handleDeleteChapter(data.id)}><DeleteIcon sx={{ fontSize: "15px" }} /></div>
+                <h1 className='text-[6px] lg:text-[8px]'>{data.date}</h1>
+              </div>
             </div>
-            <h1 className='text-[10px]'>{data.date}</h1>
-          </div>
+          </Link>
         ))}
       </div>
     </div>
