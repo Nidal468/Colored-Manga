@@ -1,3 +1,5 @@
 export default function Admin() {
-    return <h1>bye</h1>
+    return (
+        <div className="w-full h-[100vh]"></div>
+    )
 }

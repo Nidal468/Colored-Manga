@@ -6,54 +6,45 @@ import ChatIcon from '@mui/icons-material/Chat';
 import BookmarkAddIcon from '@mui/icons-material/BookmarkAdd';
 import ViewArrayIcon from '@mui/icons-material/ViewArray';
 import CalendarViewDayIcon from '@mui/icons-material/CalendarViewDay';
-import SettingsIcon from '@mui/icons-material/Settings';
 import Link from 'next/link'
+import { useState } from 'react'
 
 export default function Sidebar(props: any) {
-    const { toggleVisibility } = props;
     const chapterNumber = props.data?.number || [];
+    const {removeHeader, removeSideBar} = props;
 
     return (
-        <div className="w-[20%] h-full shadow flex-col justify-start items-center flex fixed top-0 right-0 p-[2vw] text-white" id={theme.box}>
-            <div className='w-full py-[0.5vw] flex items-center font-medium'>
+        <div className="lg:w-[20%] w-[200px] h-full shadow flex-col justify-start items-center flex fixed top-0 right-0 lg:p-[25px] p-[15px] text-white z-[999] lg:text-[15px] text-[12px] gap-[8px]" id={theme.box}>
+            <div className='lg:w-[200px] w-[175px] lg:h-[40px] h-[30px] flex items-center justify-between font-medium'>
                 <h1>{props.manga?.name}</h1>
-                <Link href={`/manga/${props.manga?.id}`}>
-                    <div className='p-2 rounded-[0.4vw] -rotate-90' id={theme.inner}>
-                        <KeyboardArrowDownIcon />
+                    <div className='lg:w-[40px] w-[30px] h-full flex items-center justify-center rounded-[4px] -rotate-90' id={theme.inner} onClick={removeSideBar}>
+                        <KeyboardArrowDownIcon sx={{ fontSize: { xs: 12, lg: 25 } }}/>
                     </div>
+            </div>
+            <div className='lg:w-[200px] w-[175px] lg:h-[40px] h-[30px] flex items-center justify-between font-medium'>
+                <Link href={`/manga/${props.manga?.id}/${props.prev}`} className='lg:w-[40px] w-[30px] h-full flex items-center justify-center rounded-[4px] rotate-90' id={theme.inner}>
+                    <KeyboardArrowDownIcon sx={{ fontSize: { xs: 12, lg: 25 } }}/>
+                </Link>
+                <div className='lg:w-[100px] w-[95px] h-full flex items-center justify-between rounded-[4px] lg:text-[13px] text-[10px] font-medium px-[5px]' id={theme.inner}>Chapter {chapterNumber} <KeyboardArrowDownIcon sx={{ fontSize: { xs: 12, lg: 25 } }} /></div>
+                <Link href={`/manga/${props.manga?.id}/${props.next}`} className='lg:w-[40px] w-[30px] h-full flex items-center justify-center rounded-[4px] -rotate-90' id={theme.inner}>
+                    <KeyboardArrowDownIcon sx={{ fontSize: { xs: 12, lg: 25 } }}/>
                 </Link>
             </div>
-            <div className='w-full flex items-center gap-[0.5vw] py-[0.4vw]'>
-                <Link href={`/manga/${props.manga?.id}/${props.prev}`}>
-                <div className='p-[0.5vw] rounded-[0.4vw] rotate-90' id={theme.inner}>
-                    <KeyboardArrowDownIcon />
-                </div>
-                </Link>
-                <div className='w-full h-full flex items-center justify-between px-[0.5vw] rounded-[0.4vw] text-[1vw]' id={theme.inner}>Chapter {chapterNumber} <KeyboardArrowDownIcon sx={{ fontSize: "1.5vw" }} /></div>
-                <Link href={`/manga/${props.manga?.id}/${props.next}`}>
-                <div className='p-[0.5vw] rounded-[0.4vw] -rotate-90' id={theme.inner}>
-                    <KeyboardArrowDownIcon />
-                </div>
-                </Link>
+            <div className='lg:w-[200px] w-[175px] lg:h-[40px] h-[30px] flex items-center justify-between font-medium'>
+                <div className='w-full h-full flex items-center justify-between rounded-[4px] lg:text-[13px] text-[10px] font-medium px-[10px]' id={theme.inner}><ChatIcon sx={{ fontSize: { xs: 12, lg: 15 } }} /> Chapter 100 Comments</div>
             </div>
-            <div className='w-full flex items-center gap-[0.5vw] py-[0.4vw]'>
-                <div className='w-full h-full flex items-center justify-between p-[1vw] rounded-[0.4vw] text-[1vw]' id={theme.inner}><ChatIcon sx={{ fontSize: "1.5vw" }} /> Chapter 100 Comments</div>
+            <div className='lg:w-[200px] w-[175px] lg:h-[40px] h-[30px] flex items-center justify-between font-medium'>
+                <div className='w-full h-full flex items-center justify-between rounded-[4px] lg:text-[13px] text-[10px] font-medium px-[10px]' id={theme.inner}><BookmarkAddIcon sx={{ fontSize: { xs: 12, lg: 15 } }} /> Bookmark the Manga</div>
             </div>
-            <div className='w-full flex items-center gap-[0.5vw] py-[0.4vw]'>
-                <div className='w-full h-full flex items-center justify-between p-[1vw] rounded-[0.4vw] text-[1vw]' id={theme.inner}><BookmarkAddIcon sx={{ fontSize: "1.5vw" }} /> Bookmark the Manga</div>
+            <div className='lg:w-[200px] w-[175px] lg:h-[40px] h-[30px] flex items-center justify-between font-medium'>
+                <div className='w-full h-full flex items-center justify-between rounded-[4px] lg:text-[13px] text-[10px] font-medium px-[10px]' id={theme.inner} onClick={removeHeader}><ViewArrayIcon sx={{ fontSize: { xs: 12, lg: 15 } }} />{props.value}</div>
             </div>
-            <div className='w-full flex items-center gap-[0.5vw] py-[0.4vw]'>
-                <div className='w-full h-full flex items-center justify-between p-[1vw] rounded-[0.4vw] text-[1vw]' id={theme.inner}><ViewArrayIcon sx={{ fontSize: "1.5vw" }} />Remove Header</div>
+            <div className='lg:w-[200px] w-[175px] lg:h-[40px] h-[30px] flex items-center justify-between font-medium'>
+                <div className='w-full h-full flex items-center justify-between rounded-[4px] lg:text-[13px] text-[10px] font-medium px-[10px]' id={theme.inner}><CalendarViewDayIcon sx={{ fontSize: { xs: 12, lg: 15 } }} />Long Strip</div>
             </div>
-            <div className='w-full flex items-center gap-[0.5vw] py-[0.4vw]'>
-                <div className='w-full h-full flex items-center justify-between p-[1vw] rounded-[0.4vw] text-[1vw]' id={theme.inner}><CalendarViewDayIcon sx={{ fontSize: "1.5vw" }} />Long Strip</div>
-            </div>
-            <div className='w-full flex items-center gap-[0.5vw] py-[0.4vw]'>
-                <div className='w-full h-full flex items-center justify-between p-[1vw] rounded-[0.4vw] text-[1vw]' id={theme.inner} onClick={toggleVisibility}><SettingsIcon sx={{ fontSize: "1.5vw" }} />Advance Settings</div>
-            </div>
-            <div className='w-full py-[1vw] flex flex-col items-center justify-start gap-[0.5vw]'>
-                <h1 className='text-[1vw] text-center'>Join our discord to get the latest updates</h1>
-                <Link href=""><div className='px-[2vw] py-[0.5vw] rounded-full bg-sky-300'>Join Discord</div></Link>
+            <div className='w-[200px] flex flex-col items-center justify-start gap-[8px]'>
+                <h1 className='w-[80%] lg:text-[13px] text-[10px] text-center'>Join our discord to get the latest updates</h1>
+                <Link href="" className='lg:w-[100px] w-[70px] lg:h-[40px] h-[30px] flex items-center justify-center lg:text-[13px] text-[10px] rounded-[5px] bg-sky-400 font-medium'>Join Discord</Link>
             </div>
         </div>
     )

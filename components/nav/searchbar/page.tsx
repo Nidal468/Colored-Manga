@@ -12,7 +12,7 @@ export default function Search() {
       };
     return(
         <div className="w-[400px] p-[4px] rounded-full justify-start items-center flex" id={themes.outside}>
-        <div className="p-[6px] rounded-full justify-center items-center flex" id={themes.opacity}><SearchIcon sx={{ color: '#fff', fontSize: "12px" }} id={themes.opacity}/></div>
+        <div className="p-[6px] rounded-full justify-center items-center flex" id={themes.opacity}><SearchIcon sx={{ fontSize: 15 }} id={themes.opacity}/></div>
         <input
           className="w-full text-neutral-100 text-[10px] font-light outline-0 px-[6px] rounded-full bg-transparent placeholder-gray-50"
           type="text"
@@ -22,7 +22,7 @@ export default function Search() {
         />
         {searchValue && (
           <div className="p-[6px] rounded-full justify-center items-center flex" onClick={handleClearInput} id={themes.opacity}>
-            <CloseIcon sx={{ color: '#fff', fontSize: "12px" }} />
+            <CloseIcon sx={{ color: '#fff', fontSize: "15px" }} />
           </div>
         )}
       </div>

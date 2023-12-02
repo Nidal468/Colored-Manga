@@ -5,9 +5,9 @@ export default function Box(props: any) {
     const Data = props.Data?.chapters;
     
     return (
-        <div className="h-full fixed" style={{width: props.width}}>
+        <div className="h-full fixed z-10" style={{width: props.width, display: props.display}}>
             <div className="w-full h-full flex items-center justify-center">
-                <div className="w-[500px] h-[300px] flex flex-col items-center justify-start text-white rounded-[4px] overflow-hidden p-[15px]" id={themes.box} style={{display: props.display}}>
+                <div className="w-[500px] h-[300px] flex flex-col items-center justify-start text-white rounded-[4px] overflow-hidden p-[15px]" id={themes.box}>
                     <div className='w-full h-[30px] flex items-center justify-between mb-[20px]'>
                         <h1>{props.name}</h1>
                         <div className='flex items-center gap-[10px]'>

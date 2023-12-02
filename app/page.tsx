@@ -25,7 +25,7 @@ export default async function Home() {
       <div className="view w-full flex flex-col lg:flex-row items-start justify-between lg:gap-[20px] gap-[8vw]">
         <div className="w-full lg:hidden flex flex-col items-center justify-center gap-[2vw]">
           <div className='w-full p-[2vw] rounded-[1px] justify-between items-center flex font-light lg:text-[15px] text-[2vw]' id={themes.outside}>
-            <div className='flex gap-[1vw] items-center'><LeaderboardIcon sx={{ fontSize: "15px" }} />Most Viewed</div>
+            <div className='flex gap-[1vw] items-center'><LeaderboardIcon sx={{ fontSize: { xs: 12, lg: 15} }} />Most Viewed</div>
             <div className='flex items-center justify-between gap-[2vw] lg:gap-[5px]'>
               <div id={themes.dimtext}>Day</div>
               <div id={themes.dimtext}>Week</div>

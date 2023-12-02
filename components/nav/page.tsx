@@ -27,7 +27,7 @@ export default function Nav() {
 
   return (
     <div className='w-full flex items-center justify-center hidden lg:flex fixed top-0 right-0 z-50' id={themes.solid}>
-      <div className="w-[1300px] px-[30px] h-[50px] justify-between items-center flex">
+      <div className="w-[1300px] px-[30px] h-[60px] justify-between items-center flex">
         <div className="p-[10px] justify-center items-center gap-[20px] flex text-[10px] text-center font-light">
           <Link href="/">
             <div className='w-[25px] h-[25px] relative'>

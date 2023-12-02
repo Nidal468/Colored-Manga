@@ -110,7 +110,7 @@ export default function List(props: any) {
         </div>
       </div>
       <div className='w-full flex items-center justify-between border-b border-zinc-500' id={themes.solid}>
-        <div className='w-full flex items-center px-[1vw] gap-[10px] lg:px-[12px]'><SearchIcon sx={{ fontSize: "15px" }} />
+        <div className='w-full flex items-center px-[1vw] gap-[10px] lg:px-[12px]'><SearchIcon sx={{ fontSize: { xs: 12, lg: 15 } }} />
           <input type="text" className='w-full flex items-center bg-transparent' placeholder='Enter chapter number' /><div onClick={() => setDisplay(false)}><AddIcon sx={{ fontSize: "15px" }} /></div>
         </div>
         <div className='flex'>
@@ -120,11 +120,11 @@ export default function List(props: any) {
       <div className='w-full flex flex-col'>
         {chaptersData.map((data: any) => (
           <Link href={`/manga/${props.id}/${data.id}`} key={data.id}>
-            <div className='w-full flex items-center justify-between px-[2vw] py-[2vw] lg:px-[15px] lg:py-[15px] text-[8px] lg:text-[10px]' id={themes.hover} key={data.id}>
+            <div className='w-full flex items-center justify-between px-[10px] py-[15px] lg:px-[15px] lg:py-[15px] text-[8px] lg:text-[10px]' id={themes.hover} key={data.id}>
               <h1 className='flex items-center gap-[0.5vw]'>Chapter {data.number} - {data.title}</h1>
               <div className='h-full flex items-center lg:gap-[15px] gap-[5px]'>
-                <div className='flex h-full items-center lg:gap-[10px] gap-[5px]'><VisibilityIcon sx={{ fontSize: "15px" }} />12k</div>
-                <div onClick={() => handleDeleteChapter(data.id)}><DeleteIcon sx={{ fontSize: "15px" }} /></div>
+                <div className='flex h-full items-center lg:gap-[10px] gap-[5px]'><VisibilityIcon sx={{ fontSize: { xs: 12, lg: 15 } }} />12k</div>
+                <div onClick={() => handleDeleteChapter(data.id)}><DeleteIcon sx={{ fontSize: { xs: 12, lg: 15 } }} /></div>
                 <h1 className='text-[6px] lg:text-[8px]'>{data.date}</h1>
               </div>
             </div>

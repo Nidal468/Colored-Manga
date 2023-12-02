@@ -33,8 +33,8 @@ export default function Chapters(params: any) {
                                     <p className='w-full lg:w-[500px] lg:h-[150px] text-ellipsis overflow-hidden lg:text-[14px] text-[2vw]' id={themes.dimtext}>{selectedManga?.info}</p>
                                 </div>
                                 <div className='flex items-center justify-between gap-[1vw] lg:gap-[12px]'>
-                                    <div className='px-[1.2vw] py-[0.6vw] lg:px-[14px] lg:py-[8px] rounded-[0.5vw] lg:rounded-[4px] text-[1.5vw] lg:text-[12px] flex items-center justify-between gap-[1vw] lg:gap-[12px]' id={themes.button}>Start Reading <RemoveRedEyeIcon sx={{ fontSize: "15px" }} /></div>
-                                    <div className='px-[1.2vw] py-[0.6vw] lg:px-[14px] lg:py-[8px] rounded-[0.8vw] lg:rounded-[4px] text-[1.5vw] lg:text-[12px] flex items-center justify-between gap-[1vw] lg:gap-[12px]' id={themes.button}>Bookmark<BookmarkAddIcon sx={{ fontSize: "15px" }} /></div>
+                                    <div className='px-[1.2vw] py-[0.6vw] lg:px-[14px] lg:py-[8px] rounded-[0.5vw] lg:rounded-[4px] text-[1.5vw] lg:text-[12px] flex items-center justify-between gap-[1vw] lg:gap-[12px]' id={themes.button}>Start Reading <RemoveRedEyeIcon sx={{ fontSize: { xs: 12, lg: 15 } }} /></div>
+                                    <div className='px-[1.2vw] py-[0.6vw] lg:px-[14px] lg:py-[8px] rounded-[0.8vw] lg:rounded-[4px] text-[1.5vw] lg:text-[12px] flex items-center justify-between gap-[1vw] lg:gap-[12px]' id={themes.button}>Bookmark<BookmarkAddIcon sx={{ fontSize: { xs: 12, lg: 15 } }} /></div>
                                 </div>
                             </div>
                         </div>
@@ -67,7 +67,7 @@ export default function Chapters(params: any) {
                         </div>
                     </div>
                     <div className='w-full flex items-start justify-between flex-col' id={themes.box}>
-                        <h1 className='p-[2vw] lg:px-[20px] lg:py-[15px] flex items-center lg:gap-[12px] gap-[1vw] text-[2vw] lg:text-base'><AutoAwesomeIcon sx={{ fontSize: "15px" }} />Editors choice</h1>
+                        <h1 className='p-[2vw] lg:px-[20px] lg:py-[15px] flex items-center lg:gap-[12px] gap-[1vw] text-[2vw] lg:text-base'><AutoAwesomeIcon sx={{ fontSize: { xs: 12, lg: 15 } }} />Editors choice</h1>
                         <EditorCard/>
                         <EditorCard/>
                         <EditorCard/>
