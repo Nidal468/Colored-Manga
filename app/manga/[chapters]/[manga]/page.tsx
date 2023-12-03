@@ -69,33 +69,10 @@ export default function Manga(params: any) {
             window.removeEventListener('keydown', handleKeyPress);
         };
     }, []);
-    function Zoom() {
-        setWidth(prev => prev + 200);
-        setHeight(prev => prev + 300);
-        if (width === 800) {
-            setWidth(800)
-        }
-        if (height === 1200) {
-            setHeight(1200)
-        }
-    }
-    function Unzoom() {
-        setWidth(prev => prev - 200);
-        setHeight(prev => prev - 300);
-        if (width === 400) {
-            setWidth(400)
-        }
-        if (height === 600) {
-            setHeight(600)
-        }
-    }
     return (
         <div className='w-full flex items-start justify-start'>
             <div className="font-light flex flex-col items-center justify-start gap-[10vw]" style={{ width: divStates.div4 ? "100%" : "80%" }}>
                 {divStates.div5? <></>:<Nav 
-        
-                zoom={Zoom} 
-                unzoom={Unzoom} 
                 menu={() => toggleDivState('div4')} 
                 openChapter={() => toggleDivState('div2')} 
                 openPage={() => toggleDivState('div3')} 
@@ -117,15 +94,22 @@ export default function Manga(params: any) {
                 removeHeader={() => toggleDivState('div5')}
                 value={divStates.div5? "Enable Header":"Remove Header"}
                 removeSideBar={() => toggleDivState('div4')}
+                fitWidth={() => {setWidth(4000),setHeight(900)}}
+                fitHeight={() => {setHeight(4000);setWidth(600)}}
                 />}
                 <Box Data={selectedManga} width={divStates.div2? "100%":"80%"} name="Chapter List" id={chapters} display={divStates.div2? "flex":"none"}/>
                 <Box Data={selectedChapter} width={divStates.div3? "100%":"80%"} name="Page List" id={selectedChapter} display={divStates.div3? "flex":"none"}/>
-                <div className='w-full flex flex-col items-center justify-start gap-[1vw] lg:mb-[50px] mb-[5vw]' style={{marginTop: divStates.div5? "0px":"50px"}}>
-                    <div className='relative z-0'>
+                <div className='w-[95%] lg:w-full flex flex-col items-center justify-start gap-[1vw] lg:mb-[50px] mb-[5vw]' style={{marginTop: divStates.div5? "0px":"50px"}}>
+                    <div className='w-[auto] h-[auto] relative z-0'>
                         <Image width={width} height={height} src="/images/chapters/10000/6.png" alt="" sizes='8000px,  100vw' />
                     </div>
+                    <div className='w-[auto] h-[auto] relative z-0'>
+                        <Image width={width} height={height} src="/images/chapters/10000/20.png" alt="" sizes='8000px,  100vw' />
+                    </div>
+                    <div className='w-[auto] h-[auto] relative z-0'>
+                        <Image width={width} height={height} src="/images/chapters/10000/21.png" alt="" sizes='8000px,  100vw' />
+                    </div>
                 </div>
-                <Footer />
             </div>
         </div>
     )

@@ -59,14 +59,6 @@ export default function Nav(props: any) {
                     </div>
                     </Link>
                 </div>
-                <div className='lg:flex hidden items-center lg:gap-[10px] gap-[10px]'>
-                    <div className='lg:p-2 p-1.5 lg:rounded-[4px] rounded-[3px]' id={theme.outside}>
-                        <ZoomInIcon onClick={zoom} sx={{ fontSize: { xs: 12, lg: 25 } }}/>
-                    </div>
-                    <div className='lg:p-2 p-1.5 lg:rounded-[4px] rounded-[3px]' id={theme.outside}>
-                        <ZoomOutIcon onClick={unzoom} sx={{ fontSize: { xs: 12, lg: 25 } }}/>
-                    </div>
-                </div>
             </div>
             <div className='flex items-center gap-[1vw]'>
                 <div className='w-[26px] h-[26px] lg:w-[40px] lg:h-[40px] lg:rounded-[4px] rounded-[2px] flex items-center justify-center' id={theme.outside}>

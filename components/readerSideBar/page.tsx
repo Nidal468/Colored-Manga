@@ -6,12 +6,13 @@ import ChatIcon from '@mui/icons-material/Chat';
 import BookmarkAddIcon from '@mui/icons-material/BookmarkAdd';
 import ViewArrayIcon from '@mui/icons-material/ViewArray';
 import CalendarViewDayIcon from '@mui/icons-material/CalendarViewDay';
+import OpenInFullIcon from '@mui/icons-material/OpenInFull';
 import Link from 'next/link'
 import { useState } from 'react'
 
 export default function Sidebar(props: any) {
     const chapterNumber = props.data?.number || [];
-    const {removeHeader, removeSideBar} = props;
+    const {removeHeader, removeSideBar, fitWidth, fitHeight} = props;
 
     return (
         <div className="lg:w-[20%] w-[200px] h-full shadow flex-col justify-start items-center flex fixed top-0 right-0 lg:p-[25px] p-[15px] text-white z-[999] lg:text-[15px] text-[12px] gap-[8px]" id={theme.box}>
@@ -41,6 +42,12 @@ export default function Sidebar(props: any) {
             </div>
             <div className='lg:w-[200px] w-[175px] lg:h-[40px] h-[30px] flex items-center justify-between font-medium'>
                 <div className='w-full h-full flex items-center justify-between rounded-[4px] lg:text-[13px] text-[10px] font-medium px-[10px]' id={theme.inner}><CalendarViewDayIcon sx={{ fontSize: { xs: 12, lg: 15 } }} />Long Strip</div>
+            </div>
+            <div className='lg:w-[200px] w-[175px] lg:h-[40px] h-[30px] flex items-center justify-between font-medium'>
+                <div className='w-full h-full flex items-center justify-between rounded-[4px] lg:text-[13px] text-[10px] font-medium px-[10px]' id={theme.inner} onClick={fitWidth}><div style={{transform: "rotate(45deg)"}}><OpenInFullIcon sx={{ fontSize: { xs: 12, lg: 15 } }} /></div>Fit Width</div>
+            </div>
+            <div className='lg:w-[200px] w-[175px] lg:h-[40px] h-[30px] flex items-center justify-between font-medium'>
+                <div className='w-full h-full flex items-center justify-between rounded-[4px] lg:text-[13px] text-[10px] font-medium px-[10px]' id={theme.inner} onClick={fitHeight}><div style={{transform: "rotate(-45deg)"}}><OpenInFullIcon sx={{ fontSize: { xs: 12, lg: 15 } }} /></div>Fit Height</div>
             </div>
             <div className='w-[200px] flex flex-col items-center justify-start gap-[8px]'>
                 <h1 className='w-[80%] lg:text-[13px] text-[10px] text-center'>Join our discord to get the latest updates</h1>

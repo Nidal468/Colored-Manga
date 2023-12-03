@@ -4,6 +4,7 @@ import Card from "@/components/card/page";
 import Popularity from '@/components/popularity/page'
 import Sideway from "@/components/sideway/page";
 import Nav from '@/components/nav/page'
+import Menu from '@/components/menu/page'
 import Footer from "@/components/footer/page";
 import themes from "@/styles/themes.module.css"
 import AccessTimeIcon from '@mui/icons-material/AccessTime';
@@ -15,8 +16,9 @@ export default async function Home() {
   return (
     <div className="xl:w-[1280px] w-full font-light flex flex-col items-start justify-start lg:px-[30px] pt-[12vw] px-[2vw] lg:pt-[50px] gap-[4vw] lg:gap-[20px]" id={themes.body}>
       <Nav />
+      <Menu/>
       <div className="slider w-full flex flex-col">
-        <div className="w-full h-[8vw] lg:h-[80px] justify-start items-center inline-flex text-white font-light lg:text-[20px] text-[2vw]">Recommended</div>
+        <div className="w-full h-[8vw] lg:h-[80px] justify-start items-center inline-flex text-white font-medium lg:text-[20px] text-[4vw]">Recommended</div>
         <div className="w-full lg:flex items-end justify-between object-cover gap-[4vw] lg:gap-[20px]">
           <Slider />
           <Update />

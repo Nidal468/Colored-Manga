@@ -28,9 +28,9 @@ export default function Nav() {
   return (
     <div className='w-full flex items-center justify-center hidden lg:flex fixed top-0 right-0 z-50' id={themes.solid}>
       <div className="w-[1300px] px-[30px] h-[60px] justify-between items-center flex">
-        <div className="p-[10px] justify-center items-center gap-[20px] flex text-[10px] text-center font-light">
+        <div className="p-[10px] justify-center items-center gap-[20px] flex text-[15px] text-center font-light">
           <Link href="/">
-            <div className='w-[25px] h-[25px] relative'>
+            <div className='w-[30px] h-[30px] relative'>
               <Image fill={true} src="/images/assets/logo.jpg" alt="coloredmanga" className='object-cover' sizes="(max-width: 768px) 100vw, 33vw"/>
             </div>
           </Link>
