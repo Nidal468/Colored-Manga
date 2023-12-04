@@ -25,8 +25,9 @@ export default function Manga(params: any) {
     const { chapters, manga } = params.params;
     const selectedManga = Data.find((manga: any) => manga.id === chapters);
     const selectedChapter = selectedManga?.chapters.find((chapter: any) => chapter.id === manga);
-    const [width, setWidth] = useState(600);
-    const [height, setHeight] = useState(900);
+    const [width, setWidth] = useState('66vh');
+    const [height, setHeight] = useState('100vh');
+    const [res, setRes] = useState(false)
     const [divStates, setDivStates] = useState<DivStates>({
         div1: false,
         div2: false,
@@ -94,20 +95,72 @@ export default function Manga(params: any) {
                 removeHeader={() => toggleDivState('div5')}
                 value={divStates.div5? "Enable Header":"Remove Header"}
                 removeSideBar={() => toggleDivState('div4')}
-                fitWidth={() => {setWidth(4000),setHeight(900)}}
-                fitHeight={() => {setHeight(4000);setWidth(600)}}
+                fitWidth={() => {setWidth("100vw"),setHeight("150vw")}}
+                fitHeight={() => {setHeight("100vh");setWidth("66vh")}}
+                fitRes={() => setRes(current => !current)}
                 />}
                 <Box Data={selectedManga} width={divStates.div2? "100%":"80%"} name="Chapter List" id={chapters} display={divStates.div2? "flex":"none"}/>
                 <Box Data={selectedChapter} width={divStates.div3? "100%":"80%"} name="Page List" id={selectedChapter} display={divStates.div3? "flex":"none"}/>
                 <div className='w-[95%] lg:w-full flex flex-col items-center justify-start gap-[1vw] lg:mb-[50px] mb-[5vw]' style={{marginTop: divStates.div5? "0px":"50px"}}>
-                    <div className='w-[auto] h-[auto] relative z-0'>
-                        <Image width={width} height={height} src="/images/chapters/10000/6.png" alt="" sizes='8000px,  100vw' />
+                    <div className='relative z-0' style={{width: width, height: height}}>
+                        {
+                            res? <Image  
+
+                            fill={true}
+                            src="/images/chapters/10000/6.png" 
+                            alt="" 
+                            sizes='8000px,  100vw'
+    
+                            /> : <Image 
+
+                            width={4000}
+                            height={4000}
+                            src="/images/chapters/10000/6.png" 
+                            alt="" 
+                            sizes='8000px,  100vw'
+
+                            />
+                        }
                     </div>
-                    <div className='w-[auto] h-[auto] relative z-0'>
-                        <Image width={width} height={height} src="/images/chapters/10000/20.png" alt="" sizes='8000px,  100vw' />
+                    <div className='relative z-0' style={{width: width, height: height}}>
+                        {
+                            res? <Image  
+
+                            fill={true}
+                            src="/images/chapters/10000/20.png" 
+                            alt="" 
+                            sizes='8000px,  100vw'
+    
+                            /> : <Image 
+
+                            width={4000}
+                            height={4000}
+                            src="/images/chapters/10000/20.png" 
+                            alt="" 
+                            sizes='8000px,  100vw'
+
+                            />
+                        }
                     </div>
-                    <div className='w-[auto] h-[auto] relative z-0'>
-                        <Image width={width} height={height} src="/images/chapters/10000/21.png" alt="" sizes='8000px,  100vw' />
+                    <div className='relative z-0' style={{width: width, height: height}}>
+                        {
+                            res? <Image  
+
+                            fill={true}
+                            src="/images/chapters/10000/21.png" 
+                            alt="" 
+                            sizes='8000px,  8000px'
+                            
+                            /> : <Image 
+
+                            width={4000}
+                            height={4000}
+                            src="/images/chapters/10000/21.png" 
+                            alt="" 
+                            sizes='8000px,  8000px'
+
+                            />
+                        }
                     </div>
                 </div>
             </div>

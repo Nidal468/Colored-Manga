@@ -9,11 +9,9 @@ import SettingsIcon from '@mui/icons-material/Settings';
 import CodeIcon from '@mui/icons-material/Code';
 import AdminPanelSettingsIcon from '@mui/icons-material/AdminPanelSettings';
 import Link from 'next/link'
-import { createClientComponentClient } from '@supabase/auth-helpers-nextjs'
 import Image from 'next/image'
 import themes from '@/styles/themes.module.css'
 export default function Sidebar() {
-    const supabase = createClientComponentClient()
     const [selectedIcon, setSelectedIcon] = useState(null);
     const [detailsTop, setDetailsTop] = useState("0%");
     const [text, setText] = useState("")
@@ -28,15 +26,6 @@ export default function Sidebar() {
         setSelectedIcon(null);
         setDetailsTop("0%");
     };
-    const Check = async () => {
-        const { data: { user } } = await supabase.auth.getUser()
-        if(user) {
-            setImage(`${user?.user_metadata.avatar_url}`)
-        } else {
-            setImage("/images/assets/fpr.jpg")
-        }
-    }
-    Check()
     return (
         <div className='z-50 hidden lg:flex'>
             <div className="w-[6%] h-full py-[2.5vw] shadow flex-col justify-between items-center inline-flex fixed top-0 left-0" id={themes.solid}>

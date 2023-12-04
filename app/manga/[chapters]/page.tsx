@@ -8,12 +8,14 @@ import List from '@/components/chapters/page'
 import Footer from '@/components/footer/page'
 import EditorCard from '@/components/editorCard/page';
 import Data from '@/public/data/manga.json'
+import Menu from '@/components/menu/page'
 export default function Chapters(params: any) {
     const {chapters} = params.params;
     const selectedManga = Data.find((manga: any) => manga.id === chapters);
     return (
         <div className="xl:w-[1280px] w-full font-light flex flex-col items-start justify-start lg:px-[30px] pt-[12vw] px-[2vw] lg:pt-[5vw] gap-[4vw] lg:gap-[20px]" id={themes.body}>
             <Nav />
+            <Menu/>
             <div className='w-full flex items-start justify-between lg:flex-row flex-col gap-[3vw]'>
                 <div className='xl:w-[60%] w-full flex flex-col items-center justify-start gap-[2vw] xl:gap-[30px] gap-[25px]'>
                     <div className="w-full h-[40vw] xl:h-[400px] lg:h-[250px] flex items-center px-[2vw] lg:px-[20px]" id={themes.box}>

@@ -4,26 +4,10 @@ import React, { useState, useEffect } from 'react';
 import themes from '@/styles/themes.module.css'
 import Link from 'next/link'
 import Search from './searchbar/page'
-import { createClientComponentClient } from '@supabase/auth-helpers-nextjs'
 import Image from 'next/image'
 export default function Nav() {
-  const supabase = createClientComponentClient()
   const [image, setImage] = useState("/images/assets/fpr.jpg")
   const [sign, signOut] = useState(false)
-
-  useEffect(() => {
-    const Check = async () => {
-      const { data: {session}} = await supabase.auth.getSession()
-      if(session){
-        const { data: { user } } = await supabase.auth.getUser()
-          signOut(false)
-          setImage(`${user?.user_metadata.avatar_url}`)
-        } else {
-          signOut(true)
-        }
-    }
-    Check()
-  }, [])
 
   return (
     <div className='w-full flex items-center justify-center hidden lg:flex fixed top-0 right-0 z-50' id={themes.solid}>

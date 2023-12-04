@@ -38,6 +38,11 @@
 }
 #inner{
     background: #3f3f46;
+    transform: 0.3s;
+}
+#inner:hover{
+    background: rgb(140, 143, 146);
+    transform: 0.2s;
 }
 #hover{
     background: #18181b;
