@@ -33,6 +33,15 @@ export default function Sidebar(props: any) {
                 </Link>
             </div>
             <div className='lg:w-[200px] w-[175px] lg:h-[40px] h-[30px] flex items-center justify-between font-medium'>
+                <Link href={`/manga/${props.manga?.id}/${props.prev}`} className='lg:w-[40px] w-[30px] h-full flex items-center justify-center rounded-[4px] rotate-90' id={theme.inner}>
+                    <KeyboardArrowDownIcon sx={{ fontSize: { xs: 12, lg: 25 } }}/>
+                </Link>
+                <div className='lg:w-[100px] w-[95px] h-full flex items-center justify-between rounded-[4px] lg:text-[13px] text-[10px] font-medium px-[5px]' id={theme.inner}>Page {chapterNumber} <KeyboardArrowDownIcon sx={{ fontSize: { xs: 12, lg: 25 } }} /></div>
+                <Link href={`/manga/${props.manga?.id}/${props.next}`} className='lg:w-[40px] w-[30px] h-full flex items-center justify-center rounded-[4px] -rotate-90' id={theme.inner}>
+                    <KeyboardArrowDownIcon sx={{ fontSize: { xs: 12, lg: 25 } }}/>
+                </Link>
+            </div>
+            <div className='lg:w-[200px] w-[175px] lg:h-[40px] h-[30px] flex items-center justify-between font-medium'>
                 <div className='w-full h-full flex items-center justify-between rounded-[4px] lg:text-[13px] text-[10px] font-medium px-[10px]' id={theme.inner}><ChatIcon sx={{ fontSize: { xs: 12, lg: 15 } }} /> Chapter 100 Comments</div>
             </div>
             <div className='lg:w-[200px] w-[175px] lg:h-[40px] h-[30px] flex items-center justify-between font-medium'>
@@ -51,7 +60,7 @@ export default function Sidebar(props: any) {
                 <div className='w-full h-full flex items-center justify-between rounded-[4px] lg:text-[13px] text-[10px] font-medium px-[10px]' id={theme.inner} onClick={fitHeight}><div style={{transform: "rotate(-45deg)"}}><OpenInFullIcon sx={{ fontSize: { xs: 12, lg: 15 } }} /></div>Fit Height</div>
             </div>
             <div className='lg:w-[200px] w-[175px] lg:h-[40px] h-[30px] flex items-center justify-between font-medium'>
-                <div className='w-full h-full flex items-center justify-between rounded-[4px] lg:text-[13px] text-[10px] font-medium px-[10px]' id={theme.inner} onClick={fitRes}><div><AdjustIcon sx={{ fontSize: { xs: 12, lg: 15 } }} /></div>Fit Resolution</div>
+                <div className='w-full h-full flex items-center justify-between rounded-[4px] lg:text-[13px] text-[10px] font-medium px-[10px]' id={theme.inner} onClick={fitRes}><div><AdjustIcon sx={{ fontSize: { xs: 12, lg: 15 } }} /></div>Comfort View</div>
             </div>
             <div className='w-[200px] flex flex-col items-center justify-start gap-[8px]'>
                 <h1 className='w-[80%] lg:text-[13px] text-[10px] text-center'>Join our discord to get the latest updates</h1>
