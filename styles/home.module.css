@@ -1,7 +1,0 @@
-#button{
-    transition: 0.5s;
-}
-#button:hover{
-    color: #333;
-    background: #fff;
-}

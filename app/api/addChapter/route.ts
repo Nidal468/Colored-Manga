@@ -4,12 +4,13 @@ import path from 'path';
 export async function POST(req: Request) {
   try {
     const formData = await req.json();
-    const { id, title, number, date, index } = formData;
+    const { id, title, number, date, index, name} = formData;
     const DATA_FOLDER = 'public/data';
     const FILE_NAME = 'manga.json';
+    const UPLOAD_FOLDER = 'public/images/content';
     const filePath = path.join(process.cwd(), DATA_FOLDER, FILE_NAME);
-
-    // Read existing data from the file
+    const folderPath = path.join(process.cwd(), UPLOAD_FOLDER, name, title);
+    await fs.mkdir(folderPath, { recursive: true });
     const existingData = await fs.readFile(filePath, 'utf8');
     // Parse existing data into JSON
     const mangaList = JSON.parse(existingData);

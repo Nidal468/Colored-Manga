@@ -17,23 +17,9 @@ type DivStates = {
 };
 
 export default function Nav(props: any) {
-    const { zoom, unzoom , menu} = props;
+    const { menu} = props;
     const { openChapter, openPage } = props;
-    const [divStates, setDivStates] = useState<DivStates>({
-        div1: false,
-        div2: false,
-        div3: false,
-        div4: false,
-        div5: false,
-        div6: false,
-        div7: false,
-    });
-    const toggleDivState = (divKey: keyof DivStates) => {
-        setDivStates((prevState) => ({
-            ...prevState,
-            [divKey]: !prevState[divKey],
-        }));
-    };
+    
     return (
         <div className='lg:h-[60px] h-[50px] lg:px-5 lg:py-2.5 px-2 justify-between items-center flex fixed top-0 left-0 z-50 text-white' id={theme.solid} style={{ boxShadow: "0px 0px 0px #0b0b0b", width: props.width}}>
             <div className='flex items-center gap-[2vw] lg:text-[15px] text-[10px]'>
@@ -46,15 +32,15 @@ export default function Nav(props: any) {
                     <div className={`${props.rotate1} duration-500`}><KeyboardArrowDownIcon sx={{ fontSize: { xs: 12, lg: 25 } }}/></div>
                 </div>
                 <div className='lg:w-[150px] lg:h-[35px] w-[80px] h-[25px] lg:flex lg:gap-[40px] gap-[10px] items-center justify-center rounded-[3px] hidden' id={theme.outside}>
-                    <Link href={`/manga/${props.mangaID}`}><h1 className='lg:text-[12px] text-[2vw]'>Back to Manga</h1></Link>
+                    <Link href={`/manga/${props.back}`}><h1 className='lg:text-[12px] text-[2vw]'>Back to Manga</h1></Link>
                 </div>
                 <div className='flex items-center lg:gap-[10px] gap-[10px]'>
-                    <Link href={`/manga/${props.mangaID}/${props.prev}`}>
+                    <Link href={`/manga/${props.back}/${props.prev}`}>
                     <div className='lg:p-2 p-1.5 lg:rounded-[4px] rounded-[3px] rotate-90' id={theme.outside}>
                         <KeyboardArrowDownIcon sx={{ fontSize: { xs: 12, lg: 25 } }}/>
                     </div>
                     </Link>
-                    <Link href={`/manga/${props.mangaID}/${props.next}`}>
+                    <Link href={`/manga/${props.back}/${props.next}`}>
                     <div className='lg:p-2 p-1.5 lg:rounded-[4px] rounded-[3px] -rotate-90' id={theme.outside}>
                         <KeyboardArrowDownIcon sx={{ fontSize: { xs: 12, lg: 25 } }}/>
                     </div>

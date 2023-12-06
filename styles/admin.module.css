@@ -1,0 +1,13 @@
+#body{
+    background-color: rgb(32, 32, 32);
+}
+#sidebar{
+    background: linear-gradient(rgb(60, 60, 60),rgb(35, 35, 35));
+}
+#panel{
+    transition: 0.1s;
+}
+#panel:hover{
+    background: rgb(36, 36, 36);
+    border-right: 0.2vw solid #3dffb5;
+}
