@@ -14,9 +14,7 @@ export default function Nav() {
       <div className="w-[1300px] px-[30px] h-[60px] justify-between items-center flex">
         <div className="p-[10px] justify-center items-center gap-[20px] flex text-[15px] text-center font-light">
           <Link href="/">
-            <div className='w-[30px] h-[30px] relative'>
-              <Image fill={true} src="/images/assets/logo.jpg" alt="coloredmanga" className='object-cover' sizes="(max-width: 768px) 100vw, 33vw"/>
-            </div>
+              <Image width={35} height={35} src="/images/assets/logo.jpg" alt="coloredmanga" sizes="100vw, 100vw"/>
           </Link>
           <div id={themes.dimtext}>Type</div>
           <div id={themes.dimtext}><Link href="/manga">Collection</Link></div>

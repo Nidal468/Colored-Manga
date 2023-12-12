@@ -27,7 +27,7 @@ export default function Sidebar(props: any) {
                 <Link href={`/manga/${props.manga?.id}/${props.prev}`} className='lg:w-[40px] w-[30px] h-full flex items-center justify-center rounded-[4px] rotate-90' id={theme.inner}>
                     <KeyboardArrowDownIcon sx={{ fontSize: { xs: 12, lg: 25 } }}/>
                 </Link>
-                <div className='lg:w-[100px] w-[95px] h-full flex items-center justify-between rounded-[4px] lg:text-[13px] text-[10px] font-medium px-[5px]' id={theme.inner}>Chapter {chapterNumber} <KeyboardArrowDownIcon sx={{ fontSize: { xs: 12, lg: 25 } }} /></div>
+                <div className='lg:w-[100px] w-[95px] h-full flex items-center justify-between rounded-[4px] lg:text-[10px] text-[10px] font-medium px-[5px]' id={theme.inner}>Chapter {chapterNumber} <KeyboardArrowDownIcon sx={{ fontSize: { xs: 12, lg: 25 } }} /></div>
                 <Link href={`/manga/${props.manga?.id}/${props.next}`} className='lg:w-[40px] w-[30px] h-full flex items-center justify-center rounded-[4px] -rotate-90' id={theme.inner}>
                     <KeyboardArrowDownIcon sx={{ fontSize: { xs: 12, lg: 25 } }}/>
                 </Link>
@@ -36,7 +36,7 @@ export default function Sidebar(props: any) {
                 <Link href={`/manga/${props.manga?.id}/${props.prev}`} className='lg:w-[40px] w-[30px] h-full flex items-center justify-center rounded-[4px] rotate-90' id={theme.inner}>
                     <KeyboardArrowDownIcon sx={{ fontSize: { xs: 12, lg: 25 } }}/>
                 </Link>
-                <div className='lg:w-[100px] w-[95px] h-full flex items-center justify-between rounded-[4px] lg:text-[13px] text-[10px] font-medium px-[5px]' id={theme.inner}>Page {chapterNumber} <KeyboardArrowDownIcon sx={{ fontSize: { xs: 12, lg: 25 } }} /></div>
+                <div className='lg:w-[100px] w-[95px] h-full flex items-center justify-between rounded-[4px] lg:text-[10px] text-[10px] font-medium px-[5px]' id={theme.inner}>Page {chapterNumber} <KeyboardArrowDownIcon sx={{ fontSize: { xs: 12, lg: 25 } }} /></div>
                 <Link href={`/manga/${props.manga?.id}/${props.next}`} className='lg:w-[40px] w-[30px] h-full flex items-center justify-center rounded-[4px] -rotate-90' id={theme.inner}>
                     <KeyboardArrowDownIcon sx={{ fontSize: { xs: 12, lg: 25 } }}/>
                 </Link>

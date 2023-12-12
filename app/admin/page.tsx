@@ -23,8 +23,13 @@ type DivStates = {
     div5: boolean;
     div6: boolean;
     div7: boolean;
+    div8: boolean;
+    div9: boolean;
+    div10: boolean;
+    div11: boolean;
+    div12: boolean;
+    div13: boolean;
 };
-
 export default function Admin(params: any) {
     const [manga, setManga] = useState("")
     const [chapterId, setChapterId] = useState('')
@@ -40,6 +45,12 @@ export default function Admin(params: any) {
         div5: false,
         div6: false,
         div7: false,
+        div8: false,
+        div9: false,
+        div10: false,
+        div11: false,
+        div12: false,
+        div13: false,
     });
     const [searchValue, setSearchValue] = useState('');
     const [name, setName] = useState('');
@@ -143,10 +154,10 @@ export default function Admin(params: any) {
             reader.readAsDataURL(selectedFile);
         }
     };
-    const toggleDivState = (divKey: keyof DivStates) => {
+    const toggleDivState = (divKey: keyof DivStates, newState: boolean) => {
         setDivStates((prevState) => ({
             ...prevState,
-            [divKey]: !prevState[divKey],
+            [divKey]: newState,
         }));
     };
     const handleAddChapter = async () => {
@@ -239,43 +250,39 @@ export default function Admin(params: any) {
             <div className="w-[15%] h-full flex flex-col items-center justify-starrt py-[2vw] gap-[1vw]" id={s.sidebar}>
                 <div className='text-[1.5vw] w-full flex items-center justify-start px-[1vw]'><h1>Admin Panel</h1></div>
                 <div className='w-full flex flex-col items-center justify-start pl-[0.3vw]'>
-                    <div className='w-full h-[4vw] px-[0.5vw] text-[1vw] flex items-center justify-start gap-[0.5vw]' id={s.panel}>
+                    <div className='w-full h-[4vw] px-[0.5vw] text-[1vw] flex items-center justify-start gap-[0.5vw]' id={divStates.div6? s.panel:""} onClick={() => {toggleDivState('div5', false),toggleDivState('div6', true),toggleDivState('div7', false),toggleDivState('div8', false),toggleDivState('div9', false),toggleDivState('div10', false)}}>
                         <PieChartIcon sx={{ fontSize: 20 }} />
                         <h1>Overview</h1>
                     </div>
-                    <div className='w-full h-[4vw] px-[0.5vw] text-[1vw] flex items-center justify-start gap-[0.5vw]' id={s.panel}>
+                    <div className='w-full h-[4vw] px-[0.5vw] text-[1vw] flex items-center justify-start gap-[0.5vw]' id={divStates.div5? s.panel:""} onClick={() => {toggleDivState('div5', true),toggleDivState('div6', false),toggleDivState('div7', false),toggleDivState('div8', false),toggleDivState('div9', false),toggleDivState('div10', false)}}>
                         <CreateNewFolderIcon sx={{ fontSize: 20 }} />
                         <h1>Create Manga</h1>
                     </div>
-                    <div className='w-full h-[4vw] px-[0.5vw] text-[1vw] flex items-center justify-start gap-[0.5vw]' id={s.panel}>
+                    <div className='w-full h-[4vw] px-[0.5vw] text-[1vw] flex items-center justify-start gap-[0.5vw]' id={divStates.div7? s.panel:""} onClick={() => {toggleDivState('div5', false),toggleDivState('div6', false),toggleDivState('div7', true),toggleDivState('div8', false),toggleDivState('div9', false),toggleDivState('div10', false)}}>
                         <CloudUploadIcon sx={{ fontSize: 20 }} />
                         <h1>Upload Chapter</h1>
                     </div>
-                    <div className='w-full h-[4vw] px-[0.5vw] text-[1vw] flex items-center justify-start gap-[0.5vw]' id={s.panel}>
+                    <div className='w-full h-[4vw] px-[0.5vw] text-[1vw] flex items-center justify-start gap-[0.5vw]' id={divStates.div8? s.panel:""} onClick={() => {toggleDivState('div5', false),toggleDivState('div6', false),toggleDivState('div7', false),toggleDivState('div8', true),toggleDivState('div9', false),toggleDivState('div10', false)}}>
                         <DnsIcon sx={{ fontSize: 20 }} />
                         <h1>Manga List</h1>
                     </div>
-                    <div className='w-full h-[4vw] px-[0.5vw] text-[1vw] flex items-center justify-start gap-[0.5vw]' id={s.panel}>
+                    <div className='w-full h-[4vw] px-[0.5vw] text-[1vw] flex items-center justify-start gap-[0.5vw]' id={divStates.div9? s.panel:""} onClick={() => {toggleDivState('div5', false),toggleDivState('div6', false),toggleDivState('div7', false),toggleDivState('div8', false),toggleDivState('div9', true),toggleDivState('div10', false)}}>
                         <SupervisedUserCircleIcon sx={{ fontSize: 20 }} />
                         <h1>Manage Users</h1>
                     </div>
-                    <div className='w-full h-[4vw] px-[0.5vw] text-[1vw] flex items-center justify-start gap-[0.5vw]' id={s.panel}>
+                    <div className='w-full h-[4vw] px-[0.5vw] text-[1vw] flex items-center justify-start gap-[0.5vw]' id={divStates.div10? s.panel:""} onClick={() => {toggleDivState('div5', false),toggleDivState('div6', false),toggleDivState('div7', false),toggleDivState('div8', false),toggleDivState('div9', false),toggleDivState('div10', true)}}>
                         <HistoryIcon sx={{ fontSize: 20 }} />
                         <h1>History</h1>
-                    </div>
-                    <div className='w-full h-[4vw] px-[0.5vw] text-[1vw] flex items-center justify-start gap-[0.5vw]' id={s.panel}>
-                        <DarkModeIcon sx={{ fontSize: 20 }} />
-                        <h1>Themes</h1>
                     </div>
                 </div>
             </div>
             <div className='w-[85%] h-full flex flex-col items-center justify-between'>
                 <div className='w-full h-[5vw] bg-zinc-800 flex items-center justify-start border-zinc-600 border-b-2'>
                 </div>
-                <div className='w-full h-full flex'>
+                {divStates.div5? <div className='w-full h-full flex'>
                     <div className='w-[40%] h-full flex flex-col items-start justify-start border-zinc-500 border-r-2'>
                         <div className='w-full h-[4vw] bg-zinc-700 flex items-center justify-between px-[1vw]'>
-                            <h1 className='text-[1vw] bg-sky-500 w-[7vw] h-[2.5vw] flex items-center justify-center rounded-[0.3vw] cursor-pointer' onClick={() => toggleDivState('div1')}>Add Manga</h1>
+                            <h1 className='text-[1vw] bg-sky-500 w-[7vw] h-[2.5vw] flex items-center justify-center rounded-[0.3vw] cursor-pointer' onClick={() => {toggleDivState('div1', true), toggleDivState('div2', false)}}>Add Manga</h1>
                             <div className='bg-zinc-600 w-[20vw] h-[2.5vw] rounded-full flex items-center justify-start px-[0.2vw]'>
                                 <div className='w-[2.3vw] h-[2.3vw] rounded-full flex items-center justify-center'><SearchIcon sx={{ fontSize: 20 }} /></div>
                                 <input
@@ -299,7 +306,7 @@ export default function Admin(params: any) {
 
                         </div>
                         {Data.map((data: any) => (
-                            <div className='w-full h-[3vw] bg-zinc-800 hover:bg-zinc-700 duration-300 flex items-center justify-between px-[1vw] text-[1vw]' key={data.id} onClick={() => { setManga(data.id), toggleDivState('div2') }}>
+                            <div className='w-full h-[3vw] bg-zinc-800 hover:bg-zinc-700 duration-300 flex items-center justify-between px-[1vw] text-[1vw]' key={data.id} onClick={() => { setManga(data.id), toggleDivState('div2', true), toggleDivState('div1', false), toggleDivState('div3', false), toggleDivState('div4', false)}}>
                                 <h1>{data.name}</h1>
                                 <div className='flex items-center justify-between gap-[1vw]'>
                                     <h1>Created by</h1>
@@ -382,9 +389,9 @@ export default function Admin(params: any) {
                         {divStates.div2 ?
                             <div className='w-full h-full flex items-start justify-start'>
                                 <div className='w-[40%] h-full flex flex-col items-start justify-start border-r-2 border-zinc-600'>
-                                    <div className='w-full h-[3vw] bg-zinc-700 flex items-center justify-between px-[1vw]'><h1>Add Chapter</h1><div className='w-[6vw] h-[2vw] rounded-[0.2vw] bg-sky-500 text-[0.8vw] flex items-center justify-center' onClick={() => {toggleDivState('div4')}}>Add Chapter</div></div>
+                                    <div className='w-full h-[3vw] bg-zinc-700 flex items-center justify-between px-[1vw]'><h1>Add Chapter</h1><div className='w-[6vw] h-[2vw] rounded-[0.2vw] bg-sky-500 text-[0.8vw] flex items-center justify-center' onClick={() => { toggleDivState('div4', true), toggleDivState('div3', false) }}>Add Chapter</div></div>
                                     {selectedManga?.chapters.map((data: any) => (
-                                        <div className='w-full h-[3vw] flex items-center justify-between px-[1vw] text-[1vw] bg-zinc-600' onClick={() => { setChapterId(data.id), toggleDivState('div3')}} key={data.id}>
+                                        <div className='w-full h-[3vw] flex items-center justify-between px-[1vw] text-[1vw] bg-zinc-600 hover:bg-zinc-800 duration-300' onClick={() => { setChapterId(data.id), toggleDivState('div3', true), toggleDivState('div4', false) }} key={data.id}>
                                             <h1>{data.title}</h1>
                                             <div>{data.number}</div>
                                         </div>
@@ -421,15 +428,15 @@ export default function Admin(params: any) {
                                         </button>
                                     </div>
                                 </form> : <></>}
-                                {divStates.div3? <form className='w-[60%] h-full flex flex-col items-start justify-start p-[1vw] gap-[1vw]' id="form" onSubmit={submitForm}>
+                                {divStates.div3 ? <form className='w-[60%] h-full flex flex-col items-start justify-start p-[1vw] gap-[1vw]' id="form" onSubmit={submitForm}>
                                     <label htmlFor='files'>Select files for {selectedChapter?.title}</label>
                                     <input id='files' type="file" multiple onChange={(e) => setFiles(e.target.files)} />
                                     <button type="submit">Upload</button>
-                                </form>:<></>}
+                                </form> : <></>}
                             </div>
                             : <></>}
                     </div>
-                </div>
+                </div>:<></>}
             </div>
         </div>
     )
