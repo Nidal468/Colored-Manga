@@ -6,6 +6,7 @@ import ChatBubbleIcon from '@mui/icons-material/ChatBubble';
 import MenuIcon from '@mui/icons-material/Menu';
 import { useState } from 'react'
 import Link from 'next/link'
+
 type DivStates = {
     div1: boolean;
     div2: boolean;

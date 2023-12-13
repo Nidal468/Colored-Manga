@@ -1,13 +1,14 @@
-'use client'
-
-import React, { useState, useEffect } from 'react';
 import themes from '@/styles/themes.module.css'
 import Link from 'next/link'
 import Search from './searchbar/page'
 import Image from 'next/image'
+import { cookies } from 'next/headers';
+import userData from '@/public/data/user.json'
+
 export default function Nav() {
-  const [image, setImage] = useState("/images/assets/fpr.jpg")
-  const [sign, signOut] = useState(false)
+  const cookieStore = cookies();
+  const token = cookieStore.get('token');
+  const currentUser = userData.find((data: any) => data.token === token?.value)
 
   return (
     <div className='w-full flex items-center justify-center hidden lg:flex fixed top-0 right-0 z-50' id={themes.solid}>
@@ -25,8 +26,7 @@ export default function Nav() {
         <Search />
         <div className='flex items-center gap-[5px] text-white text-[9px]'>
 
-          {sign ? <Link href="/login" className='flex items-center gap-[5px]'><div className="w-[60px] h-[25px] rounded-full flex items-center justify-center" id={themes.button}>Sign Up</div>
-            <div className="w-[60px] h-[25px] rounded-full flex items-center justify-center" id={themes.button}>Login</div></Link> : <form action="/auth/signout" method="post" className='flex items-center gap-[2vw]'><div className='w-[30px] h-[30px] rounded-full overflow-hidden relative'><Image fill={true} className="object-cover" src={image} alt={image} sizes="(max-width: 768px) 100vw, 33vw"/></div><button className="w-[60px] h-[25px] rounded-full" type="submit" id={themes.button}>Sign out</button></form>}
+          <form action="/auth/signout" method="post" className='flex items-center gap-[2vw]'><div className='w-[30px] h-[30px] rounded-full overflow-hidden relative'><Image fill={true} className="object-cover" src={""} alt={""} sizes="(max-width: 768px) 100vw, 33vw"/></div><button className="w-[60px] h-[25px] rounded-full" type="submit" id={themes.button}>Sign out</button></form>
         </div>
       </div>
     </div>

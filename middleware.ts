@@ -24,7 +24,9 @@ export async function middleware(request: NextRequest) {
     if (user?.token !== userToken && allowedPaths.includes(currentUrl.pathname)) {
       return NextResponse.rewrite(new URL('/auth/login' || 'auth/sign-up', request.url))
     }
-  } 
+  } else if (allowedPaths.includes(currentUrl.pathname)) {
+    return NextResponse.rewrite(new URL('/auth/login' || 'auth/sign-up', request.url))
+  }
 }
 
 export const config = {
