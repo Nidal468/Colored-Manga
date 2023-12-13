@@ -169,6 +169,7 @@ export default function SignUp() {
                 </div>}
                 <p>Already have an account?<Link href={'/auth/login'} className='text-sky-400'> go login in now to start reading</Link></p>
             </div>
+            <div></div>
         </form>
     )
 }
