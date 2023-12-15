@@ -13,7 +13,7 @@ export async function middleware(request: NextRequest) {
   console.log('User Token:', user?.token);
 
   // Define an array of paths where redirection is not needed
-  const allowedPaths = ['/', '/manga', '/manga/chapter', '/manga/chapter/reader'];
+  const allowedPaths = ['/admin'];
   const loginPaths = ['/auth/login', '/auth/sign-up']
   const userToken = token?.value || 'string';
   console.log("token", userToken)
@@ -30,5 +30,5 @@ export async function middleware(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ['/auth/login', '/', '/manga', '/manga/chapter', '/manga/chapter/reader', '/auth/sign-up'],
+  matcher: ['/auth/login', '/', '/manga', '/manga/chapter', '/manga/chapter/reader', '/auth/sign-up', '/admin'],
 };
