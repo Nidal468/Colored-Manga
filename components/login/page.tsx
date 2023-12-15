@@ -5,7 +5,7 @@ import LockIcon from '@mui/icons-material/Lock';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import Link from 'next/link'
 import userData from '@/public/data/user.json'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import Cookies from 'js-cookie';
 
 export function Logins(props: any) {
@@ -20,7 +20,7 @@ export function Logins(props: any) {
     const setCookie = () => {
 
         const expirationDate = new Date();
-        expirationDate.setDate(expirationDate.getDate() + 7); // 7 days from now
+        expirationDate.setDate(expirationDate.getDate() + 20); // 7 days from now
 
         if (findUser || checkPassword) {
             const getToken = findUser?.token;
