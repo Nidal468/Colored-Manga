@@ -6,8 +6,8 @@ import VisibilityIcon from '@mui/icons-material/Visibility';
 import EmailIcon from '@mui/icons-material/EmailOutlined'
 import Link from 'next/link'
 import userData from '@/public/data/user.json'
-import Image from 'next/image'
 import { useEffect, useState } from 'react'
+import { sendEmail } from '@/utils/send-email';
 
 export default function SignUp() {
     const [username, setUsername] = useState("");
@@ -139,40 +139,14 @@ export default function SignUp() {
 
     const handleSendVerificationCode = async () => {
         if (!email) return alert('provide your email first')
-
-
-        try {
-            // Generate a verification code
-            const code = generateToken(18)
+        const code = generateToken(18)
             const body = {
                 toEmail: email,
                 verificationCode: code
             }
             setVerificationCode(code);
             alert(code)
-            // Send verification email using the API route
-            const response = await fetch('/api/email', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(body),
-            });
-            
-            
-            if (response.ok) {
-
-                const responseJson = await response.json();
-                console.log('email sent successfully', responseJson);
-
-            } else {
-                console.error('Failed to sent email');
-            }
-            // Update state to indicate that the verification code has been sent
-
-        } catch (error) {
-            console.error('Error sending verification code:', error);
-        }
+            sendEmail(body)
     };
     return (
         <form className='w-full min-h-[100vh] flex flex-col items-start justify-start gap-[30px] p-[20px] font-light text-white' onSubmit={handleAddUser}>
@@ -182,8 +156,8 @@ export default function SignUp() {
                     <h4 className='text-[15px]'>Please sign in to use features like Bookmark, Comments etc</h4>
                 </div>
                 <div className='w-full flex items-start justify-start'>
-                    <div className="w-[160px] h-[160px] relative rounded-[10px] overflow-hidden flex items-start justify-start">
-                        <Image fill={true} src={imagePreview || '/images/covers/borutoCover.jpg'} alt={`${imagePreview}`} className="object-cover" />
+                    <div className="w-[160px] h-[160px] relative rounded-[10px] overflow-hidden flex items-start justify-start border-2 border-zinc-600">
+                        <img src={imagePreview || '/images/assets/logo.jpg'} alt={`${imagePreview}`} className="object-cover" sizes='8000px, 8000px' loading='lazy' />
                         <input type="file" placeholder="Upload Cover" onChange={handleFileChange} className='w-[160px] h-[160px] text-[10px] opacity-0 absolute' />
                     </div>
                 </div>
