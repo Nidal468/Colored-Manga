@@ -36,7 +36,7 @@ export async function POST(req: NextRequest, res: NextResponse) {
             const buffer = Buffer.from(bytes);
 
             // Rename the file to index.jpg
-            const fileName = `${i}.jpg`;
+            const fileName = file.name;
 
             // Append the file index to the field name
             const filePath = join('public/images/content', name, title, fileName);

@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import s from '@/styles/admin.module.css'
 import PieChartIcon from '@mui/icons-material/PieChart';
 import CreateNewFolderIcon from '@mui/icons-material/CreateNewFolder';
@@ -8,10 +8,8 @@ import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 import DnsIcon from '@mui/icons-material/Dns';
 import SupervisedUserCircleIcon from '@mui/icons-material/SupervisedUserCircle';
 import HistoryIcon from '@mui/icons-material/History';
-import DarkModeIcon from '@mui/icons-material/DarkMode';
 import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
 import SearchIcon from '@mui/icons-material/Search';
-import Image from 'next/image'
 import Data from '@/public/data/manga.json'
 
 
@@ -54,7 +52,7 @@ export default function Admin(params: any) {
     });
     const [searchValue, setSearchValue] = useState('');
     const [name, setName] = useState('');
-    const [file, setFile] = useState<File>();
+    const [file, setFile] = useState<File | null>(null);
     const [author, setAuthor] = useState('');
     const [info, setInfo] = useState('');
     const [genre1, setGenre1] = useState('');
@@ -72,29 +70,7 @@ export default function Admin(params: any) {
     };
     const handleAddManga = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-
-        if (!file) return;
-        const fileName = file.name;
-        console.log('Uploaded file name:', fileName);
-        try {
-            const data = new FormData();
-            data.set('file', file);
-
-            const res = await fetch('api/upload', {
-                method: 'POST',
-                body: data
-            });
-
-            if (res.ok) {
-                const responseJson = await res.json();
-                setImageUrl(`/images/cover/${responseJson.imageUrl}`);
-                console.log('Image uploaded successfully');
-            } else {
-                console.error('Failed to upload image');
-            }
-        } catch (error) {
-            console.error('Error uploading image:', error);
-        }
+        const formData = new FormData();
 
         const currentDate = new Date();
         const formattedDate = new Intl.DateTimeFormat('en-US', {
@@ -103,43 +79,32 @@ export default function Admin(params: any) {
             year: 'numeric',
         }).format(currentDate);
 
-        const newManga = {
-            id: new Date().getTime().toString(),
-            name: name,
-            date: formattedDate,
-            author: author,
-            info: info,
-            genre1: genre1,
-            genre2: genre2,
-            genre3: genre3,
-            cover: `/images/cover/${fileName}`,
-            chapters: []
-        };
+        if (file) {
+            formData.append(`file`, file);
+        }
+        const filename = file?.name;
+        formData.append('id', new Date().getTime().toString() || '');
+        formData.append('name', name || '');
+        formData.append('date', formattedDate || '');
+        formData.append('author', author || '');
+        formData.append('info', info || '');
+        formData.append('genre1', genre1 || '');
+        formData.append('genre2', genre2 || '');
+        formData.append('genre3', genre3 || '');
+        formData.append('cover', `/images/cover/${filename}` || '');
+        formData.append('chapters[]', '');
+
 
         try {
-            const response = await fetch('/api/addManga', {
+            const response = await fetch("/api/addManga", {
                 method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(newManga),
+                body: formData,
             });
 
-            if (response.ok) {
-                console.log('Chapter added successfully');
-            } else {
-                console.error('Failed to add chapter');
-            }
+            console.log(response);
         } catch (error) {
-            console.error('Error adding chapter:', error);
+            console.error("Error occurred", error);
         }
-
-        setAuthor("");
-        setName("");
-        setInfo("");
-        setGenre1("");
-        setGenre2("");
-        setGenre3("");
     };
     const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const selectedFile = e.target.files?.[0];
@@ -250,27 +215,27 @@ export default function Admin(params: any) {
             <div className="w-[15%] h-full flex flex-col items-center justify-starrt py-[2vw] gap-[1vw]" id={s.sidebar}>
                 <div className='text-[1.5vw] w-full flex items-center justify-start px-[1vw]'><h1>Admin Panel</h1></div>
                 <div className='w-full flex flex-col items-center justify-start pl-[0.3vw]'>
-                    <div className='w-full h-[4vw] px-[0.5vw] text-[1vw] flex items-center justify-start gap-[0.5vw]' id={divStates.div6? s.panel:""} onClick={() => {toggleDivState('div5', false),toggleDivState('div6', true),toggleDivState('div7', false),toggleDivState('div8', false),toggleDivState('div9', false),toggleDivState('div10', false)}}>
+                    <div className='w-full h-[4vw] px-[0.5vw] text-[1vw] flex items-center justify-start gap-[0.5vw]' id={divStates.div6 ? s.panel : ""} onClick={() => { toggleDivState('div5', false), toggleDivState('div6', true), toggleDivState('div7', false), toggleDivState('div8', false), toggleDivState('div9', false), toggleDivState('div10', false) }}>
                         <PieChartIcon sx={{ fontSize: 20 }} />
                         <h1>Overview</h1>
                     </div>
-                    <div className='w-full h-[4vw] px-[0.5vw] text-[1vw] flex items-center justify-start gap-[0.5vw]' id={divStates.div5? s.panel:""} onClick={() => {toggleDivState('div5', true),toggleDivState('div6', false),toggleDivState('div7', false),toggleDivState('div8', false),toggleDivState('div9', false),toggleDivState('div10', false)}}>
+                    <div className='w-full h-[4vw] px-[0.5vw] text-[1vw] flex items-center justify-start gap-[0.5vw]' id={divStates.div5 ? s.panel : ""} onClick={() => { toggleDivState('div5', true), toggleDivState('div6', false), toggleDivState('div7', false), toggleDivState('div8', false), toggleDivState('div9', false), toggleDivState('div10', false) }}>
                         <CreateNewFolderIcon sx={{ fontSize: 20 }} />
                         <h1>Create Manga</h1>
                     </div>
-                    <div className='w-full h-[4vw] px-[0.5vw] text-[1vw] flex items-center justify-start gap-[0.5vw]' id={divStates.div7? s.panel:""} onClick={() => {toggleDivState('div5', false),toggleDivState('div6', false),toggleDivState('div7', true),toggleDivState('div8', false),toggleDivState('div9', false),toggleDivState('div10', false)}}>
+                    <div className='w-full h-[4vw] px-[0.5vw] text-[1vw] flex items-center justify-start gap-[0.5vw]' id={divStates.div7 ? s.panel : ""} onClick={() => { toggleDivState('div5', false), toggleDivState('div6', false), toggleDivState('div7', true), toggleDivState('div8', false), toggleDivState('div9', false), toggleDivState('div10', false) }}>
                         <CloudUploadIcon sx={{ fontSize: 20 }} />
                         <h1>Upload Chapter</h1>
                     </div>
-                    <div className='w-full h-[4vw] px-[0.5vw] text-[1vw] flex items-center justify-start gap-[0.5vw]' id={divStates.div8? s.panel:""} onClick={() => {toggleDivState('div5', false),toggleDivState('div6', false),toggleDivState('div7', false),toggleDivState('div8', true),toggleDivState('div9', false),toggleDivState('div10', false)}}>
+                    <div className='w-full h-[4vw] px-[0.5vw] text-[1vw] flex items-center justify-start gap-[0.5vw]' id={divStates.div8 ? s.panel : ""} onClick={() => { toggleDivState('div5', false), toggleDivState('div6', false), toggleDivState('div7', false), toggleDivState('div8', true), toggleDivState('div9', false), toggleDivState('div10', false) }}>
                         <DnsIcon sx={{ fontSize: 20 }} />
                         <h1>Manga List</h1>
                     </div>
-                    <div className='w-full h-[4vw] px-[0.5vw] text-[1vw] flex items-center justify-start gap-[0.5vw]' id={divStates.div9? s.panel:""} onClick={() => {toggleDivState('div5', false),toggleDivState('div6', false),toggleDivState('div7', false),toggleDivState('div8', false),toggleDivState('div9', true),toggleDivState('div10', false)}}>
+                    <div className='w-full h-[4vw] px-[0.5vw] text-[1vw] flex items-center justify-start gap-[0.5vw]' id={divStates.div9 ? s.panel : ""} onClick={() => { toggleDivState('div5', false), toggleDivState('div6', false), toggleDivState('div7', false), toggleDivState('div8', false), toggleDivState('div9', true), toggleDivState('div10', false) }}>
                         <SupervisedUserCircleIcon sx={{ fontSize: 20 }} />
                         <h1>Manage Users</h1>
                     </div>
-                    <div className='w-full h-[4vw] px-[0.5vw] text-[1vw] flex items-center justify-start gap-[0.5vw]' id={divStates.div10? s.panel:""} onClick={() => {toggleDivState('div5', false),toggleDivState('div6', false),toggleDivState('div7', false),toggleDivState('div8', false),toggleDivState('div9', false),toggleDivState('div10', true)}}>
+                    <div className='w-full h-[4vw] px-[0.5vw] text-[1vw] flex items-center justify-start gap-[0.5vw]' id={divStates.div10 ? s.panel : ""} onClick={() => { toggleDivState('div5', false), toggleDivState('div6', false), toggleDivState('div7', false), toggleDivState('div8', false), toggleDivState('div9', false), toggleDivState('div10', true) }}>
                         <HistoryIcon sx={{ fontSize: 20 }} />
                         <h1>History</h1>
                     </div>
@@ -279,10 +244,10 @@ export default function Admin(params: any) {
             <div className='w-[85%] h-full flex flex-col items-center justify-between'>
                 <div className='w-full h-[5vw] bg-zinc-800 flex items-center justify-start border-zinc-600 border-b-2'>
                 </div>
-                {divStates.div5? <div className='w-full h-full flex'>
+                {divStates.div5 ? <div className='w-full h-full flex'>
                     <div className='w-[40%] h-full flex flex-col items-start justify-start border-zinc-500 border-r-2'>
                         <div className='w-full h-[4vw] bg-zinc-700 flex items-center justify-between px-[1vw]'>
-                            <h1 className='text-[1vw] bg-sky-500 w-[7vw] h-[2.5vw] flex items-center justify-center rounded-[0.3vw] cursor-pointer' onClick={() => {toggleDivState('div1', true), toggleDivState('div2', false)}}>Add Manga</h1>
+                            <h1 className='text-[1vw] bg-sky-500 w-[7vw] h-[2.5vw] flex items-center justify-center rounded-[0.3vw] cursor-pointer' onClick={() => { toggleDivState('div1', true), toggleDivState('div2', false) }}>Add Manga</h1>
                             <div className='bg-zinc-600 w-[20vw] h-[2.5vw] rounded-full flex items-center justify-start px-[0.2vw]'>
                                 <div className='w-[2.3vw] h-[2.3vw] rounded-full flex items-center justify-center'><SearchIcon sx={{ fontSize: 20 }} /></div>
                                 <input
@@ -306,7 +271,7 @@ export default function Admin(params: any) {
 
                         </div>
                         {Data.map((data: any) => (
-                            <div className='w-full h-[3vw] bg-zinc-800 hover:bg-zinc-700 duration-300 flex items-center justify-between px-[1vw] text-[1vw]' key={data.id} onClick={() => { setManga(data.id), toggleDivState('div2', true), toggleDivState('div1', false), toggleDivState('div3', false), toggleDivState('div4', false)}}>
+                            <div className='w-full h-[3vw] bg-zinc-800 hover:bg-zinc-700 duration-300 flex items-center justify-between px-[1vw] text-[1vw]' key={data.id} onClick={() => { setManga(data.id), toggleDivState('div2', true), toggleDivState('div1', false), toggleDivState('div3', false), toggleDivState('div4', false) }}>
                                 <h1>{data.name}</h1>
                                 <div className='flex items-center justify-between gap-[1vw]'>
                                     <h1>Created by</h1>
@@ -380,9 +345,7 @@ export default function Admin(params: any) {
                                 />
                             </div>
                             <div className='h-full flex flex-col items-start justify-start gap-[1vw]'>
-                                <div className="w-[20vw] h-[30vw] relative border-2 border-zinc-400 rounded-[0.4vw] border-dashed ">
-                                    <Image fill={true} src={imagePreview || '/images/covers/borutoCover.jpg'} alt={`${imagePreview}`} className="object-cover" />
-                                </div>
+                                <img src={imagePreview || '/images/cover/borutoCover.jpg'} alt={`${imagePreview}`} className="w-[20vw] h-[30vw] relative border-2 border-zinc-400 rounded-[0.4vw] border-dashed object-cover" sizes='8000px, 8000px' />
                                 <input type="file" placeholder="Upload Cover" onChange={handleFileChange} />
                             </div>
                         </form> : <></>}
@@ -436,7 +399,7 @@ export default function Admin(params: any) {
                             </div>
                             : <></>}
                     </div>
-                </div>:<></>}
+                </div> : <></>}
             </div>
         </div>
     )

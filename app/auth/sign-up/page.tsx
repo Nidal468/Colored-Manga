@@ -7,7 +7,6 @@ import EmailIcon from '@mui/icons-material/EmailOutlined'
 import Link from 'next/link'
 import userData from '@/public/data/user.json'
 import { useEffect, useState } from 'react'
-import { sendEmail } from '@/utils/send-email';
 
 export default function SignUp() {
     const [username, setUsername] = useState("");
@@ -23,7 +22,6 @@ export default function SignUp() {
     const [file, setFile] = useState<File>();
     const [imageUrl, setImageUrl] = useState('');
     const [imagePreview, setImagePreview] = useState<string | null>(null);
-    const [next, setNext] = useState(true);
 
     const formattedDate = new Intl.DateTimeFormat('en-US', {
         month: 'short',
@@ -61,8 +59,10 @@ export default function SignUp() {
     }, [username, email]);
 
     const handleAddUser = async (e: React.FormEvent<HTMLFormElement>) => {
-        if (!username || !email || !firstname || !lastname || !password || !file || !code) return alert('fill the forms first')
         e.preventDefault();
+
+        if (!username || !email || !firstname || !lastname || !password || !file || !code) return alert('fill the forms first')
+        if (checkUser?.email === email) return alert('email already exists')
         if (code === verificationCode) {
             const fileName = file.name;
             console.log('Uploaded file name:', fileName);
@@ -138,15 +138,37 @@ export default function SignUp() {
     };
 
     const handleSendVerificationCode = async () => {
+
         if (!email) return alert('provide your email first')
         const code = generateToken(18)
-            const body = {
-                toEmail: email,
-                verificationCode: code
+
+        const formData = new FormData();
+        formData.append('email', email || '');
+        formData.append('code', code || '');
+
+        setVerificationCode(code);
+        alert(code)
+
+        try {
+            const response = await fetch('/api/sendEmail', {
+                method: 'POST',
+                body: formData,
+            });
+    
+            console.log('Response Status:', response.status);
+    
+            if (response.ok) {
+                const responseData = await response.json();
+                alert(responseData.message);
+            } else {
+                const errorResponse = await response.text();
+                console.error('Error Response:', errorResponse);
+                alert('Error: Unable to send email');
             }
-            setVerificationCode(code);
-            alert(code)
-            sendEmail(body)
+        } catch (err) {
+            console.error('An error occurred while sending the email:', err);
+            alert('Network error: Unable to send email');
+        }
     };
     return (
         <form className='w-full min-h-[100vh] flex flex-col items-start justify-start gap-[30px] p-[20px] font-light text-white' onSubmit={handleAddUser}>

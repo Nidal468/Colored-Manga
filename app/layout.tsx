@@ -1,8 +1,6 @@
 import './globals.css'
 import type { Metadata } from 'next'
 import localFont from 'next/font/local'
-import Menu from '@/components/menu/page'
-import Worker from '@/app/worker/service-worker'
 const Gilory = localFont({
   src: [
     {
@@ -28,7 +26,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="en">
       <body className={Gilory.className}>
           {children}
-        <Worker/>
       </body>
     </html>
 

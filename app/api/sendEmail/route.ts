@@ -2,19 +2,22 @@ import { NextRequest, NextResponse } from 'next/server';
 import nodemailer from 'nodemailer';
 import Mail from 'nodemailer/lib/mailer';
 
-export async function POST(req: NextRequest, res: NextResponse) {
-  
-  const { toEmail, verificationCode } = await req.json();
+export async function POST(req: any) {
+  try {
+  const formData = await req.formData();
+  const toEmail = formData.get('email')?.toString() || '';
+  const verificationCode = formData.get('code')?.toString() || '';
+
   const transporter = nodemailer.createTransport({
     service: 'gmail',
     auth: {
-      user: process.env.APP_GMAIL, // replace with your email
-      pass: process.env.APP_PASS, // replace with your email password
+      user: process.env. NEXT_PUBLIC_APP_GMAIL, // replace with your email
+      pass: process.env. NEXT_PUBLIC_APP_PASS, // replace with your email password
     },
     
   });
 
-  try {
+  
     
     const mailOptions: Mail.Options = {
       from: 'no-reply', // replace with your email
@@ -24,9 +27,9 @@ export async function POST(req: NextRequest, res: NextResponse) {
       text: `Your verification code is: ${verificationCode}`,
     };
 
-    const info = await transporter.sendMail(mailOptions);
+    await transporter.sendMail(mailOptions);
 
-    console.log('Email sent: ' + info.response);
+    console.log('Email sent');
   } catch (error) {
     console.error('Error sending email:', error);
     return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 });
