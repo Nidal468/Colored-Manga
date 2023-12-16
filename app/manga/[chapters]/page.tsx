@@ -1,5 +1,4 @@
 import Nav from '@/components/nav/page'
-import Image from 'next/image'
 import RemoveRedEyeIcon from '@mui/icons-material/RemoveRedEye';
 import BookmarkAddIcon from '@mui/icons-material/BookmarkAdd';
 import AutoAwesomeIcon from '@mui/icons-material/AutoAwesome';
@@ -10,19 +9,17 @@ import EditorCard from '@/components/editorCard/page';
 import Data from '@/public/data/manga.json'
 import Menu from '@/components/menu/page'
 export default function Chapters(params: any) {
-    const {chapters} = params.params;
+    const { chapters } = params.params;
     const selectedManga = Data.find((manga: any) => manga.id === chapters);
     return (
         <div className="xl:w-[1280px] w-full font-light flex flex-col items-start justify-start lg:px-[30px] pt-[12vw] px-[2vw] lg:pt-[5vw] gap-[4vw] lg:gap-[20px]" id={themes.body}>
             <Nav />
-            <Menu/>
+            <Menu />
             <div className='w-full flex items-start justify-between lg:flex-row flex-col gap-[3vw]'>
                 <div className='xl:w-[60%] w-full flex flex-col items-center justify-start gap-[2vw] xl:gap-[30px] gap-[25px]'>
                     <div className="w-full h-[40vw] xl:h-[400px] lg:h-[250px] flex items-center px-[2vw] lg:px-[20px]" id={themes.box}>
                         <div className='w-full h-[35vw] xl:h-[300px] lg:h-[200px] flex items-center justify-between gap-[4vw] lg:gap-[15px]'>
-                            <div className='w-[25vw] h-[35vw] relative xl:w-[200px] xl:h-[300px] lg:w-[140px] lg:h-[200px]'>
-                                <Image fill={true} src={`${selectedManga?.cover}`} alt={`${selectedManga?.cover}`} className='object-cover' />
-                            </div>
+                            <img src={`${selectedManga?.cover}`} alt={`${selectedManga?.cover}`} className='w-[25vw] h-[35vw] relative xl:w-[200px] xl:h-[300px] lg:w-[140px] lg:h-[200px] object-cover' sizes="8000px, 8000px" loading='lazy' />
                             <div className='w-[75%] xl:w-[72%] lg:w-[80%] h-full flex flex-col items-start justify-between gap-[10px]'>
                                 <div className='w-full flex flex-col items-start justify-between gap-[1vw] lg:gap-[8px]'>
                                     <h1 className='font-medium text-[3vw] lg:text-[18px]'>{selectedManga?.name}</h1>
@@ -41,7 +38,7 @@ export default function Chapters(params: any) {
                             </div>
                         </div>
                     </div>
-                    <List id={chapters}/>
+                    <List id={chapters} />
                 </div>
                 <div className='xl:w-[30%] w-full flex flex-col gap-[2vw] xl:gap-[24px]'>
                     <div className='w-full flex flex-col items-start justify-start gap-[2vw] lg:gap-[10px] p-[2vw] lg:p-[24px] text-[2vw] lg:text-[12px]' id={themes.box}>
@@ -70,9 +67,9 @@ export default function Chapters(params: any) {
                     </div>
                     <div className='w-full flex items-start justify-between flex-col' id={themes.box}>
                         <h1 className='p-[2vw] lg:px-[20px] lg:py-[15px] flex items-center lg:gap-[12px] gap-[1vw] text-[2vw] lg:text-base'><AutoAwesomeIcon sx={{ fontSize: { xs: 12, lg: 15 } }} />Editors choice</h1>
-                        <EditorCard/>
-                        <EditorCard/>
-                        <EditorCard/>
+                        <EditorCard />
+                        <EditorCard />
+                        <EditorCard />
                     </div>
                 </div>
             </div>

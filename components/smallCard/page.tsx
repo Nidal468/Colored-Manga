@@ -1,11 +1,10 @@
 import AutoModeIcon from '@mui/icons-material/AutoMode';
 import DnsIcon from '@mui/icons-material/Dns';
-import Image from 'next/image'
 import themes from '@/styles/themes.module.css'
 export default function Scard(props: any){
     return(
       <div className='w-full flex items-center justify-between border-r-2 border-cyan-400 pr-[1vw] lg:pr-[10px]' id={themes.outside}>
-      <div className='w-[22vw] h-[30vw] lg:w-[100px] lg:h-[140px] relative'><Image fill={true} className='object-cover' src={props.cover} alt={props.cover}/></div>
+      <img className='w-[22vw] h-[30vw] lg:w-[100px] lg:h-[140px] relative object-cover' src={props.cover} alt={props.cover} sizes="8000px, 8000px" loading='lazy'/>
       <div className='lg:w-[60%] w-[70%] h-full p-[2vw] lg:p-[10px] flex flex-col items-start justify-between text-[2vw] lg:text-[0.8vw]'>
           <h1 className='text-[4vw] lg:text-[15px]'>{props.title}</h1>
           <div className='w-full flex flex-col gap-[4vw] lg:gap-[10px] text-[2vw] lg:text-[10px]'>

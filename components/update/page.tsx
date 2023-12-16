@@ -4,7 +4,6 @@ import BuildCircleIcon from '@mui/icons-material/BuildCircle';
 import CodeIcon from '@mui/icons-material/Code';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import themes from '@/styles/themes.module.css'
-import Image from 'next/image'
 export default function Update() {
     return(
         <div className="w-[250px] h-[230px] p-[5px] rounded-[10px] flex-col justify-between items-start lg:inline-flex hidden" id={themes.box}>
@@ -42,7 +41,7 @@ export default function Update() {
     </div>
   </div>
   <div className="Frame3674 self-stretch rounded-[200px] justify-between items-center inline-flex cursor-pointer pr-[3px]" id={themes.inner}>
-    <a href='https://discord.com/invite/WuXp4MY9aU'><div className='relative w-[30px] h-[30px]'><Image fill={true} src="/images/icons/discord.png" alt="" sizes="(max-width: 768px) 100vw, 33vw"/></div></a>
+    <a href='https://discord.com/invite/WuXp4MY9aU'><img src="/images/icons/discord.png" alt="discord" sizes="8000px, 8000px" loading='lazy' className='relative w-[30px] h-[30px] object-cover'/></a>
     <div className="Frame3675 h-[80%] px-[10px] rounded-[200px] justify-center items-center flex text-white text-[10px] font-light" id={themes.button}>
       <div>Update</div>
     </div>

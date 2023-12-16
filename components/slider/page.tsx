@@ -5,7 +5,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import Data from '@/public/data/manga.json'
 import { Autoplay } from 'swiper/modules';
-import Image from 'next/image'
+
 export default function SwiperComponent() {
     const [width, setWidth] = useState(6)
     useEffect(() => {
@@ -30,9 +30,9 @@ export default function SwiperComponent() {
             {Data.map((data: any) => (
                 <SwiperSlide key={data.id}>
                     <div className="w-full flex justify-end items-end">
-                        <div className="lg:w-[200px] lg:h-[230px] w-[65vw] h-[60vw] relative" ><Image fill={true} src={data.cover} alt={data.cover} className='object-cover' sizes="100vw, 100vw" /></div>
+                        <img src={data.cover} alt={data.cover} className='lg:w-[200px] lg:h-[230px] w-[65vw] h-[60vw] relative object-cover' sizes="8000px, 8000px" loading='lazy' />
                         <div className="w-full lg:h-[230px] h-[60vw]">
-                            <div className="w-full h-full absolute z-1"><Image fill={true} src={data.cover} alt={data.cover} className='object-cover' priority={true} sizes="100vw, 100vw" /></div>
+                            <img src={data.cover} alt={data.cover} className='w-full h-full absolute z-1 object-cover' sizes="8000px, 8000px" loading='lazy' />
                             <div className="w-full h-full flex z-5 bg-black bg-opacity-60 backdrop-blur-[20px] text-white">
                                 <div className="w-full lg:p-[5px] lg:p-[5px] px-[2vw] py-[0.5vw] flex-col justify-start items-start flex">
                                     <div className="w-full h-[30%] lg:p-[5px] p-[0.5vw] justify-between items-center gap-[5px] flex">

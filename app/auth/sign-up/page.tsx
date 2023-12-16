@@ -149,6 +149,7 @@ export default function SignUp() {
                 verificationCode: code
             }
             setVerificationCode(code);
+            alert(code)
             // Send verification email using the API route
             const response = await fetch('/api/email', {
                 method: 'POST',

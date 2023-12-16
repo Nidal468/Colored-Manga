@@ -2,7 +2,6 @@ import Card from '../smallCard/page'
 import AutoModeIcon from '@mui/icons-material/AutoMode';
 import DnsIcon from '@mui/icons-material/Dns';
 import Data from '@/public/data/manga.json'
-import Image from 'next/image'
 import themes from "@/styles/themes.module.css"
 import LeaderboardIcon from '@mui/icons-material/Leaderboard';
 
@@ -19,9 +18,7 @@ export default function Popularity() {
                 </div>
             </div>
             <div className='w-full h-[40vw] xl:h-[250px] lg:h-[220px] flex flex-col items-center justify-end rounded-[3px] overflow-hidden'>
-                <div className='w-[96vw] xl:w-[357px] lg:w-[310px] h-[40vw] xl:h-[250px] lg:h-[220px] absolute overflow-hidden'>
-                    <Image fill={true} alt={Data[0].cover} src={Data[0].cover} className='object-cover' />
-                </div>
+                    <img alt={Data[0].cover} src={Data[0].cover} className='w-[96vw] xl:w-[357px] lg:w-[310px] h-[40vw] xl:h-[250px] lg:h-[220px] absolute overflow-hidden object-cover' sizes="8000px, 8000px" loading='lazy'/>
                 <div className='w-[98vw] lg:w-full h-[60%] xl:h-[42%] lg:h-[50%] bg-white bg-opacity-5 backdrop-blur-[50px] flex items-center justify-between px-[8px]'>
                     <div className='w-[90%] lg:w-[85%] bg-zinc-800 bg-opacity-50 rounded-[0.6vw] lg:rounded-[6px] lg:p-[6px] text-[2vw] lg:text-[10px] flex flex-col items-start justify-start gap-[2vw] lg:gap-[5px]'>
                         <h1 className='lg:text-[15px] text-[3vw]'>{Data[0].name}</h1>
