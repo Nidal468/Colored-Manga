@@ -6,17 +6,14 @@ import data from '@/public/data/user.json';
 export async function middleware(request: NextRequest) {
   const cookieStore = cookies();
   const token = cookieStore.get('token');
-  console.log('Token:', token);
-
+  
   const currentUrl = new URL(request.url);
   const user = data.find((userData: any) => userData.token === token?.value);
-  console.log('User Token:', user?.token);
 
   // Define an array of paths where redirection is not needed
   const allowedPaths = ['/admin'];
   const loginPaths = ['/auth/login', '/auth/sign-up']
   const userToken = token?.value || 'string';
-  console.log("token", userToken)
   if (user && userToken) {
     if (user?.token === userToken && loginPaths.includes(currentUrl.pathname)) {
       return NextResponse.rewrite(new URL('/', request.url))

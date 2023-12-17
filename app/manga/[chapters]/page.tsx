@@ -1,6 +1,5 @@
 import Nav from '@/components/nav/page'
 import RemoveRedEyeIcon from '@mui/icons-material/RemoveRedEye';
-import BookmarkAddIcon from '@mui/icons-material/BookmarkAdd';
 import AutoAwesomeIcon from '@mui/icons-material/AutoAwesome';
 import themes from '@/styles/themes.module.css'
 import List from '@/components/chapters/page'
@@ -8,6 +7,8 @@ import Footer from '@/components/footer/page'
 import EditorCard from '@/components/editorCard/page';
 import Data from '@/public/data/manga.json'
 import Menu from '@/components/menu/page'
+import Bookmark from '@/components/bookmark/page'
+
 export default function Chapters(params: any) {
     const { chapters } = params.params;
     const selectedManga = Data.find((manga: any) => manga.id === chapters);
@@ -33,7 +34,7 @@ export default function Chapters(params: any) {
                                 </div>
                                 <div className='flex items-center justify-between gap-[1vw] lg:gap-[12px]'>
                                     <div className='px-[1.2vw] py-[0.6vw] lg:px-[14px] lg:py-[8px] rounded-[0.5vw] lg:rounded-[4px] text-[1.5vw] lg:text-[12px] flex items-center justify-between gap-[1vw] lg:gap-[12px]' id={themes.button}>Start Reading <RemoveRedEyeIcon sx={{ fontSize: { xs: 12, lg: 15 } }} /></div>
-                                    <div className='px-[1.2vw] py-[0.6vw] lg:px-[14px] lg:py-[8px] rounded-[0.8vw] lg:rounded-[4px] text-[1.5vw] lg:text-[12px] flex items-center justify-between gap-[1vw] lg:gap-[12px]' id={themes.button}>Bookmark<BookmarkAddIcon sx={{ fontSize: { xs: 12, lg: 15 } }} /></div>
+                                    <Bookmark id={chapters}/>
                                 </div>
                             </div>
                         </div>

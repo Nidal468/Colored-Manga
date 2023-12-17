@@ -5,6 +5,7 @@ import Nav from '@/components/readerNav/page'
 import Sidebar from '@/components/readerSideBar/page'
 import Box from '@/components/dataBox/page'
 import Data from '@/public/data/manga.json'
+import Cookies from 'js-cookie';
 
 type DivStates = {
     div1: boolean;
@@ -24,6 +25,8 @@ export default function Reader(params: any) {
     const [width, setWidth] = useState('70%');
     const [height, setHeight] = useState('100%');
     const [fitHeight, setFitHeight] = useState('auto');
+    const [view, setView] = useState('');
+    const [checkView, setCheckView] = useState('');
     const [divStates, setDivStates] = useState<DivStates>({
         div1: false,
         div2: false,
@@ -81,6 +84,57 @@ export default function Reader(params: any) {
             window.removeEventListener('resize', handleWindowResize);
         };
     }, []);
+    useEffect(() => {
+        const token = Cookies.get('token');
+        const guestId = localStorage.getItem('guestId');
+
+        if (token) {
+            setView(token);
+        }
+
+        if (guestId) {
+            setView(guestId);
+        }
+       
+    }, []);
+    useEffect(() => {
+        console.log(view);
+        const checkViewer = selectedChapter?.viewed.find((viewer: any) => viewer.id === view);
+
+
+        // Check if there is a valid view and no existing viewer
+        if (view && !checkViewer) {
+            const addView = async () => {
+                const data = {
+                    id: view,
+                    manga: chapters,
+                    chapter: reader
+                };
+
+                try {
+                    const response = await fetch("/api/addView", {
+                        method: 'POST',
+                        body: JSON.stringify(data),
+                    });
+
+                    if (response.ok) {
+                        console.log(response);
+                    } else {
+                        console.error('Failed to add view:', response.statusText);
+                    }
+                } catch (error) {
+                    console.error('Error during fetch:', error);
+                }
+            };
+
+            addView();
+        }
+    }, [view]);
+
+
+
+
+
     return (
         <div className='w-full flex items-start justify-start'>
             <div className="font-light flex flex-col items-center justify-start gap-[10vw]" style={{ width: divStates.div4 ? "80%" : "100%" }}>
@@ -106,9 +160,9 @@ export default function Reader(params: any) {
                     removeHeader={() => toggleDivState('div5')}
                     value={divStates.div5 ? "Enable Header" : "Remove Header"}
                     removeSideBar={() => toggleDivState('div4')}
-                    fitWidth={() => { setWidth("95%"), setHeight("auto"), setFitHeight('auto')}}
-                    fitHeight={() => { setHeight("100%"); setWidth("auto"), setFitHeight('100vh')}}
-                    fitRes={() => { setWidth("75%"), setHeight("auto"), setFitHeight('auto')}}
+                    fitWidth={() => { setWidth("95%"), setHeight("auto"), setFitHeight('auto') }}
+                    fitHeight={() => { setHeight("100%"); setWidth("auto"), setFitHeight('100vh') }}
+                    fitRes={() => { setWidth("75%"), setHeight("auto"), setFitHeight('auto') }}
                 /> : <></>
                 }
                 <Box Data={selectedreader} width={divStates.div2 ? "100%" : "80%"} name="Chapter List" id={chapters} display={divStates.div2 ? "flex" : "none"} />

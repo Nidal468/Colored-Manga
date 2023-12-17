@@ -6,6 +6,8 @@ import VisibilityIcon from '@mui/icons-material/Visibility';
 import EmailIcon from '@mui/icons-material/EmailOutlined'
 import Link from 'next/link'
 import userData from '@/public/data/user.json'
+import { generateToken } from '@/components/token/page'
+
 import { useEffect, useState } from 'react'
 
 export default function SignUp() {
@@ -29,17 +31,7 @@ export default function SignUp() {
         year: 'numeric',
     }).format(new Date());
 
-    function generateToken(length: any) {
-        const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-        let token = '';
 
-        for (let i = 0; i < length; i++) {
-            const randomIndex = Math.floor(Math.random() * characters.length);
-            token += characters.charAt(randomIndex);
-        }
-
-        return token;
-    }
 
     useEffect(() => {
         const checkUsernameExists = () => {
@@ -61,9 +53,9 @@ export default function SignUp() {
     const handleAddUser = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
 
-        if (!username || !email || !firstname || !lastname || !password || !file || !code) return alert('fill the forms first')
+        if (!username || !email || !firstname || !lastname || !password || !file) return alert('fill the forms first')
         if (checkUser?.email === email) return alert('email already exists')
-        if (code === verificationCode) {
+        
             const fileName = file.name;
             console.log('Uploaded file name:', fileName);
             try {
@@ -120,7 +112,6 @@ export default function SignUp() {
             } catch (error) {
                 console.error('Error adding user:', error);
             }
-        } else return alert('invalied verification code')
 
     }
     const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -154,9 +145,9 @@ export default function SignUp() {
                 method: 'POST',
                 body: formData,
             });
-    
+
             console.log('Response Status:', response.status);
-    
+
             if (response.ok) {
                 const responseData = await response.json();
                 alert(responseData.message);
@@ -202,9 +193,9 @@ export default function SignUp() {
                 </div>
                 <div className='w-[90%] flex flex-col items-start justify-start gap-[10px] text-white'>
                     <label className="text-[15px]">Enter your email</label>
-                    <div className='w-full h-[45px] bg-zinc-600 rounded-[4px] flex items-center justify-start px-[15px]' style={{ color: state ? "red" : "#fff", border: `1px solid ${state ? "red" : "transparent"}` }}><EmailIcon sx={{ fontSize: { xs: 12, lg: 20 } }} /><input type="text" placeholder={state ? "Email has already been taken" : "example@gmail.com"} className="px-[5px] placeholder:text-white bg-transparent w-full h-full text-[13px]" value={email} onChange={(e) => { setEmail(e.target.value), setState(false) }} /><div className='w-[60px] h-[26px] bg-sky-400 rounded-[3px] text-[12px] flex items-center justify-center font-medium cursor-pointer' onClick={handleSendVerificationCode}>Code</div></div>
+                    <div className='w-full h-[45px] bg-zinc-600 rounded-[4px] flex items-center justify-start px-[15px]' style={{ color: state ? "red" : "#fff", border: `1px solid ${state ? "red" : "transparent"}` }}><EmailIcon sx={{ fontSize: { xs: 12, lg: 20 } }} /><input type="text" placeholder={state ? "Email has already been taken" : "example@gmail.com"} className="px-[5px] placeholder:text-white bg-transparent w-full h-full text-[13px]" value={email} onChange={(e) => { setEmail(e.target.value), setState(false) }} /><div className='w-[60px] h-[26px] bg-sky-400 rounded-[3px] text-[12px] flex items-center justify-center font-medium cursor-pointer hidden' onClick={handleSendVerificationCode}>Code</div></div>
                 </div>
-                <div className='w-[90%] flex flex-col items-start justify-start gap-[10px] text-white'>
+                <div className='w-[90%] flex flex-col items-start justify-start gap-[10px] text-white hidden'>
                     <label className="text-[13px]">Enter the verification code</label>
                     <div className='w-full h-[45px] bg-zinc-600 rounded-[4px] flex items-center justify-start px-[15px] text-white'><LockIcon sx={{ fontSize: { xs: 12, lg: 20 } }} /><input type={visibility ? "text" : "Password"} placeholder="Verification code" className="px-[5px] text-white placeholder:text-white bg-transparent w-full h-full text-[13px]" value={code} onChange={(e) => setCode(e.target.value)} /><VisibilityIcon sx={{ fontSize: { xs: 12, lg: 18 } }} onClick={() => setVisibility(current => !current)} /></div>
                 </div>

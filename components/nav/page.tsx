@@ -27,11 +27,10 @@ export default function Nav() {
           <Link href="/">
             <img className='w-[40px] h-[40px]' src="/images/assets/logo.jpg" alt="coloredmanga" sizes="8000px, 8000px" />
           </Link>
-          <div id={themes.dimtext}>Home</div>
+          <div id={themes.dimtext}><Link href="/">Home</Link></div>
           <div id={themes.dimtext}><Link href="/manga">Collection</Link></div>
           <div id={themes.dimtext}>Genre</div>
-          <div id={themes.dimtext}>Profile</div>
-          <div id={themes.dimtext}>Newest</div>
+          <div id={themes.dimtext}><Link href="/profile">Profile</Link></div>
         </div>
         <Search />
         <div className='flex items-center gap-[5px] text-white text-[9px]'>

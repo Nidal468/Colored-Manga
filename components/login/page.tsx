@@ -8,12 +8,11 @@ import userData from '@/public/data/user.json'
 import { useState } from 'react'
 import Cookies from 'js-cookie';
 
-export function Logins(props: any) {
-    const { action } = props;
+export function Logins() {
+    
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [visibility, setVisibility] = useState(false);
-    const [state, setState] = useState(false);
     const findUser = userData.find((data: any) => data.username === username);
     const checkPassword = userData.find((data: any) => data.password === password);
 
@@ -25,6 +24,7 @@ export function Logins(props: any) {
         if (findUser || checkPassword) {
             const getToken = findUser?.token;
             Cookies.set('token', getToken || "", { expires: expirationDate });
+            localStorage.removeItem('guestId');
         }
     };
     return (

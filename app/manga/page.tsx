@@ -1,16 +1,14 @@
 import Nav from '@/components/nav/page'
-import Footer from "@/components/footer/page";
 import themes from "@/styles/themes.module.css"
 import Data from '@/public/data/manga.json'
 import Card from "@/components/card/page";
-import Form from "@/components/mangaform/page"
 import Menu from '@/components/menu/page'
+
 export default function Manga() {
     return (
-        <div className="xl:w-[1280px] w-full font-light flex flex-col items-start justify-start lg:px-[30px] pt-[12vw] px-[2vw] lg:pt-[80px] gap-[4vw] lg:gap-[20px]" id={themes.body}>
+        <div className="xl:w-[1280px] w-full min-h-[100vh] font-light flex flex-col items-start justify-start lg:px-[30px] pt-[12vw] px-[2vw] lg:pt-[80px] gap-[4vw] lg:gap-[20px]" id={themes.body}>
             <Nav />
             <Menu/>
-            <Form/>
             <div className="w-full min-h-[80vh] flex items-start justify-start lg:gap-[20px] gap-[2vw] flex-wrap">
                 {Data.map((data: any) => {
                     const chapters = Array.isArray(data.chapters) ? data.chapters : [];
@@ -27,7 +25,6 @@ export default function Manga() {
                     )
                 })}
             </div>
-            <Footer />
         </div>
     )
 }
