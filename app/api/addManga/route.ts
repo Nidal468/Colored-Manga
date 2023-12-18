@@ -23,6 +23,7 @@ export async function POST(req: NextRequest, res: NextResponse) {
     const genre3 = formData.get('genre3')?.toString() || '';
     const cover = formData.get('cover')?.toString() || '';
     const chapters = formData.get('chapters[]') || [];
+    const viewed = formData.get('viewed[]') || [];
 
     const file: File = formData.get('file') as File;
     const dataFolderPath = path.join(process.cwd(), UPLOAD_FOLDER, name);
@@ -39,7 +40,7 @@ export async function POST(req: NextRequest, res: NextResponse) {
     }
 
     const manga = existingData ? JSON.parse(existingData) : [];
-    manga.push({ id, name, author, date, info, genre1, genre2, genre3, cover, chapters });
+    manga.push({ id, name, author, date, info, genre1, genre2, genre3, cover, chapters, viewed});
     await writeFile(filePath, JSON.stringify(manga), 'utf8');
 
     const bytes = await file.arrayBuffer();

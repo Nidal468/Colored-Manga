@@ -94,7 +94,6 @@ export default function Admin(params: any) {
         formData.append('cover', `/images/cover/${filename}` || '');
         formData.append('chapters[]', '');
 
-
         try {
             const response = await fetch("/api/addManga", {
                 method: 'POST',
@@ -139,7 +138,8 @@ export default function Admin(params: any) {
             date: formattedDate,
             index: manga.toString(),
             name: selectedManga?.name,
-            images: []
+            images: [],
+            viewed: []
         };
 
         try {

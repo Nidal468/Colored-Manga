@@ -99,6 +99,7 @@ export default function Reader(params: any) {
     }, []);
     useEffect(() => {
         console.log(view);
+        
         const checkViewer = selectedChapter?.viewed.find((viewer: any) => viewer.id === view);
 
 

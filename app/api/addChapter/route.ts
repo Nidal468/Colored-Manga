@@ -4,7 +4,7 @@ import path from 'path';
 export async function POST(req: Request) {
   try {
     const formData = await req.json();
-    const { id, title, number, date, index, name} = formData;
+    const { id, title, number, date, index, name, viewed} = formData;
     const DATA_FOLDER = 'public/data';
     const FILE_NAME = 'manga.json';
     const UPLOAD_FOLDER = 'public/images/content';
@@ -21,7 +21,7 @@ export async function POST(req: Request) {
     // Check if the manga with the matching index is found
     if (targetManga) {
       // Add new form data to the chapters array of the found manga
-      targetManga.chapters.push({ id, title, number, date });
+      targetManga.chapters.push({ id, title, number, date , viewed});
 
       // Write the updated manga list back to the file
       await fs.writeFile(filePath, JSON.stringify(mangaList), 'utf8');
