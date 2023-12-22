@@ -30,7 +30,7 @@ export default function Nav() {
           <div id={themes.dimtext}><Link href="/">Home</Link></div>
           <div id={themes.dimtext}><Link href="/manga">Collection</Link></div>
           <div id={themes.dimtext}>Genre</div>
-          <div id={themes.dimtext}><Link href="/profile">Profile</Link></div>
+          <div id={themes.dimtext}><Link href="/bookmark">Bookmark</Link></div>
         </div>
         <Search />
         <div className='flex items-center gap-[5px] text-white text-[9px]'>

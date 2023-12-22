@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useState } from 'react';
+import { useState, useEffect } from 'react';
 import s from '@/styles/admin.module.css'
 import PieChartIcon from '@mui/icons-material/PieChart';
 import CreateNewFolderIcon from '@mui/icons-material/CreateNewFolder';
@@ -28,13 +28,12 @@ type DivStates = {
     div12: boolean;
     div13: boolean;
 };
+
 export default function Admin(params: any) {
     const [manga, setManga] = useState("")
     const [chapterId, setChapterId] = useState('')
-    const { chapters } = params.params;
     const selectedManga = Data.find((mangas: any) => mangas.id === manga);
     const selectedChapter = selectedManga?.chapters.find((chapter: any) => chapter.id === chapterId);
-    const chaptersData = selectedManga?.chapters || [];
     const [divStates, setDivStates] = useState<DivStates>({
         div1: false,
         div2: false,
@@ -58,10 +57,7 @@ export default function Admin(params: any) {
     const [genre1, setGenre1] = useState('');
     const [genre2, setGenre2] = useState('');
     const [genre3, setGenre3] = useState('');
-    const [imageUrl, setImageUrl] = useState('');
     const [imagePreview, setImagePreview] = useState<string | null>(null);
-    const [display, setDisplay] = useState(true);
-    const [isPage, setPage] = useState(false)
     const [chapterNumber, setChapterNumber] = useState('');
     const [chapterTitle, setChapterTitle] = useState('');
     const [files, setFiles] = useState<FileList | null>(null);
@@ -91,6 +87,7 @@ export default function Admin(params: any) {
         formData.append('genre1', genre1 || '');
         formData.append('genre2', genre2 || '');
         formData.append('genre3', genre3 || '');
+        formData.append('totalViews', 0 || '');
         formData.append('cover', `/images/cover/${filename}` || '');
         formData.append('chapters[]', '');
 
@@ -210,6 +207,9 @@ export default function Admin(params: any) {
             console.error("Error occurred", error);
         }
     };
+
+    
+
     return (
         <div className="w-full h-[100vh] flex items-start justify-between text-white" id={s.body}>
             <div className="w-[15%] h-full flex flex-col items-center justify-starrt py-[2vw] gap-[1vw]" id={s.sidebar}>
