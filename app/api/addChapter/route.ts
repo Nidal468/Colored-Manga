@@ -9,7 +9,7 @@ export async function POST(req: Request) {
     const FILE_NAME = 'manga.json';
     const UPLOAD_FOLDER = 'public/images/content';
     const filePath = path.join(process.cwd(), DATA_FOLDER, FILE_NAME);
-    const folderPath = path.join(process.cwd(), UPLOAD_FOLDER, name, title);
+    const folderPath = path.join(process.cwd(), UPLOAD_FOLDER, name, number);
     await fs.mkdir(folderPath, { recursive: true });
     const existingData = await fs.readFile(filePath, 'utf8');
     // Parse existing data into JSON

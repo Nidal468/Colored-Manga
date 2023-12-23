@@ -35,7 +35,7 @@ export async function DELETE(req: Request) {
         // Remove the chapter from the manga's chapters array
         selectedManga.chapters.splice(selectedManga.chapters.indexOf(selectedChapter), 1);
 
-        const folderPath = path.join(process.cwd(), UPLOAD_FOLDER, selectedManga.name, selectedChapter.title);
+        const folderPath = path.join(process.cwd(), UPLOAD_FOLDER, selectedManga.name, selectedChapter.number);
 
         // Check if the folder exists before attempting to delete
         if (existsSync(folderPath)) {

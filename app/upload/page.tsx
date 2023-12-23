@@ -122,7 +122,6 @@ export default function Upload() {
 
         const formData = new FormData();
 
-        formData.append('title', selectedChapter?.title || '');
         formData.append('name', selectedManga?.name || '');
         formData.append('index', selectedManga?.id || '');
         formData.append('id', selectedChapter?.id || '');
@@ -147,14 +146,14 @@ export default function Upload() {
 
             if (response.status === 200) {
                 console.log('Page added successfully');
-                // Optionally, update the UI to inform the user of the success
+                alert("Uploaded")
             } else {
                 console.error('Failed to add page. Server responded with:', response.status);
-                // Optionally, update the UI to inform the user of the failure
+                alert("your wifi is trash")
             }
         } catch (error) {
             console.error("Error occurred", error);
-            // Optionally, update the UI to inform the user of the error
+            alert("your are wifi is truely trash")
         }
     };
     const handleDeleteChapter = async (chapter: any, manga: any) => {
