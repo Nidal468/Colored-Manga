@@ -2,8 +2,9 @@ import { NextRequest, NextResponse } from 'next/server';
 import { join, extname } from 'path';
 import { promises as fs, createReadStream } from 'fs';
 import path from 'path';
-import unzipper from 'unzipper';
 import { Readable } from 'stream';
+import decompress from 'decompress';
+
 
 const { writeFile, mkdir } = fs;
 const DATA_FOLDER = 'public/data';
@@ -76,48 +77,39 @@ export async function POST(req: NextRequest, res: NextResponse) {
 }
 
 async function handleZipFile(zipBuffer: Buffer, name: string, endPoint: string, mangaList: any[], index: string, id: string): Promise<void> {
-    const unzipStream = unzipper.Extract({ path: `${IMAGES_FOLDER}/${name}/${endPoint}` });
-    const zipReadStream = await bufferToStream(zipBuffer); // Use bufferToStream here
+    const targetDirectory = `${IMAGES_FOLDER}/${name}/${endPoint}`;
 
-    return new Promise((resolve, reject) => {
-        zipReadStream.pipe(unzipStream);
+    try {
+        await decompress(zipBuffer, targetDirectory);
 
-        unzipStream.on('close', async () => {
-            try {
-                const imageSources = await getImageSourcesFromDirectory(`${IMAGES_FOLDER}/${name}/${endPoint}`, name, endPoint);
-                if (!imageSources || imageSources.length === 0) {
-                    throw new Error('No images found in the zip file.');
+        const imageSources = await getImageSourcesFromDirectory(targetDirectory, name, endPoint);
+
+        if (!imageSources || imageSources.length === 0) {
+            throw new Error('No images found in the zip file.');
+        }
+
+        const targetManga = mangaList.find((manga: any) => manga.id === index);
+
+        if (targetManga) {
+            const targetChapter = targetManga.chapters.find((chapter: any) => chapter.id === id);
+
+            if (targetChapter) {
+                if (!targetChapter.images) {
+                    targetChapter.images = [];
                 }
 
-                const targetManga = mangaList.find((manga: any) => manga.id === index);
-
-                if (targetManga) {
-                    const targetChapter = targetManga.chapters.find((chapter: any) => chapter.id === id);
-
-                    if (targetChapter) {
-                        if (!targetChapter.images) {
-                            targetChapter.images = [];
-                        }
-                        
-                        const newImages = await renameImagesSequentially(imageSources, IMAGES_FOLDER, name, endPoint);
-                        targetChapter.images.push(...newImages.map(source => ({ "source": source})));
-                        
-                    } else {
-                        console.error('Chapter not found:', id);
-                    }
-                } else {
-                    console.error('Manga not found:', index);
-                }
-
-                resolve();
-            } catch (error) {
-                console.error('Error handling zip file:', error);
-                reject(error);
+                const newImages = await renameImagesSequentially(imageSources, IMAGES_FOLDER, name, endPoint);
+                targetChapter.images.push(...newImages.map(source => ({ "source": source })));
+            } else {
+                console.error('Chapter not found:', id);
             }
-        });
-
-        unzipStream.on('error', reject);
-    });
+        } else {
+            console.error('Manga not found:', index);
+        }
+    } catch (error) {
+        console.error('Error handling zip file:', error);
+        throw error;
+    }
 }
 
 async function getImageSourcesFromDirectory(directoryPath: string, name: string, endPoint: string): Promise<string[]> {

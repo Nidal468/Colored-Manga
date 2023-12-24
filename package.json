@@ -13,6 +13,8 @@
     "@mui/icons-material": "^5.14.14",
     "@mui/material": "^5.14.14",
     "axios": "^1.6.2",
+    "decompress": "^4.2.1",
+    "decompress-unzip": "^4.0.1",
     "disqus-react": "^1.1.5",
     "dotenv": "^16.3.1",
     "google-auth-library": "^9.4.1",
@@ -25,11 +27,13 @@
     "unzipper": "^0.10.14"
   },
   "devDependencies": {
+    "@types/decompress": "^4.2.7",
     "@types/js-cookie": "^3.0.6",
     "@types/node": "^20",
     "@types/nodemailer": "^6.4.14",
     "@types/react": "^18",
     "@types/react-dom": "^18",
+    "@types/unzip": "^0.1.4",
     "@types/unzipper": "^0.10.9",
     "autoprefixer": "^10",
     "eslint": "^8",
