@@ -18,8 +18,10 @@ type DivStates = {
 };
 
 export default function Reader(params: any) {
-
     const { chapters, reader } = params.params;
+    const { searchParams } = params
+    const pageNumberString = searchParams?.number || '';
+    const pageNumber = parseInt(pageNumberString, 10);
     const selectedreader = Data.find((reader: any) => reader.id === chapters);
     const selectedChapter = selectedreader?.chapters.find((chapter: any) => chapter.id === reader);
     const [width, setWidth] = useState('70%');
@@ -27,6 +29,7 @@ export default function Reader(params: any) {
     const [fitHeight, setFitHeight] = useState('auto');
     const [view, setView] = useState('');
     const [checkView, setCheckView] = useState('');
+    const [strip, setStrip] = useState(false);
     const [divStates, setDivStates] = useState<DivStates>({
         div1: false,
         div2: false,
@@ -74,8 +77,12 @@ export default function Reader(params: any) {
             const screenWidth = window.innerWidth;
             if (screenWidth < 720) {
                 setWidth('100%');
+                setHeight("auto");
+                setFitHeight('auto');
             } else if (screenWidth > 1000) {
-                setWidth('75%');
+                setWidth('auto');
+                setHeight('100%');
+                setFitHeight('100vh');
             }
         };
         window.addEventListener('resize', handleWindowResize);
@@ -95,11 +102,11 @@ export default function Reader(params: any) {
         if (guestId) {
             setView(guestId);
         }
-       
+
     }, []);
     useEffect(() => {
         console.log(view);
-        
+
         const checkViewer = selectedChapter?.viewed.find((viewer: any) => viewer.id === view);
 
 
@@ -131,7 +138,9 @@ export default function Reader(params: any) {
             addView();
         }
     }, [view]);
-
+    
+    const imageAtIndex = selectedChapter?.images[pageNumber] || selectedChapter?.images[0];
+    const { source } = imageAtIndex;
 
 
 
@@ -164,12 +173,21 @@ export default function Reader(params: any) {
                     fitWidth={() => { setWidth("95%"), setHeight("auto"), setFitHeight('auto') }}
                     fitHeight={() => { setHeight("100%"); setWidth("auto"), setFitHeight('100vh') }}
                     fitRes={() => { setWidth("75%"), setHeight("auto"), setFitHeight('auto') }}
+                    action={() => setStrip(current => !current)}
                 /> : <></>
                 }
                 <Box Data={selectedreader} width={divStates.div2 ? "100%" : "80%"} name="Chapter List" id={chapters} display={divStates.div2 ? "flex" : "none"} />
                 <Box Data={selectedChapter} width={divStates.div3 ? "100%" : "80%"} name="Page List" id={selectedChapter} display={divStates.div3 ? "flex" : "none"} />
                 <div className='w-[95%] lg:w-full flex flex-col items-center justify-start gap-[1vw] lg:mb-[50px] mb-[5vw]' style={{ marginTop: divStates.div5 ? "0px" : "50px" }}>
-                    {selectedChapter?.images?.map((image: any) => (
+                    {strip ? <div style={{ height: fitHeight, width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                        <img
+                            style={{ height: height, width: width }}
+                            src={source}
+                            alt={source}
+                            sizes="8000px, 8000px"
+                            loading='lazy'
+                        />
+                    </div> : <>{selectedChapter?.images.map((image: any, index: any) => (
                         <div style={{ height: fitHeight, width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center' }} key={image.source}>
                             <img
                                 style={{ height: height, width: width }}
@@ -177,14 +195,16 @@ export default function Reader(params: any) {
                                 alt={image.source}
                                 sizes="8000px, 8000px"
                                 loading='lazy'
+                                id={index}
                             />
                         </div>
-                    ))}
+                    ))}</>
+                    }
                 </div>
-                <div className='px-[20px] py-[10px] flex items-center gap-[20px] bg-zinc-800 fixed bottom-[2%] left-[4%] z-[999] duration-300 rounded-[5px] text-white cursor-pointer' style={{ opacity: divStates.div4 ? divStates.div5 ? "90%" : "0" : "0" }}>
+                <div className='px-[20px] py-[10px] flex items-center gap-[20px] bg-zinc-800 fixed bottom-[2%] left-[4%] z-[999] duration-300 rounded-[5px] text-white cursor-pointer' style={{ opacity: divStates.div4 ? "0" : divStates.div5 ? "90%" : "0" }}>
                     <h1 className='flex items-center gap-[10px]'>Press<div className='w-[30px] h-[30px] bg-white shadow-lg rounded-[10px] flex items-center justify-center text-zinc-800 font-medium'>S</div> to open sidebar</h1>
                 </div>
-                <div className='px-[20px] py-[10px] flex items-center gap-[20px] bg-zinc-800 fixed bottom-[13%] left-[4%] z-[999] duration-300 rounded-[5px] text-white cursor-pointer' style={{ opacity: divStates.div4 ? divStates.div5 ? "90%" : "0" : "0" }}>
+                <div className='px-[20px] py-[10px] flex items-center gap-[20px] bg-zinc-800 fixed bottom-[13%] left-[4%] z-[999] duration-300 rounded-[5px] text-white cursor-pointer' style={{ opacity: divStates.div4 ? "0" : divStates.div5 ? "90%" : "0" }}>
                     <h1 className='flex items-center gap-[10px]'>Press<div className='w-[30px] h-[30px] bg-white shadow-lg rounded-[10px] flex items-center justify-center text-zinc-800 font-medium'>N</div> to open navbar</h1>
                 </div>
             </div>

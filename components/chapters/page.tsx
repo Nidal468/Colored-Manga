@@ -125,7 +125,7 @@ export default function List(props: any) {
         {chaptersData.map((data: any) => {
           const viewedCount = new Set(data.viewed).size;
           return (
-            <Link href={`/manga/${props.id}/${data.id}`} key={data.id}>
+            <Link href={`/manga/${props.id}/${data.id}?number=0#0`} key={data.id}>
               <div className='w-full flex items-center justify-between px-[10px] py-[15px] lg:px-[15px] lg:py-[15px] text-[8px] lg:text-[10px]' id={themes.hover} key={data.id}>
                 <h1 className='flex items-center gap-[0.5vw]'>Chapter {data.number} - {data.title}</h1>
                 <div className='h-full flex items-center lg:gap-[15px] gap-[5px]'>

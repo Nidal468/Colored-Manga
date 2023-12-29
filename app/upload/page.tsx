@@ -5,6 +5,8 @@ import Data from '@/public/data/manga.json'
 import { useState } from 'react'
 import axios from 'axios';
 import DeleteIcon from '@mui/icons-material/Delete';
+import JSZip from 'jszip';
+import { Batch } from "@/components/uploads/batch/page";
 
 export default function Upload() {
     const [chapterId, setChapterId] = useState('')
@@ -25,8 +27,7 @@ export default function Upload() {
     const [active, setActive] = useState('');
     const selectedManga = Data.find((data: any) => data.id === selectedId);
     const selectedChapter = selectedManga?.chapters.find((data: any) => data.id === isSelectedChapter)
-    const [isProgress, setProgress] = useState('0');
-    const [isSize, setSize] = useState(0);
+    
 
 
 
@@ -117,45 +118,12 @@ export default function Upload() {
         setChapterNumber('');
         setChapterTitle('');
     };
-    const submitForm = async (e: React.FormEvent<HTMLFormElement>) => {
-        e.preventDefault();
+    
 
-        const formData = new FormData();
 
-        formData.append('name', selectedManga?.name || '');
-        formData.append('index', selectedManga?.id || '');
-        formData.append('id', selectedChapter?.id || '');
 
-        if (files) {
-            for (let i = 0; i < files.length; i++) {
-                formData.append(`file_${i}`, files[i]);
-                setSize(prev => prev += files[i].size)
-            }
-        }
 
-        try {
-            const response = await axios.post("/api/addPage", formData, {
-                onUploadProgress: (progressEvent: any) => {
-                    if (progressEvent.total) {
-                        const progress = (progressEvent.loaded / progressEvent.total) * 100;
-                        console.log(`Upload Progress: ${progress.toFixed(2)}%`);
-                        setProgress(progress.toFixed(2))
-                    }
-                },
-            });
 
-            if (response.status === 200) {
-                console.log('Page added successfully');
-                alert("Uploaded")
-            } else {
-                console.error('Failed to add page. Server responded with:', response.status);
-                alert("your wifi is trash")
-            }
-        } catch (error) {
-            console.error("Error occurred", error);
-            alert("your are wifi is truely trash")
-        }
-    };
     const handleDeleteChapter = async (chapter: any, manga: any) => {
         const body = {
             chapter: chapter,
@@ -324,13 +292,7 @@ export default function Upload() {
                         </button>
                     </div>
                 </form>}
-                {active === 'page' && <form className='w-[60%] h-full flex flex-col items-start justify-start p-[1vw] gap-[1vw]' id="form" onSubmit={submitForm}>
-                    <label htmlFor='files'>Select files for {selectedChapter?.title}</label>
-                    <input id='files' type="file" multiple onChange={(e) => setFiles(e.target.files)} />
-                    <button type="submit">Upload</button>
-                    <h1>File Size: {isSize / 1000000}mb</h1>
-                    <h1>Upload Progress: {isProgress}%</h1>
-                </form>}
+                {active === 'page' && <Batch manga={selectedManga?.id} chapter={selectedChapter?.id}/>}
             </div>
         </div>
     )

@@ -18,10 +18,10 @@ export default function Scard(props: any) {
                     </div>
                     <div className='w-full flex items-center justify-start gap-[2vw]'>
                         <div className='flex items-center gap-[0.5vw] lg:gap-[5px]'>
-                            <DnsIcon sx={{ fontSize: "15px" }} /><h3>Chapter {props.number1}</h3>
+                            <DnsIcon sx={{ fontSize: "15px" }} /><h3>{props.number1}</h3>
                         </div>
                         <div className='flex items-center gap-[0.5vw] lg:gap-[5px]'>
-                            <DnsIcon sx={{ fontSize: "15px" }} /><h3>Chapter {props.number2}</h3>
+                            <DnsIcon sx={{ fontSize: "15px" }} /><h3>{props.number2}</h3>
                         </div>
                     </div>
                 </div>

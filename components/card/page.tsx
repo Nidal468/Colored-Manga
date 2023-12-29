@@ -13,15 +13,15 @@ export default function Card(props: any) {
             <div className="text-[2vw] lg:text-[10px]">{props.author}</div>
           </div>
           <div className="p-[1.5vw] lg:p-[6px] w-[90%] rounded-sm flex justify-between items-center" id={themes.hover}>
-            <div>Chapter {props.number1}</div>
+            <div>{props.number1}</div>
             <div>{props.date1}</div>
           </div>
           <div className="p-[1.5vw] lg:p-[6px] w-[90%] rounded-sm flex justify-between items-center" id={themes.hover}>
-            <div>Chapter {props.number2}</div>
+            <div>{props.number2}</div>
             <div>{props.date2}</div>
           </div>
           <div className="p-[1.5vw] lg:p-[6px] w-[90%] rounded-sm flex justify-between items-center" id={themes.hover}>
-            <div>Chapter {props.number3}</div>
+            <div>{props.number3}</div>
             <div>{props.date3}</div>
           </div>
         </div>

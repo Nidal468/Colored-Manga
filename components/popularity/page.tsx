@@ -104,10 +104,10 @@ useEffect(() => {
                         </div>
                         <div className='flex items-center justify-start gap-[2vw] lg:gap-[20px]'>
                             <div className='flex items-center gap-[0.8vw] lg:gap-[8px]'>
-                                <DnsIcon sx={{ fontSize: "15px" }} /><h3>Chapter {Last(topMangas[1]).lastChapterNumber1}</h3>
+                                <DnsIcon sx={{ fontSize: "15px" }} /><h3>{Last(topMangas[1]).lastChapterNumber1}</h3>
                             </div>
                             <div className='flex items-center gap-[0.8vw] lg:gap-[8px]'>
-                                <DnsIcon sx={{ fontSize: "15px" }} /><h3>Chapter {Last(topMangas[1]).lastChapterNumber2}</h3>
+                                <DnsIcon sx={{ fontSize: "15px" }} /><h3>{Last(topMangas[1]).lastChapterNumber2}</h3>
                             </div>
                         </div>
                     </div>
