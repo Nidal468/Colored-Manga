@@ -6,11 +6,11 @@ import fs from "fs";
 import md5 from "md5";
 
 const app = express();
-const port = 80;
+const port = 4001;
 
 app.use(bodyParser.raw({ type: 'application/octet-stream', limit: '100mb' }));
 app.use(cors({
-  origin: 'https://freemanhwa.com',
+  origin: 'http://localhost:3000',
 }));
 app.use('/uploads', express.static('uploads'));
 
