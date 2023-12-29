@@ -7,6 +7,14 @@ import JSZip from "jszip";
 
 const chunkSize = 600 * 1024 * 1024;
 
+interface File {
+    name: string;
+    size: number;
+    type: any;
+    finalFilename?: string;
+    slice: any;
+}
+
 export function Batch(props: any) {
     const selectedManga = Data.find((data: any) => data.id === props.manga);
     const selectedChapter = selectedManga?.chapters.find((data: any) => data.id === props.chapter);
@@ -46,7 +54,7 @@ export function Batch(props: any) {
         params.set('currentChunkIndex', currentChunkIndex?.toString() || '');
         params.set('totalChunks', (Math.ceil(file.size / chunkSize)).toString());
         const headers = { 'Content-Type': 'application/octet-stream' };
-        const url = 'http://localhost:4001/upload?' + params.toString();
+        const url = 'http://upload.freemanhwa.com/upload?' + params.toString();
         axios.post(url, data, { headers })
             .then(response => {
                 const file = files[currentFileIndex as number];
@@ -54,12 +62,13 @@ export function Batch(props: any) {
                 const chunks = Math.ceil(filesize / chunkSize) - 1;
                 const isLastChunk = currentChunkIndex === chunks;
                 if (isLastChunk) {
+
                     file.finalFilename = response.data.finalFilename;
                     setLastUploadedFileIndex(currentFileIndex);
                     setCurrentChunkIndex(null);
-                  } else {
+                } else {
                     setCurrentChunkIndex(currentChunkIndex as number + 1);
-                  }
+                }
             });
     }
 
@@ -119,8 +128,8 @@ export function Batch(props: any) {
                     }
                     return (
                         <a className="file" target="_blank"
-                            href={'http://localhost:4001/uploads/' + file.finalFilename}>
-                            <div className="w-full py-[5px] bg-zinc-700 px-[2px]" key={fileIndex}>
+                            href={'http://localhost:4001/uploads/' + file.finalFilename} key={fileIndex}>
+                            <div className="w-full py-[5px] bg-zinc-700 px-[2px]">
                                 <h1>{file.name}</h1>
                                 <h1>{file.size}</h1>
                                 <h1>{file.type}</h1>
