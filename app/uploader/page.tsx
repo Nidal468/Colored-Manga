@@ -7,6 +7,7 @@ import axios from 'axios';
 import DeleteIcon from '@mui/icons-material/Delete';
 import JSZip from 'jszip';
 import { Batch } from "@/components/uploads/batch/page";
+import Folders from '@/components/scanner/page'
 
 export default function Upload() {
     const [chapterId, setChapterId] = useState('')
@@ -44,7 +45,8 @@ export default function Upload() {
             reader.readAsDataURL(selectedFile);
         }
     };
-    const addManga = async () => {
+    const addManga = async (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
 
         if (!file) return alert('fill the form first')
 
@@ -119,11 +121,6 @@ export default function Upload() {
         setChapterTitle('');
     };
     
-
-
-
-
-
     const handleDeleteChapter = async (chapter: any, manga: any) => {
         const body = {
             chapter: chapter,
@@ -292,7 +289,7 @@ export default function Upload() {
                         </button>
                     </div>
                 </form>}
-                {active === 'page' && <Batch manga={selectedManga?.id} chapter={selectedChapter?.id}/>}
+                {active === 'page' && <div className="w-full flex flex-col gap-[10px]"><Batch manga={selectedManga?.id} chapter={selectedChapter?.id}/><Folders manga={selectedManga?.id} chapter={selectedChapter?.id}/></div>}
             </div>
         </div>
     )
