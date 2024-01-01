@@ -13,6 +13,8 @@ export default function Scanner(props: any) {
         const formData = new FormData();
         formData.append('manga', selectedManga?.id || '');
         formData.append('chapters', selectedChapter?.id || '');
+        formData.append('name', selectedManga?.name || '');
+        formData.append('number', selectedChapter?.number || '');
         const response = await fetch('/api/scanner', {
             method: 'POST',
             body: formData
@@ -25,6 +27,7 @@ export default function Scanner(props: any) {
         const formData = new FormData();
         formData.append('manga', draftManga?.id || '');
         formData.append('chapters', draftChapter?.id || '');
+
         const response = await fetch('/api/publish', {
             method: 'POST',
             body: formData

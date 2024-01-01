@@ -138,7 +138,8 @@ export default function Reader(params: any) {
             addView();
         }
     }, [view]);
-
+    
+    if(!selectedChapter?.images) return
     const imageAtIndex = selectedChapter?.images[pageNumber] || selectedChapter?.images[0];
     if(!imageAtIndex) return 
     
